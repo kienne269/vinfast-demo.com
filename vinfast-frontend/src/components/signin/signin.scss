@@ -1,0 +1,57 @@
+@use "../../scss" as *;
+
+.password-require {
+  p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.6rem;
+    font-style: normal;
+    color: $black;
+    margin-bottom: 1.5rem;
+  }
+
+  .below-desc {
+    margin-bottom: 3rem;
+    padding-left: 1.5rem;
+    li {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.3rem;
+      line-height: 1.6rem;
+      color: #707070;
+      margin-left: 1rem;
+
+      span {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.6rem;
+        color: #707070;
+        margin-left: 1rem;
+      }
+
+      &::before {
+        content: "";
+        margin-left: -22px;
+        display: inline-block;
+        height: 11px;
+        width: 14px;
+        background-image: url("../../assets/images/icons/unmark.png");
+      }
+    }
+  }
+}
+
+.policy {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  color: #707070;
+  margin-bottom: 3rem;
+
+  a {
+    text-decoration: underline;
+    color: #2c72c6;
+  }
+}

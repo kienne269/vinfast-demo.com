@@ -1,0 +1,77 @@
+@use "../../../scss/" as *;
+
+thead {
+  background-color: $second-bg;
+}
+
+tr {
+  text-align: center;
+}
+
+th,
+td {
+  text-transform: capitalize;
+  padding: 1.5rem 1rem;
+}
+
+tbody > tr:hover {
+  background-color: $main-color;
+  color: $white;
+}
+
+table {
+  width: 100%;
+  min-width: 30rem;
+  border-spacing: 0;
+}
+
+.table-wrapper {
+  // overflow-y: auto;
+}
+
+.table__pagination {
+  width: 100%;
+  margin-top: 2rem;
+
+  @include flex(center, flex-end);
+
+  &-item ~ item {
+    margin-left: 1rem;
+  }
+
+  &-item {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+
+    @include flex(center, center);
+
+    &.active,
+    .active:hover {
+      background-color: $main-color;
+      color: $white;
+      font-weight: 600;
+    }
+
+    &:hover {
+      color: $white;
+      background-color: $second-color;
+    }
+  }
+}
+
+.page-header--product {
+  @include flex(center, space-between);
+}
+
+.productAddButton {
+  width: 8rem;
+  border: none;
+  padding: 0.5rem;
+  color: $white;
+  background-color: $blue;
+  border-radius: $border-radius;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
