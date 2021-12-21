@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 
 import { Link, useLocation } from 'react-router-dom';
 
@@ -36,8 +36,25 @@ const Header = () => {
 
     const active = headerNav.findIndex( e => e.path === pathName);
 
+    const [isCheckheader, setIsCheckheader] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsCheckheader(true)
+            } else {
+                setIsCheckheader(false)
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    },[])
+
     return (
-        <header ref={headerRef} className="header">
+        <header ref={headerRef} className={isCheckheader ? 'isCheckheader header' : 'header'}>
             <div className="header__wrap container">
                 <div className="header__left">
                     <div className="header__left--logo">

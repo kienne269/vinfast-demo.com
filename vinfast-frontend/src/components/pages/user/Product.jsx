@@ -1,4 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import ProtoTypes from 'prop-types'
+
+import axios from 'axios'
 
 import ProductView from '../../user/product-view/ProductView'
 
@@ -9,10 +12,25 @@ const Product = props => {
 
     let params = useParams();
 
-    const product = productData.getProductBySlug(params.slug)
-    console.log(product)
+    const [productData, setProductData] = useState([])
 
-    const relatedProducts = productData.getProducts(10)
+    const getProductBySlug = (slug) => productData.find(e => e.slug === slug)
+    const product = getProductBySlug(params.slug)
+
+    useEffect(() => {
+        
+        axios.get('http://localhost/vinfast/vinfast-backend/api/readProduct.php')
+                .then(res => {
+                    const persons = res.data;
+                    setProductData( persons.data);
+                })
+                .catch(error => console.log(error));
+                
+    }, [])
+    console.log(productData)
+
+    // let product = props.product
+    console.log(product)
 
     // React.useEffect(() => {
     //     console.log(product)

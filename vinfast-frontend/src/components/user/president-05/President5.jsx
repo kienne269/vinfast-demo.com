@@ -63,9 +63,9 @@ const President5 = props => {
                     </div>
                 </div>
                 <div className="president__wrap__right">
-                    <img src={product.image05} alt="" />
+                    <img src={product.image5} alt="" />
                     <div className="group__button">
-                        <Link to="/">Mua ngay</Link>
+                        <Link to="/vinfast-cars-deposit">Mua ngay</Link>
                     </div>
                 </div>
             </div>

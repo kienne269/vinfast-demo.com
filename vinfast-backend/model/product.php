@@ -3,16 +3,38 @@ class Product
 {
     private $conn;
 
-    // thông tin xe
-    public $id_xe;
+    // thông tin block1
+    public $id;
     public $slug;
-    public $dongxe;
-    public $slogan;
-    public $name;
+    public $title;
+    public $image1;
+    public $image3;
+    public $image5;
+    public $image6;
+    public $categorySlug;
+    public $dongcoBMW;
     public $description;
-    public $logo;
-    public $logoVin;
-    public $image;
+    public $hopSo;
+    public $camGiacLai;
+    public $congSuat;
+    public $thietkeNgoaiThat;
+    public $thietkeNgoaiThat2;
+    public $thietkeNgoaiThat3;
+    public $voLangCamXuc;
+    public $daTienIch;
+    public $giaiTri;
+    public $thietKeNoiThat;
+    public $thietKeNoiThat2;
+    public $thietKeNoiThat3;
+    public $dongCoCN;
+    public $dongCoCN1;
+    public $daiRongCao;
+    public $chieuDai;
+    public $moMen;
+    public $khoangSang;
+    public $dungTich;
+    public $mucTieuThu;
+    public $danDong;
 
     //connect db
     public function __construct($db)
@@ -23,7 +45,7 @@ class Product
     //read data
     public function read()
     {
-        $query = "SELECT * FROM list_car ORDER BY id_xe DESC";
+        $query = "SELECT * FROM products";
 
         $stmt = $this->conn->prepare($query);
 

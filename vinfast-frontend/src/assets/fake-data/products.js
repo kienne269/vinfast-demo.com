@@ -1,12 +1,12 @@
 // VinFast LUX SA2.0
-const product_01_image_01 = require('../images/lux-sa/hinh-anh-VinFast-Lux-SA2.0-gia-danh-gia-noi-that-thong-so.png').default
+const product_01_image_01 = require('../images/lux-sa/1.png').default
 const product_01_image_02_red = require('../images/lux-sa/red.png').default
 const product_01_image_02_gray = require('../images/lux-sa/gray.png').default
 const product_01_image_02_blue = require('../images/lux-sa/blue.png').default
 const product_01_image_02_silver = require('../images/lux-sa/silver.png').default
 const product_01_image_02_black = require('../images/lux-sa/black.png').default
 const product_01_image_02_white = require('../images/lux-sa/white.png').default
-const product_01_image_03 = require('../images/lux-sa/VFLux03.png').default
+const product_01_image_03 = require('../images/lux-sa/3.png').default
 const product_01_image_04_1 = require('../images/lux-sa/4.1.jpg').default
 const product_01_image_04_2 = require('../images/lux-sa/4.2.jpg').default
 const product_01_image_04_3 = require('../images/lux-sa/4.3.jpg').default
@@ -20,8 +20,8 @@ const product_01_image_04_10 = require('../images/lux-sa/4.10.jpg').default
 const product_01_image_04_11 = require('../images/lux-sa/4.11.jpg').default
 const product_01_image_04_12 = require('../images/lux-sa/4.12.jpg').default
 const product_01_image_04_13 = require('../images/lux-sa/4.13.jpg').default
-const product_01_image_05 = require('../images/lux-sa/hinh-anh-thong-so-xe-VinFast-Lux-SA2.0-tieu-chuan-nang-cao-cao-cap.png').default
-const product_01_image_06 = require('../images/lux-sa/VFLux06.jpg').default
+const product_01_image_05 = require('../images/lux-sa/5.png').default
+const product_01_image_06 = require('../images/lux-sa/6.jpg').default
 
 //VinFast A2.0
 const product_02_image_01 = require('../images/lux-a/hinh-anh-dang-ky-lai-thu-VinFast-Lux-A2.0.png').default
@@ -31,7 +31,7 @@ const product_02_image_02_blue = require('../images/lux-a/blue.png').default
 const product_02_image_02_silver = require('../images/lux-a/silver.png').default
 const product_02_image_02_black = require('../images/lux-a/black.png').default
 const product_02_image_02_white = require('../images/lux-a/white.png').default
-const product_02_image_03 = require('../images/lux-a/VFLuxA03.png').default
+const product_02_image_03 = require('../images/lux-sa/3.png').default
 // const product_02_image_04_1 = require('../images/lux-a/4.1.jpg').default
 // const product_02_image_04_2 = require('../images/lux-a/4.2.jpg').default
 // const product_02_image_04_3 = require('../images/lux-a/4.3.jpg').default
@@ -46,7 +46,7 @@ const product_02_image_03 = require('../images/lux-a/VFLuxA03.png').default
 // const product_02_image_04_12 = require('../images/lux-a/4.12.jpg').default
 // const product_02_image_04_13 = require('../images/lux-a/4.13.jpg').default
 const product_02_image_05 = require('../images/lux-a/hinh-anh-an-toan-cong-nghe-VinFast-Lux-A-2.0-ban-tieu-chuan.png').default
-const product_02_image_06 = require('../images/lux-sa/VFLux06.jpg').default
+const product_02_image_06 = require('../images/lux-sa/6.jpg').default
 
 const products = [
     {

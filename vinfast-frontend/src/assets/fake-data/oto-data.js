@@ -3,7 +3,6 @@ const img2 = require("../images/vinfast-data-01/LuxSA_1624348590.webp").default
 const img3 = require("../images/vinfast-data-01/LuxA_1624348606.webp").default
 const img4 = require("../images/vinfast-data-01/Fadil_1624348615.webp").default
 const img5 = require("../images/vinfast-data-01/president.webp").default
-const titleCar = require("../images/vinfast-data-01/bg-title-car.png").default
 const logoVin = require("../images/vinfast/logo_gray.svg").default
 
 const OtoData = [
@@ -16,7 +15,7 @@ const OtoData = [
             'Hệ thống pin tiên tiến, chính sách thuê pin độc đáo' , 
             'Chi phí vận hành, bảo dưỡng rẻ hơn xe xăng'
         ],
-        logo: titleCar,
+        
         logoVin: logoVin,
         img: img1
     },
@@ -30,7 +29,7 @@ const OtoData = [
             'Khung gầm liền khối vững chắc chuẩn châu Âu tối ưu' ,
             'Chuẩn an toàn cao nhất 5 sao ASEAB NCAP'
         ],
-        logo: titleCar,
+        
         logoVin: logoVin,
         img: img2
     },
@@ -44,7 +43,7 @@ const OtoData = [
             'Hệ dẫn động cầu sau và hệ thống treo độc lâp cho cảm giác lái thể thao' ,
             'Chuẩn an toàn cao nhất 5 sao ASEAB NCAP'
         ],
-        logo: titleCar,
+        
         logoVin: logoVin,
         img: img3
     },
@@ -58,7 +57,7 @@ const OtoData = [
             'Hệ thống giải trí và kết nối hiện đại' ,
             'Chuẩn an toàn cao nhất 4 sao ASEAB NCAP'
         ],
-        logo: titleCar,
+        
         logoVin: logoVin,
         img: img4
     },
@@ -72,7 +71,7 @@ const OtoData = [
             'Thiết kế uy lực đầy kiêu hãnh, tôn dấu ấn tinh hoa của chủ nhân' ,
             'Khả năng vận hành vượt trội với động cơ V8 6,2L mạnh mẽ bậc nhất thế giới'
         ],
-        logo: titleCar,
+        
         logoVin: logoVin,
         img: img5
     }

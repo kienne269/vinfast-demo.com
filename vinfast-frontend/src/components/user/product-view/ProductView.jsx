@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import ProtoTypes from 'prop-types'
 
 // import { useDispatch } from 'react-redux'
 
@@ -20,48 +20,49 @@ const ProductView = props => {
     // const dispatch = useDispatch()
 
     let product = props.product
-
-    if (product === undefined) product = {
-        title: "",
-        price: '',
-        image01: null,
-        image02: null,
-        categorySlug: "",
-        colors: [],
-        slug: "",
-        size: [],
-        description: ""
-    }
+    console.log(product)
 
     return (
         <div id="product">
-            <div className="product__title">{product.title}</div>
+            {/* <div className="product__title">{product ? product.title : ''}</div> */}
             <Swiper>
                 <SwiperSlide>
-                    <President1 product={product}/>
+                    {
+                        product ? <President1 product={product}/> : ''
+                    }
+                </SwiperSlide>
+                {/* <SwiperSlide>
+                    {
+                        product ? <President2 product={product}/> : ''
+                    }
+                </SwiperSlide> */}
+                <SwiperSlide>
+                    {
+                        product ? <President3 product={product}/> : ''
+                    }
+                </SwiperSlide>
+                {/* <SwiperSlide>
+                    {
+                        product ? <President4 product={product}/> : ''
+                    }
+                </SwiperSlide> */}
+                <SwiperSlide>
+                    {
+                        product ? <President5 product={product}/> : ''
+                    }
                 </SwiperSlide>
                 <SwiperSlide>
-                    <President2 product={product}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <President3 product={product}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <President4 product={product}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <President5 product={product}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <President6 product={product}/>
+                    {
+                        product ? <President6 product={product}/> : ''
+                    }
                 </SwiperSlide>
             </Swiper>
         </div>
     )
 }
 
-ProductView.propTypes = {
-    product: PropTypes.object
+ProductView.ProtoTypes = {
+    product: ProtoTypes.object
 }
 
 export default ProductView

@@ -10,14 +10,14 @@ const President6 = props => {
     return (
         <section id="president-06">
             <div className="president__wrap">
-                <img src={product.image06} alt="" />
+                <img src={product.image6} alt="" />
                 <div className="president__wrap__info">
                     <div className="container">
                         <div className="row">
                             <div className="l-12">
                                 <div className="name">{product.title}</div>
                                 <div className="group__button">
-                                    <Link to="/">Mua ngay</Link>
+                                    <Link to="/vinfast-cars-deposit">Mua ngay</Link>
                                 </div>
                             </div>
                         </div>

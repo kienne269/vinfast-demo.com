@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
+
+import axios from 'axios'
 
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,7 +12,21 @@ import './block2.scss';
 
 const Block2 = props => {
 
-    const data = props.data
+
+    const [block2Data, setBlock2Data] = useState([])
+    console.log(block2Data)
+
+    useEffect(() => {
+        
+        axios.get('http://localhost/vinfast/vinfast-backend/api/home/readBlock2.php')
+                .then(res => {
+                    const persons = res.data;
+                    console.log(persons)
+                    setBlock2Data( persons.data);
+                })
+                .catch(error => console.log(error));
+                
+    }, [])
 
     return (
         <div className='block2'>
@@ -25,7 +41,7 @@ const Block2 = props => {
                 // autoplay={{delay: 3000}}
             >
                 {
-                    data.map((item, index) => (
+                    block2Data.map((item, index) => (
                         <SwiperSlide key={index}>
                             <Block2Item item={item} />
                         </SwiperSlide>

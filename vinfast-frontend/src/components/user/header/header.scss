@@ -7,14 +7,16 @@
   }
 
   @include tablet-lg {
+    &.isCheckheader {
+      background-color: $white;
+    }
     width: 100%;
     height: $header-height;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: $white;
     z-index: 99;
-    transition: height 0.3 ease, background-color 0.3s ease;
+    transition: all 0.3 ease, background-color 0.3s ease;
   }
 
   &__wrap {

@@ -4,11 +4,18 @@ import { Link } from 'react-router-dom';
 
 import './president2.scss'
 
+import image1 from '../../../assets/images/lux-sa/red.png'
+import image2 from '../../../assets/images/lux-sa/gray.png'
+import image3 from '../../../assets/images/lux-sa/blue.png'
+import image4 from '../../../assets/images/lux-sa/silver.png'
+import image5 from '../../../assets/images/lux-sa/black.png'
+import image6 from '../../../assets/images/lux-sa/white.png'
+
 
 const President2 = props => {
 
     const product = props.product;
-    console.log(product.image02[0])
+    console.log(product.image2[0])
     
     const [background, setBackground] = useState(product.image02[0])
     const [active, setActive] = useState(0);
@@ -65,7 +72,7 @@ const President2 = props => {
                                 <div className="l-7">
                                     <p>{product.thietKeNgoaiThat3}</p>
                                     <div className="group__button">
-                                        <Link to="/">Mua ngay</Link>
+                                        <Link to="/vinfast-cars-deposit">Mua ngay</Link>
                                     </div>
                                 </div>
                             </div>

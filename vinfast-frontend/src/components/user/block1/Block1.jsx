@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
+
+import axios from 'axios'
 
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,11 +10,28 @@ import 'swiper/swiper-bundle.css'
 
 import './block1.scss'
 
+import image1 from '../../../assets/images/block1/top_slide_1.png'
+import image2 from '../../../assets/images/block1/top_slide_2.webp'
+import image3 from '../../../assets/images/block1/top_slide_3.webp'
+import image4 from '../../../assets/images/block1/top_slide_4.webp'
+import image5 from '../../../assets/images/block1/top_slide_5.webp'
+
 SwiperCore.use([Navigation, Pagination])
 
-const Block1 = props => {
+const Block1 = () => {
 
-    const data = props.data
+    const [block1Data, setBlock1Data] = useState([])
+
+    useEffect(() => {
+        
+        axios.get('http://localhost/vinfast/vinfast-backend/api/home/readBlock1.php')
+                .then(res => {
+                    const persons = res.data;
+                    setBlock1Data( persons.data);
+                })
+                .catch(error => console.log(error));
+                
+    }, [])
 
     return (
         <div className="block1">
@@ -24,7 +43,7 @@ const Block1 = props => {
                 // autoplay={{delay: 3000}}
             >
                 {
-                    data.map((item, index) => (
+                    block1Data.map((item, index) => (
                         <SwiperSlide key={index}>
                             <Block1Item item={item} />
                         </SwiperSlide>
@@ -40,9 +59,10 @@ Block1.prototype = {
 }
 
 const Block1Item = props => (
+    
     <div className="block1__item">
         <div className="block1__item__image">
-            <img src={props.item.img} alt="" height="501px"/>
+            <img src={props.item.image} alt="" height="501px"/>
         </div>
         <div className="block1__item__info">
             <div className="block1__item__info--title">

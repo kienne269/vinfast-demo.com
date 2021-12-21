@@ -10,7 +10,7 @@ const President3 = props => {
     return (
         <section id="president-03">
             <div className="president__wrap">
-                <img src={product.image03} alt="" />
+                <img src={product.image3} alt="" />
                 <div className="president__wrap__info">
                     <div className="container">
                         <ul>
@@ -45,7 +45,7 @@ const President3 = props => {
                             <div className="l-7">
                                 <p>{product.thietKeNoiThat3}</p>
                                 <div className="group__button">
-                                    <Link to="/">Mua ngay</Link>
+                                    <Link to="/vinfast-cars-deposit">Mua ngay</Link>
                                 </div>
                             </div>
                         </div>
