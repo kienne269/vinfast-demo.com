@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin:*');
 header('Content-Type: application/json');
 
-include_once('../contacts.php');
+include_once('../../config/contacts.php');
 include_once('../../model/product.php');
 
 $db = new db();

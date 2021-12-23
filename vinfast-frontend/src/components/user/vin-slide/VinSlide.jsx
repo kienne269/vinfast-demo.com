@@ -51,7 +51,7 @@ const VinSlide = () => {
                     bannerData.map((item, index) => (
                         <SwiperSlide key={index}>
                             <div className="vinfast-slide__item">
-                                <img src={item.banner} alt="" />
+                                <img src={item.banner} alt="" width="100%"/>
                             </div>
                         </SwiperSlide>
                     ))

@@ -117,7 +117,7 @@ const VinCarDetail = () => {
         })
     }
     return (
-        <div>
+        <>
             <div className="vin__car__deposit">
                 <ul className="vin__car__deposit__container">
                     {
@@ -379,7 +379,7 @@ const VinCarDetail = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

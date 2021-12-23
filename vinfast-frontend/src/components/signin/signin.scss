@@ -20,6 +20,7 @@
       line-height: 1.6rem;
       color: #707070;
       margin-left: 1rem;
+      padding: 5px;
 
       span {
         font-style: normal;
@@ -53,5 +54,25 @@
   a {
     text-decoration: underline;
     color: #2c72c6;
+  }
+}
+
+.form-message {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 1.3rem;
+  color: #dc3545;
+}
+
+.form-group input.check {
+  border: 1px solid #dc3545;
+}
+
+.password-require .below-desc li.checkCase {
+  span {
+    color: $blue;
+  }
+  &::before {
+    background-image: url("../../assets/images/icons/checkCharacter.svg");
   }
 }
