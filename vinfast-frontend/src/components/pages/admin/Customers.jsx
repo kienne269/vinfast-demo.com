@@ -1,17 +1,19 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+
+import axios from 'axios'
 
 import Table from '../../admin/table/Table'
 
 import customerList from '../../../assets/JsonData/customers-list.json'
 
 const customerTableHead = [
-    '',
+    'id',
     'name',
-    'email',
     'phone',
-    'total orders',
-    'total spend',
-    'location'
+    'Căn cước',
+    'email',
+    'password',
+    'province'
 ]
 
 const renderHead = (item, index) => <th key={index}>{item}</th>
@@ -20,15 +22,29 @@ const renderBody = (item, index) => (
     <tr key={index}>
         <td>{item.id}</td>
         <td>{item.name}</td>
-        <td>{item.email}</td>
         <td>{item.phone}</td>
-        <td>{item.total_orders}</td>
-        <td>{item.total_spend}</td>
-        <td>{item.location}</td>
+        <td>{item.cccd}</td>
+        <td>{item.email}</td>
+        <td>{item.password}</td>
+        <td>{item.province}</td>
     </tr>
 )
 
 const Customers = () => {
+    const [customerData, setCustomerData] = useState([])
+
+    useEffect(() => {
+        
+        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
+                .then(res => {
+                    const persons = res.data;
+                    setCustomerData( persons.data);
+                })
+                .catch(error => console.log(error));
+                
+    }, [])
+    console.log(customerData)
+    console.log(customerList)
     return (
         <div>
             <h2 className="page-header">
@@ -42,7 +58,7 @@ const Customers = () => {
                                 limit='10'
                                 headData={customerTableHead}
                                 renderHead={(item, index) => renderHead(item, index)}
-                                bodyData={customerList}
+                                bodyData={customerData}
                                 renderBody={(item, index) => renderBody(item, index)}
                             />
                         </div>

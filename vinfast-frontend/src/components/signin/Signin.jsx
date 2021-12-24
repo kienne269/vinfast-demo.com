@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import axios from 'axios'
 
@@ -7,6 +7,16 @@ import { Link} from 'react-router-dom';
 import './signin.scss';
 
 const Signin = () => {
+    const [customerData, setCustomerData] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
+        .then(res => {
+            const persons = res.data;
+            setCustomerData( persons.data);
+        })
+        .catch(error => console.log(error));
+    }, [])
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -17,10 +27,10 @@ const Signin = () => {
     const [checkMail, setCheckMail] = useState(true)
     const [checkPass, setCheckPass] = useState(true)
     const [checkPassConfirm, setCheckPassConfirm] = useState(true)
-    const [checkUpperCase, setCheckUpperCase] = useState(false)
-    const [checkLowerCase, setCheckLowerCase] = useState(false)
-    const [checkLengthCase, setCheckLengthCase] = useState(false)
-    const [checkNumberCase, setCheckNumberCase] = useState(false)
+    const [checkUpperCase, setCheckUpperCase] = useState(true)
+    const [checkLowerCase, setCheckLowerCase] = useState(true)
+    const [checkLengthCase, setCheckLengthCase] = useState(true)
+    const [checkNumberCase, setCheckNumberCase] = useState(true)
 
     // On change text
     const onChangeName = (e) => {
@@ -69,10 +79,6 @@ const Signin = () => {
         }
     }
 
-    const CharacterValidation = () => {
-
-    }
-
     const handleShowPassConfirm = () => {
         setIsShowPassConfirm(!isShowPassConfirm)
     }
@@ -82,24 +88,43 @@ const Signin = () => {
         emailValidation();
         passwordValidation();
 
-        if (checkUpperCase && checkLowerCase && checkLengthCase && checkNumberCase) {
-            setCheckPass(true)
-        } else {
-            setCheckPass(false)
-        }
-    // perform all neccassary validations
-        const obj = {
-            name: name,
-            email: email,
-            password: pass,
-        }
-        console.log(obj);
+        const check = checkUpperCase && checkLowerCase && checkLengthCase && checkNumberCase;
+        setCheckPass(check)
 
-        axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateSignin.php',obj)
-        .then(res=> console.log(res.data))
-        .catch(error => {
-            console.log(error.response)
-        })
+        if (check && checkPassConfirm && checkMail) {
+            if (customerData) {
+                const getEmail = (email) => customerData.find(e => e.email === email)
+                const CheckEmailResigered = getEmail(email)
+                if (CheckEmailResigered) {
+                    //check
+                    console.log('Tài khoản đã tồn tại')
+                } else {
+                    const obj = {
+                        name: name,
+                        email: email,
+                        password: pass,
+                    }
+                    axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateCustomer.php',obj)
+                    .then(res=> console.log(res.data))
+                    .catch(error => {
+                        console.log(error.response)
+                    })
+                }
+            }else {
+                const obj = {
+                    name: name,
+                    email: email,
+                    password: pass,
+                }
+                axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateCustomer.php',obj)
+                .then(res=> console.log(res.data))
+                .catch(error => {
+                    console.log(error.response)
+                })
+            }
+        }
+
+
     }
     return (
         <form action method="POST" className="form" id="form-2">
@@ -110,26 +135,26 @@ const Signin = () => {
                     <div className="form-message"></div>
                 </div>
                 <div className="form-group">
-                    <input onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
-                    <div className="form-message">{checkMail ? "" : "Sai định dạng email"}</div>
+                    <input className={checkMail ? '' : "check"} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
+                    <div className="form-message">{checkMail ? "" : "Sai định dạng email."}</div>
                 </div>
                 <div className="form-group">
                     <div className="password">
-                        <input onChange={onChangePass} type={isShowPass ? 'text': 'password'} name="password" id="passwword" placeholder="Mật khẩu" />
-                    <div onChange={onChangePass} onClick={handleShowPass} className="password__show">
-                        <i className={isShowPass ? "icon__hide" : "icon__show"}></i>
-                    </div>
+                        <input className={checkPass ? "" : "check"} onChange={onChangePass} type={isShowPass ? 'text': 'password'} name="password" id="passwword" placeholder="Mật khẩu" />
+                        <div onChange={onChangePass} onClick={handleShowPass} className="password__show">
+                            <i className={isShowPass ? "icon__hide" : "icon__show"}></i>
+                        </div>
                     </div>
                     <div className="form-message">{checkPass ? "" : "Mật khẩu phải đúng định dạng."}</div>
                 </div>
                 <div className="form-group">
                     <div className="password">
-                        <input className={checkMail ? '' : "check"} onChange={onChangePassConfirm} type={isShowPassConfirm ? 'text': 'password'} name="password" id="passwword1" placeholder="Nhập lại mật khẩu mới" />
-                    <div onClick={handleShowPassConfirm} className="password__show">
-                        <i className={isShowPassConfirm ? "icon__hide" : "icon__show"}></i>
+                        <input className={checkPassConfirm ? "" : "check"} onChange={onChangePassConfirm} type={isShowPassConfirm ? 'text': 'password'} name="password" id="passwword1" placeholder="Nhập lại mật khẩu mới" />
+                        <div onClick={handleShowPassConfirm} className="password__show">
+                            <i className={isShowPassConfirm ? "icon__hide" : "icon__show"}></i>
+                        </div>
                     </div>
-                    </div>
-                    <div className="form-message"></div>
+                    <div className="form-message">{checkPassConfirm ? "" : "Mật khẩu không trùng khớp."}</div>
                 </div>
             </div>
             <div className="password-require">

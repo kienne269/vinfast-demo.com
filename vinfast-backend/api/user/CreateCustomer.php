@@ -26,20 +26,20 @@ header('Access-Control-Allow-Methods: POST');
 header("Access-Control-Allow-Headers:Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Request-With");
 
 include_once('../../config/contacts.php');
-include_once('../../model/Signin.php');
+include_once('../../model/Customer.php');
 
 $db = new db();
 $connect = $db->connect();
 
-$user = new Signin($connect);
+$customer = new Customer($connect);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$user->name = $data->name;
-$user->email = $data->email;
-$user->password = $data->password;
+$customer->name = $data->name;
+$customer->email = $data->email;
+$customer->password = $data->password;
 
-if ($user->create()) {
+if ($customer->create()) {
     echo json_encode(array('message', 'User Created'));
 } else {
     echo json_encode(array('message', 'User Not Created'));

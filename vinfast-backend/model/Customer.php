@@ -1,5 +1,5 @@
 <?php
-class Signin
+class Customer
 {
     private $conn;
 
@@ -14,10 +14,21 @@ class Signin
         $this->conn = $db;
     }
 
+    //read data
+    public function read()
+    {
+        $query = "SELECT * FROM vinfast_customer";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
     //create data
     public function create()
     {
-        $query = "INSERT INTO vinfast_signin SET name=:name, email=:email, password=:password";
+        $query = "INSERT INTO vinfast_customer SET name=:name, email=:email, password=:password";
 
         $stmt = $this->conn->prepare($query);
 
