@@ -43,11 +43,11 @@ const Block1 = () => {
                 // autoplay={{delay: 3000}}
             >
                 {
-                    block1Data.map((item, index) => (
+                    block1Data ? block1Data.map((item, index) => (
                         <SwiperSlide key={index}>
                             <Block1Item item={item} />
                         </SwiperSlide>
-                    ))
+                    )) : null
                 }
             </Swiper>
         </div>

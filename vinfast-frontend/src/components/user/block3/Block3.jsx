@@ -65,13 +65,13 @@ const Block3 = () => {
                     }}
                 >
                     {
-                        block3Data.map((item, index) => (
+                        block3Data ? block3Data.map((item, index) => (
                             <SwiperSlide  key={index}>
                                 <Link to={`/catalog/${item.slug}`}>
                                     <Block3Item item={item} />
                                 </Link>
                             </SwiperSlide>
-                        ))
+                        )) : null
                     }
             </Swiper>
         </div>

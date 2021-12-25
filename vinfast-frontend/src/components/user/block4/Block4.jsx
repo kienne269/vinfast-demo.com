@@ -31,7 +31,9 @@ const Block4 = () => {
                     setBlock4Data( persons.data);
                 })
                 .catch(error => console.log(error));
-                
+        return () => {
+            
+        }   
     }, [])
 
     return (
@@ -62,13 +64,13 @@ const Block4 = () => {
                     }}
                 >
                     {
-                        block4Data.map((item, index) => (
+                        block4Data ? block4Data.map((item, index) => (
                             <SwiperSlide  key={index}>
                                 <Link to="/">
                                     <Block4Item item={item} />
                                 </Link>
                             </SwiperSlide>
-                        ))
+                        )) : null
                     }
                 </Swiper>
         </div>

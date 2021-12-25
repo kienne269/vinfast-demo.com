@@ -26,14 +26,7 @@ const VinSlide = () => {
                     console.log(persons)
                     setBannerData( persons.data);
                 })
-                .catch(error => console.log(error));
-
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                
-            }
-        }
-                
+                .catch(error => console.log(error));              
     }, [])
 
     SwiperCore.use([Autoplay]);
@@ -48,13 +41,13 @@ const VinSlide = () => {
                 // autoplay={{delay: 3000}}
             >
                 {
-                    bannerData.map((item, index) => (
+                   bannerData ? bannerData.map((item, index) => (
                         <SwiperSlide key={index}>
                             <div className="vinfast-slide__item">
                                 <img src={item.banner} alt="" width="100%"/>
                             </div>
                         </SwiperSlide>
-                    ))
+                    )) : null
                 }
             </Swiper>
             <div className="sr-mb">
