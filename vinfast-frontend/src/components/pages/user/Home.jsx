@@ -29,7 +29,7 @@ const Home = () => {
             <Block2 />
             <Block3 />
             <Block4 />
-            <RegisterSuccess />
+            {/* <RegisterSuccess /> */}
         </>
     )
 }

@@ -152,9 +152,12 @@
     background-color: #1464f4;
     cursor: pointer;
     border-radius: $border-radius;
-    // background-color: #979797;
-    // cursor: not-allowed;
     border: none;
+
+    &:disabled {
+      background-color: #979797;
+      cursor: not-allowed;
+    }
   }
 }
 

@@ -150,6 +150,22 @@
         }
       }
 
+      .slidebar__right {
+        position: fixed;
+        padding: 1rem;
+        min-width: 30rem;
+        top: 7rem;
+        right: 0;
+
+        li {
+          font-size: 1.4rem;
+          font-weight: 600;
+          font-style: normal;
+          line-height: 150%;
+          padding: 1rem;
+        }
+      }
+
       &:hover {
         background-color: rgba(44, 114, 198, 0.1);
         color: $blue;

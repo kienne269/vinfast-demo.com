@@ -7,7 +7,7 @@ const GroupInput = props => {
                 {props.label}
                 <span>*</span>
             </label>
-            <input onChange={props.handleChange} type="text"/>
+            <input value={props.value} onChange={props.handleChange} type="text"/>
         </div>
     )
 }

@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
+import { useSelector} from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
 import axios from 'axios'
+
+import { selectUser } from '../../../redux/user/userSlice';
 
 import GroupInput from '../group-input/GroupInput'
 
@@ -99,6 +102,8 @@ const VinCarDetail = () => {
     //     setIsDisabled(true)
     // }
 
+    const user = useSelector(selectUser);
+
     const OnSubmit = (e) => {
         e.preventDefault();
         const obj = {
@@ -182,7 +187,7 @@ const VinCarDetail = () => {
                                 <div className="l-12">
                                     <div className="row">
                                         <div className="l-6 group__personal">
-                                            <GroupInput handleChange={handleChangeName} label="Họ tên cá nhân"/>
+                                            <GroupInput value={user.name ? user.name : ""} handleChange={handleChangeName} label="Họ tên cá nhân"/>
                                         </div>
                                         <div className="l-6 group__personal">
                                             <GroupInput handleChange={handleChangeCccd} label="CMND/CCCD"/>

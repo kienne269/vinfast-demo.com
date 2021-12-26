@@ -27,10 +27,10 @@ const Signin = () => {
     const [checkMail, setCheckMail] = useState(true)
     const [checkPass, setCheckPass] = useState(true)
     const [checkPassConfirm, setCheckPassConfirm] = useState(true)
-    const [checkUpperCase, setCheckUpperCase] = useState(true)
-    const [checkLowerCase, setCheckLowerCase] = useState(true)
-    const [checkLengthCase, setCheckLengthCase] = useState(true)
-    const [checkNumberCase, setCheckNumberCase] = useState(true)
+    const [checkUpperCase, setCheckUpperCase] = useState(false)
+    const [checkLowerCase, setCheckLowerCase] = useState(false)
+    const [checkLengthCase, setCheckLengthCase] = useState(false)
+    const [checkNumberCase, setCheckNumberCase] = useState(false)
 
     // On change text
     const onChangeName = (e) => {
