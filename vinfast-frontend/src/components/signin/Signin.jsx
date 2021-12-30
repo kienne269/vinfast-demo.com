@@ -7,13 +7,14 @@ import { Link} from 'react-router-dom';
 import './signin.scss';
 
 const Signin = () => {
-    const [customerData, setCustomerData] = useState([])
+    const [accountData, setAccountData] = useState([])
+    console.log(accountData)
 
     useEffect(() => {
-        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
+        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadAccount.php')
         .then(res => {
             const persons = res.data;
-            setCustomerData( persons.data);
+            setAccountData( persons.data);
         })
         .catch(error => console.log(error));
     }, [])
@@ -89,36 +90,38 @@ const Signin = () => {
         setCheckPass(check)
 
         if (check && checkPassConfirm && checkMail) {
-            if (customerData) {
-                const getEmail = (email) => customerData.find(e => e.email === email)
+            if (accountData) {
+                const getEmail = (email) => accountData.find(e => e.email === email)
                 const CheckEmailResigered = getEmail(email)
                 if (CheckEmailResigered) {
                     //check
-                    console.log('Tài khoản đã tồn tại')
+                    alert('Tài khoản đã tồn tại')
                 } else {
                     const obj = {
                         name: name,
                         email: email,
                         password: pass,
                     }
-                    axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateCustomer.php',obj)
+                    console.log(obj)
+                    axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateAccount.php',obj)
                     .then(res=> console.log(res.data))
                     .catch(error => {
                         console.log(error.response)
                     })
                 }
-            }else {
-                const obj = {
-                    name: name,
-                    email: email,
-                    password: pass,
-                }
-                axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateCustomer.php',obj)
-                .then(res=> console.log(res.data))
-                .catch(error => {
-                    console.log(error.response)
-                })
             }
+            // else {
+            //     const obj = {
+            //         name: name,
+            //         email: email,
+            //         password: pass,
+            //     }
+            //     axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateCustomer.php',obj)
+            //     .then(res=> console.log(res.data))
+            //     .catch(error => {
+            //         console.log(error.response)
+            //     })
+            // }
         }
 
 

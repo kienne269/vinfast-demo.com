@@ -11,33 +11,41 @@ import { useParams } from 'react-router-dom'
 const Product = props => {
 
     let params = useParams();
+    console.log(params)
 
     const [productData, setProductData] = useState([])
 
     const getProductBySlug = (slug) => productData.find(e => e.slug === slug)
     const product = getProductBySlug(params.slug)
 
+    const [president2, setPresident2] = useState([])
+
     useEffect(() => {
         
+        axios.get(`http://localhost/vinfast/vinfast-backend/api/deposit/read_${params.slug}.php`)
+            .then(res => {
+                const persons = res.data;
+                setPresident2( persons.data);
+            })
+            .catch(error => console.log(error));
+        
         axios.get('http://localhost/vinfast/vinfast-backend/api/readProduct.php')
-                .then(res => {
-                    const persons = res.data;
-                    setProductData( persons.data);
-                })
-                .catch(error => console.log(error));
-                
+            .then(res => {
+                const persons = res.data;
+                setProductData( persons.data);
+            })
+            .catch(error => console.log(error));
+                    
     }, [])
-    console.log(productData)
 
     // let product = props.product
-    console.log(product)
 
     // React.useEffect(() => {
     //     console.log(product)
     // }, [product])
     return (
         <div>
-            <ProductView product={product}/>
+            <ProductView product={product} president2 = {president2}/>
         </div>
     )
 }

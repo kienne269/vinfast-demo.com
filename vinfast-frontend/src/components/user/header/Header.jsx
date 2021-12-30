@@ -20,15 +20,15 @@ const headerNav = [
     },
     {
         display: 'Ưu đãi',
-        path: '/'
+        path: '/uu-dai'
     },
     {
         display: 'Dịch vụ',
-        path: '/'
+        path: '/dich-vu'
     },
     {
-        display: 'Công cụ',
-        path: '/'
+        display: 'Blog',
+        path: '/blog'
     }
 ]
 
@@ -50,8 +50,6 @@ const Header = () => {
             behavior: "smooth"
           });
     }
-
-    console.log(dispatch)
     const handleLogout = ()=> {
         cookies.remove("user")
         dispatch(logout())
@@ -60,9 +58,15 @@ const Header = () => {
     let path = <Link to="/login" className="header__right--account">Tài khoản</Link>
     if(user !== null && user !== undefined) {
         path = <>
-            <Link to="/" className="header__right--account">{user.name}</Link>
-            <Link to="/" onClick={handleLogout} className="header__right--account">Đăng xuất</Link>
-        </>
+                <div className='account'>
+                    <Link to="/" className="header__right--account">{user.name}</Link>
+                    <ul className='account__list'>
+                        <li>Thông tin cá nhân</li>
+                        <li>Viết blog</li>
+                    </ul>
+                </div>
+                <Link to="/" onClick={handleLogout} className="header__right--account">Đăng xuất</Link>
+            </>
     }
 
     useEffect(() => {

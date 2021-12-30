@@ -36,7 +36,7 @@ const Login = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
+        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadAccount.php')
         .then(res => {
             const persons = res.data;
             setUserData( persons.data);

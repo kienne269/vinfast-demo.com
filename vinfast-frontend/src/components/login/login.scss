@@ -4,6 +4,7 @@
   margin: 0 auto;
   margin-top: 7rem;
   width: 32.6rem;
+  margin-bottom: 4rem;
 }
 
 .sign__in {
@@ -188,6 +189,7 @@
     background-color: #1464f4;
     a {
       color: $white;
+      cursor: default;
     }
   }
 }

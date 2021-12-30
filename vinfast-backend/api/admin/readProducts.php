@@ -3,34 +3,33 @@ header('Access-Control-Allow-Origin:*');
 header('Content-Type: application/json');
 
 include_once('../../config/contacts.php');
-include_once('../../model/deposit/deposit.php');
+include_once('../../model/admin/products.php');
 
 $db = new db();
 $connect = $db->connect();
 
-$deposit = new DepositLuxSa($connect);
-$read = $deposit->read();
+$product = new Product($connect);
+$read = $product->read();
 
 $num = $read->rowCount();
 
 if ($num > 0) {
-    $deposit_array = [];
-    $deposit_array['data'] = [];
+    $product_array = [];
+    $product_array['data'] = [];
 
     while ($row = $read->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
-        $deposit_item = array(
+        $product_item = array(
             'id' => $id,
             'name' => $name,
             'count' => $count,
             'image' => $image,
             'color' => $color,
-            'colorCode' => $colorCode,
             'price' => $price,
             'deposits' => $deposits,
         );
-        array_push($deposit_array['data'], $deposit_item);
+        array_push($product_array['data'], $product_item);
     }
-    echo json_encode(($deposit_array));
+    echo json_encode(($product_array));
 }

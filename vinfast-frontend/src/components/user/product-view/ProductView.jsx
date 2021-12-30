@@ -20,7 +20,9 @@ const ProductView = props => {
     // const dispatch = useDispatch()
 
     let product = props.product
+    let president2 = props.president2
     console.log(product)
+    console.log(president2)
 
     return (
         <div id="product">
@@ -31,21 +33,21 @@ const ProductView = props => {
                         product ? <President1 product={product}/> : ''
                     }
                 </SwiperSlide>
-                {/* <SwiperSlide>
+                <SwiperSlide>
                     {
-                        product ? <President2 product={product}/> : ''
+                        product ? <President2 president2={president2} product={product}/> : ''
                     }
-                </SwiperSlide> */}
+                </SwiperSlide>
                 <SwiperSlide>
                     {
                         product ? <President3 product={product}/> : ''
                     }
                 </SwiperSlide>
-                {/* <SwiperSlide>
+                <SwiperSlide>
                     {
                         product ? <President4 product={product}/> : ''
                     }
-                </SwiperSlide> */}
+                </SwiperSlide>
                 <SwiperSlide>
                     {
                         product ? <President5 product={product}/> : ''

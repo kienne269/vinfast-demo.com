@@ -4,7 +4,6 @@ import axios from 'axios'
 
 import Table from '../../admin/table/Table'
 
-import customerList from '../../../assets/JsonData/customers-list.json'
 
 const customerTableHead = [
     'id',
@@ -32,21 +31,17 @@ const renderBody = (item, index) => (
 
 const Customers = () => {
     const [customerData, setCustomerData] = useState([])
-
     useEffect(() => {
-        
-        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
-                .then(res => {
-                    const persons = res.data;
-                    setCustomerData( persons.data);
-                })
-                .catch(error => console.log(error));
-                
+        const fetchData = async () => {
+            const result = await axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
+            setCustomerData(result.data.data);        
+        }
+        fetchData();
+
     }, [])
     console.log(customerData)
-    console.log(customerList)
     return (
-        <div>
+        <>
             <h2 className="page-header">
                 customers
             </h2>
@@ -65,7 +60,7 @@ const Customers = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

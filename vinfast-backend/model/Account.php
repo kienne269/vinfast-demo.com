@@ -1,5 +1,5 @@
 <?php
-class Customer
+class Account
 {
     private $conn;
 
@@ -17,7 +17,7 @@ class Customer
     //read data
     public function read()
     {
-        $query = "SELECT * FROM vinfast_customer";
+        $query = "SELECT * FROM vinfast_account";
 
         $stmt = $this->conn->prepare($query);
 
@@ -28,7 +28,7 @@ class Customer
     //create data
     public function create()
     {
-        $query = "INSERT INTO vinfast_customer SET name=:name, email=:email, password=:password";
+        $query = "INSERT INTO vinfast_account SET name=:name, email=:email, password=:password";
 
         $stmt = $this->conn->prepare($query);
 

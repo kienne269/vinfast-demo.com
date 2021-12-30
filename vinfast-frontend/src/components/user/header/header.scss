@@ -56,15 +56,18 @@
       }
 
       li {
-        font-size: 1.3rem;
-        font-weight: 600;
-        padding: 2rem 0;
-        margin: 0 1.5rem;
-        color: $black;
-      }
+        a {
+          font-size: 1.3rem;
+          font-weight: 600;
+          padding: 2rem 1.5rem;
+          color: $black;
 
-      li:hover > a {
-        color: $blue;
+          &:hover {
+            background-color: rgba(44, 114, 198, 0.1);
+            color: $blue;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
@@ -72,10 +75,44 @@
   &__right {
     @include flex(center, center);
 
+    .account {
+      position: relative;
+
+      &__list {
+        display: none;
+        position: absolute;
+        top: 3.6rem;
+        width: 100%;
+        background: $white;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+
+        li {
+          font-size: 1.3rem;
+          font-weight: 600;
+          font-style: normal;
+          line-height: 150%;
+          padding: 1rem;
+
+          &:hover {
+            background-color: rgba(44, 114, 198, 0.1);
+            color: $blue;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &:hover {
+        .account__list {
+          display: block;
+        }
+      }
+    }
+
     &--account {
       font-size: 1.3rem;
       font-weight: 600;
-      padding: 0.8rem;
+      padding: 1rem;
       color: $black;
       transition: all 0.3s;
 
@@ -121,10 +158,38 @@
       position: relative;
       padding: 1.3rem;
       border-radius: $border-radius;
+      transition: 0.6s all ease;
+      // overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 4rem;
+        width: 4.6rem;
+        height: 2rem;
+      }
+
+      &:hover {
+        background-color: rgba(44, 114, 198, 0.1);
+        cursor: pointer;
+
+        span {
+          border-bottom: 2px $blue solid;
+        }
+
+        .slidebar__right {
+          animation-name: example;
+          animation-duration: 0.2s;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
 
       .nav__icon__region {
         width: 2rem;
         height: 1.4rem;
+        // padding: 1.5rem;
         position: relative;
         cursor: pointer;
 
@@ -151,28 +216,28 @@
       }
 
       .slidebar__right {
+        visibility: hidden;
         position: fixed;
         padding: 1rem;
         min-width: 30rem;
         top: 7rem;
         right: 0;
-
+        background: $white;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+        z-index: 100;
         li {
           font-size: 1.4rem;
           font-weight: 600;
           font-style: normal;
           line-height: 150%;
           padding: 1rem;
-        }
-      }
 
-      &:hover {
-        background-color: rgba(44, 114, 198, 0.1);
-        color: $blue;
-        cursor: pointer;
-
-        span {
-          border-bottom: 2px $blue solid;
+          &:hover {
+            background-color: rgba(44, 114, 198, 0.1);
+            color: $blue;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -197,5 +262,16 @@
   // display: none;
   &:hover {
     cursor: pointer;
+  }
+}
+
+@keyframes example {
+  from {
+    transform: translateY(-7rem);
+    visibility: hidden;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

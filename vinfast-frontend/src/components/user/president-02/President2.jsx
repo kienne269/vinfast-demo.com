@@ -15,9 +15,10 @@ import image6 from '../../../assets/images/lux-sa/white.png'
 const President2 = props => {
 
     const product = props.product;
-    console.log(product.image2[0])
+    const president2 = props.president2;
+    console.log(product)
     
-    const [background, setBackground] = useState(product.image02[0])
+    const [background, setBackground] = useState(president2[0] ? president2[0].image : '')
     const [active, setActive] = useState(0);
     return (
         <section id="president-02">
@@ -47,8 +48,8 @@ const President2 = props => {
                                     <div className="label">Chọn màu xe</div>
                                     <ul>
                                         {
-                                            product.image02.map((item, index) => (
-                                                <li onClick={() => (setBackground(item), setActive(index))} key={index} className={`${index === active ? 'active' : ''}`}></li>
+                                            president2.map((item, index) => (
+                                                <li onClick={() => (setBackground(item.image), setActive(index))} key={index} className={`${index === active ? 'active' : ''}`}></li>
                                             ))
                                         }
                                     </ul>
@@ -63,14 +64,14 @@ const President2 = props => {
                                     <div className="group-title">
                                         <h3>Thiết kế ngoại thất</h3>
                                         <h2>
-                                            {product.thietKeNgoaiThat}
+                                            {product.thietkeNgoaiThat}
                                             <br />
-                                            {product.thietKeNgoaiThat2}
+                                            {product.thietkeNgoaiThat2}
                                         </h2>
                                     </div>
                                 </div>
                                 <div className="l-7">
-                                    <p>{product.thietKeNgoaiThat3}</p>
+                                    <p>{product.thietkeNgoaiThat3}</p>
                                     <div className="group__button">
                                         <Link to="/vinfast-cars-deposit">Mua ngay</Link>
                                     </div>
@@ -80,7 +81,7 @@ const President2 = props => {
                     </div>
                 </div>
             </div>
-        </section>
+        </section>    
     )
 }
 

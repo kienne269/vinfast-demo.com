@@ -1,20 +1,17 @@
-// import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
-// import productModalReducer from './product-modal/productModalSlice'
-
-// import cartItemsReducer from './shopping-cart/cartItemsSlide'
-
-// export const store = configureStore({
-//     reducer: {
-//         productModal: productModalReducer,
-//         cartItems: cartItemsReducer
-//     },
-// })
-
-import { configureStore } from "@reduxjs/toolkit";
+import productModalReducer from './product-modal/productModalSlice'
+import cartItemsReducer from './shopping-cart/cartItemsSlide'
 import userReducer from "./user/userSlice";
-export default configureStore({
+import customerReducer from "./customer/customerSlice";
+
+const store = configureStore({
   reducer: {
     user: userReducer,
+    customerCar:  customerReducer,
+    productModal: productModalReducer,
+    cartItems: cartItemsReducer
   }
-});
+})
+
+export default store

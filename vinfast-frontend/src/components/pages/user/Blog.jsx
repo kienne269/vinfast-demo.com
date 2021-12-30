@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Tool = () => {
+const Blog = () => {
     return (
         <div>
-            Tool
+            Test
         </div>
     )
 }
 
-export default Tool
+export default Blog

@@ -15,8 +15,26 @@ td {
 }
 
 tbody > tr:hover {
-  background-color: $main-color;
-  color: $white;
+  background-color: #fafafb;
+  a {
+    cursor: pointer;
+    padding: 1rem;
+  }
+}
+
+td {
+  .action {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $blue;
+    margin-left: 4px;
+  }
+
+  i {
+    font-size: 12px;
+    color: $blue;
+  }
 }
 
 table {
@@ -66,12 +84,14 @@ table {
 }
 
 .productAddButton {
-  width: 8rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 1rem;
   border: none;
-  padding: 0.5rem;
-  color: $white;
-  background-color: $blue;
   border-radius: $border-radius;
-  font-size: 1.6rem;
+  background: $blue;
+  text-transform: uppercase;
   cursor: pointer;
+  color: $white;
+  text-transform: uppercase;
 }
