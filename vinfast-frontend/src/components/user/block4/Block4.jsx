@@ -12,12 +12,6 @@ import 'swiper/swiper-bundle.css'
 
 import './block4.scss'
 
-import image1 from '../../../assets/images/vinfast-data-01/Theon_1624348475.webp'
-import image2 from '../../../assets/images/vinfast-data-01/Feliz_1624348483.webp'
-import image3 from '../../../assets/images/vinfast-data-01/KlaraS_1624348494.webp'
-import image4 from '../../../assets/images/vinfast-data-01/Impes_1624348519.webp'
-import image5 from '../../../assets/images/vinfast-data-01/Ludo_1624348528.webp'
-
 const Block4 = () => {
 
     const [block4Data, setBlock4Data] = useState([])

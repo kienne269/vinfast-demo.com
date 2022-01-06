@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import { Link, useLocation, useNavigate  } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import cookies from 'react-cookies'
 
 import { logout, selectUser } from '../../../redux/user/userSlice';
@@ -40,6 +40,11 @@ const Header = () => {
     const active = headerNav.findIndex( e => e.path === pathName);
     
     const [isCheckheader, setIsCheckheader] = useState(false)
+    const [show, setShow] = useState(false)
+
+    const handleClick = (e) => {
+        setShow(!show)
+    }
 
     const user = useSelector(selectUser);
 
@@ -51,21 +56,27 @@ const Header = () => {
           });
     }
     const handleLogout = ()=> {
+        setShow(!show)
         cookies.remove("user")
         dispatch(logout())
     }
+
+    console.log(show)
 
     let path = <Link to="/login" className="header__right--account">Tài khoản</Link>
     if(user !== null && user !== undefined) {
         path = <>
                 <div className='account'>
-                    <Link to="/" className="header__right--account">{user.name}</Link>
-                    <ul className='account__list'>
+                    <div onClick={handleClick} className="header__right--account">{user.name}</div>
+                    <ul className={show ? 'account__list active' : 'account__list'}>
                         <li>Thông tin cá nhân</li>
-                        <li>Viết blog</li>
+                        <Link to='/blog'>
+                            <li>Viết Blog</li>
+                        </Link>
+                        <li>Bài viết của tôi</li>
+                        <li onClick={handleLogout}>Đăng xuất</li>
                     </ul>
                 </div>
-                <Link to="/" onClick={handleLogout} className="header__right--account">Đăng xuất</Link>
             </>
     }
 

@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import './new-product.scss'
-import productApi from '../../../api/admin/productApi'
 const NewProduct = () => {
 
     const navigate = useNavigate();
@@ -29,14 +28,13 @@ const NewProduct = () => {
             deposts: deposts,
         }
         try {
-            const res = await axios.post('http://localhost/vinfast/vinfast-backend/api/admin/createProducts.php',params)
+            const res = await axios.post('http://localhost/vinfast/vinfast-backend/api/admin/createProducts.php', params)
             navigate(`/admin/products`)
             console.log(res)
         } catch(err) {
             alert(err)
             console.log(err)
         }
-        
     }
 
     return (

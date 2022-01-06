@@ -74,18 +74,21 @@
 
   &__right {
     @include flex(center, center);
-
     .account {
       position: relative;
 
       &__list {
-        display: none;
         position: absolute;
         top: 3.6rem;
         width: 100%;
         background: $white;
-        box-shadow: $box-shadow;
+        box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+        border-radius: 3rem;
+        overflow: hidden;
         border-radius: $border-radius;
+        transform-origin: top right;
+        transform: scale(0);
+        transition: transform 0.2s ease 0s;
 
         li {
           font-size: 1.3rem;
@@ -100,11 +103,10 @@
             cursor: pointer;
           }
         }
-      }
 
-      &:hover {
-        .account__list {
-          display: block;
+        &.active {
+          transform: scale(1);
+          transition: transform 0.5s $transition-cubic;
         }
       }
     }
@@ -115,6 +117,7 @@
       padding: 1rem;
       color: $black;
       transition: all 0.3s;
+      cursor: pointer;
 
       @include mobile-xs {
         display: none;
@@ -125,6 +128,7 @@
       }
 
       &:hover {
+        border-radius: $border-radius;
         background-color: rgba(44, 114, 198, 0.1);
         color: $blue;
       }

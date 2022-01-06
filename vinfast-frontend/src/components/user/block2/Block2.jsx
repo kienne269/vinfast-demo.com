@@ -3,7 +3,7 @@ import ProtoTypes from 'prop-types'
 
 import axios from 'axios'
 
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/swiper-bundle.css'

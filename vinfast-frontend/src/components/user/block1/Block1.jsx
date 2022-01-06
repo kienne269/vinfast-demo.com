@@ -10,12 +10,6 @@ import 'swiper/swiper-bundle.css'
 
 import './block1.scss'
 
-import image1 from '../../../assets/images/block1/top_slide_1.png'
-import image2 from '../../../assets/images/block1/top_slide_2.webp'
-import image3 from '../../../assets/images/block1/top_slide_3.webp'
-import image4 from '../../../assets/images/block1/top_slide_4.webp'
-import image5 from '../../../assets/images/block1/top_slide_5.webp'
-
 SwiperCore.use([Navigation, Pagination])
 
 const Block1 = () => {

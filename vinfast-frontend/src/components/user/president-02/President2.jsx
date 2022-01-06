@@ -1,15 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 import { Link } from 'react-router-dom';
 
 import './president2.scss'
-
-import image1 from '../../../assets/images/lux-sa/red.png'
-import image2 from '../../../assets/images/lux-sa/gray.png'
-import image3 from '../../../assets/images/lux-sa/blue.png'
-import image4 from '../../../assets/images/lux-sa/silver.png'
-import image5 from '../../../assets/images/lux-sa/black.png'
-import image6 from '../../../assets/images/lux-sa/white.png'
 
 
 const President2 = props => {

@@ -15,13 +15,6 @@ import logoVin from '../../../assets/images/vinfast/logo_gray.svg'
 
 import './block3.scss'
 
-import image1 from '../../../assets/images/vinfast-data-01/VFe34_1624348575.webp'
-import image2 from '../../../assets/images/vinfast-data-01/LuxSA_1624348590.webp'
-import image3 from '../../../assets/images/vinfast-data-01/LuxA_1624348606.webp'
-import image4 from '../../../assets/images/vinfast-data-01/Fadil_1624348615.webp'
-import image5 from '../../../assets/images/vinfast-data-01/president.webp'
-import image6 from '../../../assets/images/vinfast/logo_gray.svg'
-
 const Block3 = () => {
 
     const [block3Data, setBlock3Data] = useState([])

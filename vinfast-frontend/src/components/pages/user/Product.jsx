@@ -5,7 +5,6 @@ import axios from 'axios'
 
 import ProductView from '../../user/product-view/ProductView'
 
-import productData from '../../../assets/fake-data/products'
 import { useParams } from 'react-router-dom'
 
 const Product = props => {
@@ -37,12 +36,6 @@ const Product = props => {
             .catch(error => console.log(error));
                     
     }, [])
-
-    // let product = props.product
-
-    // React.useEffect(() => {
-    //     console.log(product)
-    // }, [product])
     return (
         <div>
             <ProductView product={product} president2 = {president2}/>

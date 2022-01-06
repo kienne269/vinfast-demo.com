@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import { Link } from 'react-router-dom';
-
 import './president4.scss'
 import first from '../../../assets/images/lux-sa/4.1.jpg'
 
