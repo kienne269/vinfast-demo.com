@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import './blog-view.scss'
-
-const BlogView = () => {
+import PostView from '../../user/post-view/PostView'
+const Post = () => {
     let params = useParams();
     console.log(params)
     
@@ -12,7 +11,7 @@ const BlogView = () => {
 
     const getPostById = (id) => posts.find(e => e.id === id)
     const post = getPostById(params.id)
-    console.log(post)
+    console.log(posts)
 
     useEffect(() => {
         
@@ -26,8 +25,10 @@ const BlogView = () => {
     }, [])
 
     return (
-        <div>{post ? post.title : null}</div>
+        <div className='post'>
+            <PostView post={post}/>
+        </div>
     )
 }
 
-export default BlogView
+export default Post

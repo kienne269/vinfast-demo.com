@@ -70,7 +70,7 @@ const Header = () => {
                     <div onClick={handleClick} className="header__right--account">{user.name}</div>
                     <ul className={show ? 'account__list active' : 'account__list'}>
                         <li>Thông tin cá nhân</li>
-                        <Link to='/blog'>
+                        <Link to='/new-post'>
                             <li>Viết Blog</li>
                         </Link>
                         <li>Bài viết của tôi</li>

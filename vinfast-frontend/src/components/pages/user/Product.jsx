@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom'
 const Product = props => {
 
     let params = useParams();
-    console.log(params)
 
     const [productData, setProductData] = useState([])
 

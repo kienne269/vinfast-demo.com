@@ -1,0 +1,30 @@
+@use "../../../scss/" as *;
+
+.post {
+  padding: 2rem;
+
+  &__image {
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 6px;
+  }
+
+  &__excerpt {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    .post__title {
+      color: $black;
+    }
+    .post__excerpt {
+      color: #c47c18;
+    }
+  }
+}
