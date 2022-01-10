@@ -9,6 +9,7 @@
   @include tablet-lg {
     &.isCheckheader {
       background-color: $white;
+      box-shadow: $box-shadow;
     }
     width: 100%;
     height: $header-height;

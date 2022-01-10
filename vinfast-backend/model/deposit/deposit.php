@@ -9,6 +9,7 @@ class Deposit
     public $count;
     public $image;
     public $color;
+    public $color2;
     public $colorCode;
     public $price;
     public $deposits;

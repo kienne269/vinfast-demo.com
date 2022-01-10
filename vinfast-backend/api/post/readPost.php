@@ -25,7 +25,12 @@ if ($num > 0) {
             'image' => $image,
             'title' => $title,
             'excerpt' => $excerpt,
-            'day' => $day,
+            'content' => $content,
+            'views_count' => $views_count,
+            'views_heart' => $views_heart,
+            'views_comment' => $views_comment,
+            'username' => $username,
+            'published_at' => $published_at,
         );
         array_push($list_post_array['data'], $list_post_item);
     }

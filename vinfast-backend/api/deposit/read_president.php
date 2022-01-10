@@ -26,6 +26,7 @@ if ($num > 0) {
             'count' => $count,
             'image' => $image,
             'color' => $color,
+            'color2' => $color2,
             'colorCode' => $colorCode,
             'price' => $price,
             'deposits' => $deposits,

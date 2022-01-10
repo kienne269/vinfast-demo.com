@@ -14,7 +14,7 @@ import Signin from '../components/signin/Signin';
 import Product from '../components/pages/user/Product';
 import DepostSuccess from '../components/user/depost-success/DepostSuccess';
 import NewPost from '../components/user/new-post/NewPost';
-import BlogView from '../components/user/blog-view/BlogView';
+import BlogDetail from '../components/user/blog-detail/BlogDetail';
 
 const RouteUser = () => {
     return (
@@ -30,7 +30,7 @@ const RouteUser = () => {
                 <Route path='/login' element={< Login/>} />
                 <Route path='/signin' element={< Signin/>} />
                 <Route path='/dat-coc' element={<DepostSuccess />} />
-                <Route path='/blog/:id' element={<BlogView />} />
+                <Route path='/blog/:id' element={<BlogDetail />} />
                 <Route path='/catalog/:slug' element={<Product  />} />
                 <Route path='/' element={<Home />} />
             </Routes>

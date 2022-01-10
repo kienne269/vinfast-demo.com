@@ -8,7 +8,12 @@ class Post
     public $image;
     public $title;
     public $excerpt;
-    public $day;
+    public $content;
+    public $views_count;
+    public $views_heart;
+    public $views_comment;
+    public $username;
+    public $published_at;
 
     //connect db
     public function __construct($db)
