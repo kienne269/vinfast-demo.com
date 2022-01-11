@@ -10,6 +10,7 @@
     "alloyeditor": "^2.14.5",
     "apexcharts": "^3.31.0",
     "axios": "^0.24.0",
+    "draftjs-to-html": "^0.9.1",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-360-view": "^0.1.3",

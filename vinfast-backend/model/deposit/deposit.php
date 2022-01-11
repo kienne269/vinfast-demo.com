@@ -20,6 +20,17 @@ class Deposit
         $this->conn = $db;
     }
 
+    //read data all car
+    public function readAll()
+    {
+        $query = "SELECT * FROM full_color_car";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
     //read data LUX-SA2.0
     public function readLuxSa()
     {

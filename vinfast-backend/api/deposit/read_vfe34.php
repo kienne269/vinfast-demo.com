@@ -23,6 +23,7 @@ if ($num > 0) {
         $deposit_item = array(
             'id' => $id,
             'name' => $name,
+            'slug' => $slug,
             'count' => $count,
             'image' => $image,
             'color' => $color,

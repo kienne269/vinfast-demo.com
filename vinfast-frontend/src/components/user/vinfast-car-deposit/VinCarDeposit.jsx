@@ -23,8 +23,9 @@ const VinCarDetail = () => {
     
     const [container, setContainer] = useState([])
     const [postData, setPostData] = useState([])
+    const [allCar, setAllCar] = useState([])
 
-    console.log(postData)
+    console.log(allCar)
     
     const name = ['president', 'lux-sa', 'lux-a', 'fadil', 'vfe34'];
     const nameTitle = ['PRESIDENT', 'LUX SA2.0', 'LUX A2.0', 'FADIL', 'VF e34'];
@@ -48,6 +49,13 @@ const VinCarDetail = () => {
                 setContainer( persons.data);
             })
             .catch(error => console.log(error));
+        
+            axios.get('http://localhost/vinfast/vinfast-backend/api/deposit/readAll.php')
+        .then(res => {
+            const persons = res.data;
+            setAllCar( persons.data);
+        })
+        .catch(error => console.log(error));
     }, [])
 
     const [active, setActive] = useState(1);
@@ -90,11 +98,11 @@ const VinCarDetail = () => {
                     <div className="vin__car__deposit__detail--left l-6">
                         {/* <img src={background} alt="" /> */}
                         {
-                            postData ? postData.map((item, index) => (
+                            allCar ? allCar.map((item, index) => (
                                 <div key={index} className={index === active2 ? `${item.color2} check` : `${item.color2}`}>
                                     <ThreeSixty
                                         amount={36}
-                                        imagePath={`./images/360/${type}/${item.color2}`}
+                                        imagePath={`./images/${item.slug}`}
                                         fileName="{index}.png"
                                     />
                                 </div>
@@ -133,9 +141,9 @@ const VinCarDetail = () => {
                             <div className="colorName">Da tiêu chuẩn</div>
                         </div>
                         <div className="detail__policy">
-                            <a href="http://localhost/vinfast/vinfast-backend/images/Bang-gia_T12-02.jpg" target="_blank">
+                            <Link to="http://localhost/vinfast/vinfast-backend/images/Bang-gia_T12-02.jpg" target="_blank">
                                 Chi tiết chính sách bán hàng
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

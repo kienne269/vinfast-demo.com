@@ -9,15 +9,15 @@ $db = new db();
 $connect = $db->connect();
 
 $deposit = new Deposit($connect);
-$readLuxSa = $deposit->readLuxSa();
+$readAll = $deposit->readAll();
 
-$num = $readLuxSa->rowCount();
+$num = $readAll->rowCount();
 
 if ($num > 0) {
     $deposit_array = [];
     $deposit_array['data'] = [];
 
-    while ($row = $readLuxSa->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $readAll->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
         $deposit_item = array(
