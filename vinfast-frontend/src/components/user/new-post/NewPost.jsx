@@ -6,15 +6,17 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/user/userSlice';
 
 import './new-post.scss'
 const NewPost = () => {
 
+    const user = useSelector(selectUser);
     const navigate = useNavigate ();
 
     const [userInfo, setUserInfo] = useState({
-        title: '',
-        
+        title: ''
     })
 
     const onChangeValue = (e) => {
@@ -40,9 +42,11 @@ const NewPost = () => {
                 setIsError('Vui lòng nhập độ dài thông tin mô tả từ 50 ký tự trở lên');
                 return
             }
-            axios.post('http://localhost/vinfast/vinfast-backend/api/admin/createProducts.php', {
+            axios.post('http://localhost/vinfast/vinfast-backend/api/post/createPost.php', {
                 title: userInfo.title,
-                description: userInfo.description.value
+                content: userInfo.description.value,
+                userName: user,
+                published_at: new Date()
             })
             .then(res => {
                 if(res.data.success === true) {

@@ -49,12 +49,14 @@ const VinCarDetail = () => {
                 setContainer( persons.data);
             })
             .catch(error => console.log(error));
-        
-            axios.get('http://localhost/vinfast/vinfast-backend/api/deposit/readAll.php')
-        .then(res => {
-            const persons = res.data;
-            setAllCar( persons.data);
-        })
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost/vinfast/vinfast-backend/api/deposit/readAll.php')
+            .then(res => {
+                const persons = res.data;
+                setAllCar( persons.data);
+            })
         .catch(error => console.log(error));
     }, [])
 

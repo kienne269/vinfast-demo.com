@@ -32,27 +32,31 @@ class Post
         return $stmt;
     }
 
-    // //create data
-    // public function create()
-    // {
-    //     $query = "INSERT INTO vinfast_account SET name=:name, email=:email, password=:password";
+    //create data
+    public function create()
+    {
+        $query = "INSERT INTO list_post SET image=:image, title=:title, content=:content, username=:username, published_at=:published_at";
 
-    //     $stmt = $this->conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
 
-    //     //clean data
-    //     $this->name = htmlspecialchars(strip_tags($this->name));
-    //     $this->email = htmlspecialchars(strip_tags($this->email));
-    //     $this->password = htmlspecialchars(strip_tags($this->password));
+        //clean data
+        $this->image = htmlspecialchars(strip_tags($this->image));
+        $this->title = htmlspecialchars(strip_tags($this->title));
+        $this->content = htmlspecialchars(strip_tags($this->content));
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        $this->published_at = htmlspecialchars(strip_tags($this->published_at));
 
-    //     //bind data
-    //     $stmt->bindParam(':name', $this->name);
-    //     $stmt->bindParam(':email', $this->email);
-    //     $stmt->bindParam(':password', $this->password);
+        //bind data
+        $stmt->bindParam(':image', $this->image);
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':content', $this->content);
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':published_at', $this->published_at);
 
-    //     if ($stmt->execute()) {
-    //         return true;
-    //     }
-    //     printf("Error %s, \n" . $stmt->error);
-    //     return false;
-    // }
+        if ($stmt->execute()) {
+            return true;
+        }
+        printf("Error %s, \n" . $stmt->error);
+        return false;
+    }
 }
