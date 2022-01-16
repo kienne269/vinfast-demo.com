@@ -157,7 +157,7 @@ const VinCarDetail = () => {
                             <div className="colorName">Da tiêu chuẩn</div>
                         </div>
                         <div className="detail__policy">
-                            <Link to="http://localhost/vinfast/vinfast-backend/images/Bang-gia_T12-02.jpg" target="_blank">
+                            <Link to="/images/Bang-gia_T12-02.jpg" target="_blank">
                                 Chi tiết chính sách bán hàng
                             </Link>
                         </div>
