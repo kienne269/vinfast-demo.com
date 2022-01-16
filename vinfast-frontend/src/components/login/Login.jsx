@@ -56,6 +56,7 @@ const Login = () => {
                         name: user.name,
                         email: user.email,
                         password: user.pass,
+                        avatar: user.avatar,
                         loggedIn: true,
                     }))
                     navigate('/')
