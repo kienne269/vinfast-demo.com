@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import accountApi from '../../api/account';
 
 import './signin.scss';
 
 const Signin = () => {
+    const navigate = useNavigate();
     const [accountData, setAccountData] = useState([])
     console.log(accountData)
 
@@ -126,6 +127,8 @@ const Signin = () => {
         formData.append("date_create", new Date())
         try {
             await accountApi.create(formData)
+            alert("Đăng ký tài khoản thành công")
+            navigate("/login")
         } catch(err) {
             console.log(err)
         }

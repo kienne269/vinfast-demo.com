@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import customerApi from '../../../api/depost/customerApi'
 import './depost-confirm.scss'
 
 const DepostConfirm = (props) => {
 
-    console.log(props)
+    const navigate = useNavigate();
     const params = props.params
     const createCustomer = async (e) => {
         e.preventDefault();
@@ -20,7 +21,7 @@ const DepostConfirm = (props) => {
         }
         try {
             const res = await customerApi.create(obj)
-            // navigate(`/admin/products`)
+            navigate(`/dat-coc`)
             console.log(res)
         } catch(err) {
             console.log(err)
