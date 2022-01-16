@@ -1,20 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
 import Table from '../../admin/table/Table'
 
-// import productList from '../../../assets/JsonData/products-list.json'
-// import black from '../../../assets/images/360/lux-a/black.png'
-// import blue from '../../../assets/images/360/lux-a/blue.png'
-// import red from '../../../assets/images/360/lux-a/red.png'
-// import silver from '../../../assets/images/360/lux-a/silver.png'
-// import gray from '../../../assets/images/360/lux-a/gray.png'
-// import gray1 from '../../../assets/images/360/fadil/gray.png'
-// import red1 from '../../../assets/images/360/fadil/red.png'
-// import blue1 from '../../../assets/images/360/fadil/blue.png'
-// import silver1 from '../../../assets/images/360/fadil/silver.png'
-// import white1 from '../../../assets/images/360/fadil/white.png'
+import productApi from '../../../api/admin/productApi'
 
 const productTableHead = [
     '',
@@ -52,13 +41,17 @@ const renderBody = (item, index) => (
 const Products = () => {
 
     const [productsData, setProductsData] = useState([])
-
+console.log(productsData)
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get('http://localhost/vinfast/vinfast-backend/api/admin/readProducts.php')
-            setProductsData(result.data.data);        
+        const getProductApi = async () => {
+            try {
+                const res = await productApi.getAll()
+                setProductsData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
         }
-        fetchData();
+        getProductApi()
     }, [])
     return (
         <>

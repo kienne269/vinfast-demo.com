@@ -19,7 +19,7 @@ $product->delete();
 
 // $data = json_decode(file_get_contents("php://input"));
 
-// $product->id = $data->id;
+// $product->id = $data->zzid;
 
 if ($product->delete()) {
     echo json_encode(array('message', 'User Deleted'));

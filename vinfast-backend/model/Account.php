@@ -5,6 +5,7 @@ class Account
 
     // thông tin user
     public $name;
+    public $avatar;
     public $email;
     public $password;
 

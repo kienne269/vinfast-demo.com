@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import president4Api from '../../../api/president4Api'
 import './president4.scss'
 import first from '../../../assets/images/lux-sa/4.1.jpg'
 
@@ -15,12 +15,15 @@ const President4 = props => {
     
     const [background, setBackground] = useState()
     useEffect(() => {
-        axios.get('http://localhost/vinfast/vinfast-backend/api/readPresident4.php')
-            .then(res => {
-                const persons = res.data;
-                setPresident4( persons.data);
-            })
-            .catch(error => console.log(error));
+        const getPresident4 = async () => {
+            try {
+                const res = await president4Api.getAll()
+                setPresident4(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getPresident4()  
     }, [])
 
     console.log(president4)

@@ -9,6 +9,15 @@
     &__image {
     }
 
+    &__footer {
+      margin: 0 5px;
+    }
+
+    &__name {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
     &__title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -23,7 +32,8 @@
 
     &:hover {
       cursor: pointer;
-      .post__title {
+      .post__title,
+      .post__name {
         color: $black;
       }
       .post__excerpt {
@@ -31,6 +41,11 @@
       }
     }
   }
+}
+
+.count {
+  font-size: 2rem;
+  margin-left: 5px;
 }
 
 .blog__detail {
@@ -43,6 +58,8 @@
 
   &__left {
     margin-right: 6rem;
+    position: sticky;
+    top: 9rem;
     &__username {
       padding: 1.5rem 0;
       border-bottom: 1px solid;
@@ -51,6 +68,7 @@
     &__reaction {
       @include flex(center, space-between);
       margin-top: 2rem;
+      max-width: 20rem;
 
       .reaction {
         @include flex(start, space-between);
@@ -63,11 +81,6 @@
 
         svg {
           width: 2.5rem;
-        }
-
-        .count {
-          font-size: 2rem;
-          margin-left: 5px;
         }
       }
     }
@@ -108,4 +121,76 @@
     font-size: 1.3rem;
     line-height: 2.4rem;
   }
+
+  &__comment {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+
+    .comment {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 72rem;
+      background: $white;
+      box-shadow: $box-shadow;
+      transform: translate(72rem);
+      animation-name: commentActive;
+      animation-duration: 0.4s;
+
+      &__close {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        width: 2rem;
+
+        &:hover {
+          color: #333;
+          cursor: pointer;
+        }
+      }
+
+      &__content {
+        margin-top: 6rem;
+        margin-left: 4rem;
+
+        .count {
+          font-weight: 600;
+          p {
+            display: inline-block;
+            margin-left: 5px;
+          }
+        }
+      }
+
+      &__detail {
+        margin-top: 3rem;
+      }
+    }
+  }
+}
+
+.blog__detail__comment.active {
+  .comment {
+    transform: translate(0);
+  }
+}
+
+@keyframes commentActive {
+  from {
+    transform: translateX(72rem);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }

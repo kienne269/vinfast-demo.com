@@ -1,87 +1,118 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/user/userSlice';
-
+import postApi from '../../../api/postApi';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import './new-post.scss'
 const NewPost = () => {
 
-    const user = useSelector(selectUser);
-    const navigate = useNavigate ();
+  let navigate = useNavigate();
+  const user = useSelector(selectUser)
+  
+  const [userInfo, setuserInfo] = useState({
+    title: '',
+  });
+  const selectFile = useRef()
+  const [stateFile, setStateFile] = useState([]);
 
-    const [userInfo, setUserInfo] = useState({
-        title: ''
-    })
-
-    const onChangeValue = (e) => {
-        setUserInfo({
-            ...userInfo,
-            [e.target.name]:e.target.value
-        })
-    }
-
-    let editorState = EditorState.createEmpty();
-    const [description, setDescription] = useState(editorState)
-
-    const onEditorStateChange = (editorState) => {
-        setDescription(editorState)
-    }
-    
-    const [isError, setIsError] = useState(null)
-    const addDetails = async (e) => {
+  const [response, setResponse] = useState("")
+  const [isError, setError] = useState(null);
+  const uploader = async (e) => {
+    e.preventDefault();
+    if (selectFile.current.files.length === 0) {
+      setResponse("please choose an image");
+    } else {
+      if(userInfo.description.value.length < 50){
+        setError('Required, Add description Minimum length 50 characters');
+      } else {
+        const formData = new FormData()
+        formData.append("picture", selectFile.current.files[0])
+        formData.append("title", userInfo.title)
+        formData.append("content", userInfo.description.value)
+        formData.append("username", user.name)
+        formData.append("published_at", new Date())
         try {
-            e.preventDefault();
-            e.persist();
-            if(userInfo.description.value.length < 50) {
-                setIsError('Vui lòng nhập độ dài thông tin mô tả từ 50 ký tự trở lên');
-                return
-            }
-            axios.post('http://localhost/vinfast/vinfast-backend/api/post/createPost.php', {
-                title: userInfo.title,
-                content: userInfo.description.value,
-                userName: user,
-                published_at: new Date()
-            })
-            .then(res => {
-                if(res.data.success === true) {
-                    navigate('/');
-                }
-            })
-        } catch (error) {
-            throw error
+            const res = await postApi.create(formData)
+            alert("Tạo bài viết thành công")
+            navigate(`/blog`)
+            console.log(res)
+        } catch(err) {
+            alert(err)
+            console.log(err)
         }
+      }
     }
+  }
 
+  const onChangeValue = (e) => {
+    setuserInfo({
+      ...userInfo,
+      [e.target.name]:e.target.value
+    });
+  } 
+  const onChangeImage = (e) => {
+    setStateFile([]);
+    if(e.target.files) {
+      const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+      setStateFile((prevImages) => prevImages.concat(filesArray))
+      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file))
+    }
+  }
+
+  const renderPhotos = (source) => {
+    return source.map((photo, index) => {
+      return <img key={index} src={photo} alt="" style={{width: "40%", height: "40%"}} />
+    })
+  }
+
+  let editorState = EditorState.createEmpty();
+  const [description, setDescription] = useState(editorState);
+  const onEditorStateChange = (editorState) => {
+    setDescription(editorState);
+  }
     return (
-        <div className='new__post'>
-            <div className="container">
-                <div className="row">
-                    <div className="l-12 new__post__title">
-                        <input onChange={onChangeValue} placeholder='Tiêu đề' type="text" name="title" id="title" />
-                    </div>
-                    <div className="l-12 new__post__editor">
-                        <Editor
-                            editorState={description}
-                            toolbarClassName='toolbarClassName'
-                            wrapperClassName="demo-wrapper"
-                            editorClassName="demo-editor"
-                            onEditorStateChange={onEditorStateChange}
-                        />
-                        <textarea style={{display: 'none'}} disabled ref={(val) => userInfo.description = val} value={draftToHtml(convertToRaw(description.getCurrentContent()))} />
-                    </div>
-                    {isError !== null && <div className='errors'>{isError}</div>}
-                    <div className="l-12 new__post__submit">
-                        <button onClick={addDetails}>Xuất bản</button>
+        <>
+            <div className="new__post">
+                <div className="container">
+                    <div className="row"> 
+                        <form className="update__forms">
+                          <h3 className="myaccount-content"> Tạo bài viết  </h3>
+                          <div className="row">
+                              <div className="form-group l-12">
+                                <label className="font-weight-bold"> Tiêu đề <span className="required"> * </span> </label>
+                                <input type="text" name="title" value={userInfo.title} onChange={onChangeValue}  className="form-control" placeholder="Title" required />
+                              </div>
+                              <div className="form-group l-12">
+                                <label className="font-weight-bold"> Hình ảnh <span className="required"> * </span> </label>
+                                <input type="file" ref={selectFile} onChange={onChangeImage}  className="form-control" multiple required />
+                                <p>{response}</p>
+                                <div className="result">{renderPhotos(stateFile)}</div>
+                              </div>
+                              <div className="form-group l-12 editor">
+                                <label className="font-weight-bold"> Description <span className="required"> * </span> </label>
+                                  <Editor
+                                    editorState={description}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                    editorClassName="editorClassName"
+                                    onEditorStateChange={onEditorStateChange}
+                                  />
+                                <textarea style={{display:'none'}} disabled ref={(val) => userInfo.description = val} value={draftToHtml(convertToRaw(description.getCurrentContent())) } />
+                              </div>
+                              {isError !== null && <div className="errors"> {isError} </div>}
+                              <div className="form-group l-12 text-right">
+                                <button onClick={uploader} className="btn btn__theme"> Submit  </button>
+                              </div> 
+                          </div> 
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

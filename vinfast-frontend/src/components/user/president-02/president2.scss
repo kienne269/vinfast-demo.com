@@ -70,49 +70,8 @@
               bottom: -4px;
               left: -4px;
               border-radius: 50%;
+              border: 1px solid;
               cursor: pointer;
-            }
-
-            &:nth-child(1) {
-              background-color: $red;
-              &::before {
-                border: 1px solid $red;
-              }
-            }
-
-            &:nth-child(2) {
-              background-color: $gray;
-              &::before {
-                border: 1px solid $red;
-              }
-            }
-
-            &:nth-child(3) {
-              background-color: $blue;
-              &::before {
-                border: 1px solid $blue;
-              }
-            }
-
-            &:nth-child(4) {
-              background-color: $sliver;
-              &::before {
-                border: 1px solid $sliver;
-              }
-            }
-
-            &:nth-child(5) {
-              background-color: $black;
-              &::before {
-                border: 1px solid $black;
-              }
-            }
-
-            &:nth-child(6) {
-              background-color: $white;
-              &::before {
-                border: 1px solid $white;
-              }
             }
           }
         }

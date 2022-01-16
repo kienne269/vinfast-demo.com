@@ -1,26 +1,24 @@
 import React, {useState, useEffect} from 'react'
-
-import axios from 'axios'
-
 import SwiperCore, {Autoplay} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'; 
 
-import './vin-slide.scss';
+import vinSlideApi from '../../../api/home/vinSlideApi';
 
+import './vin-slide.scss';
 
 const VinSlide = () => {
 
     const [bannerData, setBannerData] = useState([])
-
     useEffect(() => {
-        
-        axios.get('http://localhost/vinfast/vinfast-backend/api/home/readBanner.php')
-                .then(res => {
-                    const persons = res.data;
-                    console.log(persons)
-                    setBannerData( persons.data);
-                })
-                .catch(error => console.log(error));              
+        const getVinSlideApi = async () => {
+            try {
+                const res = await vinSlideApi.getAll()
+                setBannerData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getVinSlideApi()            
     }, [])
 
     SwiperCore.use([Autoplay]);

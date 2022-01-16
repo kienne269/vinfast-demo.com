@@ -1,15 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
-
 import axios from 'axios'
-
 import { Link } from 'react-router-dom';
-
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import 'swiper/swiper-bundle.css'
+import block4Api from '../../../api/home/block4Api';
 
+import 'swiper/swiper-bundle.css'
 import './block4.scss'
 
 const Block4 = () => {
@@ -17,17 +15,15 @@ const Block4 = () => {
     const [block4Data, setBlock4Data] = useState([])
 
     useEffect(() => {
-        
-        axios.get('http://localhost/vinfast/vinfast-backend/api/home/readBlock4.php')
-                .then(res => {
-                    const persons = res.data;
-                    console.log(persons)
-                    setBlock4Data( persons.data);
-                })
-                .catch(error => console.log(error));
-        return () => {
-            
-        }   
+        const getBlock4 = async () => {
+            try {
+                const res = await block4Api.getAll()
+                setBlock4Data(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getBlock4() 
     }, [])
 
     return (

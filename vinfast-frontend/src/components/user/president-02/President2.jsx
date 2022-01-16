@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { Link } from 'react-router-dom';
-
+import productDepositApi from '../../../api/depost/depositApi';
 import './president2.scss'
 
 
@@ -10,9 +10,29 @@ const President2 = props => {
     const product = props.product;
     const president2 = props.president2;
     console.log(product)
+    const [active, setActive] = useState(0);
+    const [allCar, setAllCar] = useState([])
+    useEffect(() => {
+        const getAllCarDeposit = async () => {
+            try {
+                const res2 = await productDepositApi.getAllCarDeposit()
+                setAllCar(res2.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getAllCarDeposit()
+    }, [])
+    
+    let car = []
+    if (allCar) {
+        car = allCar.filter((item, index) => {
+            return item.slug.split("/")[1] === product.slug
+        })
+    }
     
     const [background, setBackground] = useState(president2[0] ? president2[0].image : '')
-    const [active, setActive] = useState(0);
+    
     return (
         <section id="president-02">
             <div className="president__wrap">
@@ -41,8 +61,8 @@ const President2 = props => {
                                     <div className="label">Chọn màu xe</div>
                                     <ul>
                                         {
-                                            president2.map((item, index) => (
-                                                <li onClick={() => (setBackground(item.image), setActive(index))} key={index} className={`${index === active ? 'active' : ''}`}></li>
+                                            car.map((item, index) => (
+                                                <li onClick={() => (setBackground(item.image), setActive(index))} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`, color: `${item.colorCode}`}} className={`${index === active ? 'active' : ''}`}></li>
                                             ))
                                         }
                                     </ul>

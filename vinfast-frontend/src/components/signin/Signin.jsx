@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-
 import axios from 'axios'
-
 import { Link} from 'react-router-dom';
+
+import accountApi from '../../api/account';
 
 import './signin.scss';
 
@@ -11,12 +11,15 @@ const Signin = () => {
     console.log(accountData)
 
     useEffect(() => {
-        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadAccount.php')
-        .then(res => {
-            const persons = res.data;
-            setAccountData( persons.data);
-        })
-        .catch(error => console.log(error));
+        const getAccountApi = async () => {
+            try {
+                const res = await accountApi.getAll()
+                setAccountData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getAccountApi()
     }, [])
 
     const [name, setName] = useState('')
@@ -37,6 +40,11 @@ const Signin = () => {
     const onChangeName = (e) => {
         setName(e.target.value);
     }
+
+    const arrayName = name.split(" ");
+    const first_name = arrayName[0].slice(0, 1).toUpperCase()
+    const last_name = arrayName[arrayName.length - 1].slice(0, 1).toUpperCase()
+    console.log(first_name, last_name)
 
     const onChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -81,7 +89,7 @@ const Signin = () => {
         setIsShowPassConfirm(!isShowPassConfirm)
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         emailValidation();
         passwordValidation();
@@ -89,42 +97,38 @@ const Signin = () => {
         const check = checkUpperCase && checkLowerCase && checkLengthCase && checkNumberCase;
         setCheckPass(check)
 
-        if (check && checkPassConfirm && checkMail) {
-            if (accountData) {
-                const getEmail = (email) => accountData.find(e => e.email === email)
-                const CheckEmailResigered = getEmail(email)
-                if (CheckEmailResigered) {
-                    //check
-                    alert('Tài khoản đã tồn tại')
-                } else {
-                    const obj = {
-                        name: name,
-                        email: email,
-                        password: pass,
-                    }
-                    console.log(obj)
-                    axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateAccount.php',obj)
-                    .then(res=> console.log(res.data))
-                    .catch(error => {
-                        console.log(error.response)
-                    })
-                }
-            }
-            // else {
-            //     const obj = {
-            //         name: name,
-            //         email: email,
-            //         password: pass,
-            //     }
-            //     axios.post('http://localhost/vinfast/vinfast-backend/api/user/CreateCustomer.php',obj)
-            //     .then(res=> console.log(res.data))
-            //     .catch(error => {
-            //         console.log(error.response)
-            //     })
-            // }
+        // Khai báo các biến canvas
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        // Lấy x, y căn giữa canvas
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+
+    // Phủ màu cho canvas
+        context.rect(0, 0, 80, 80);
+        context.fillStyle = "#428bca";
+    context.fill();
+
+    // Viết tắt họ và tên lên canvas
+        context.font = "30px Arial";
+        context.textAlign = "center";
+        context.fillStyle = "white";
+        context.fillText(first_name + last_name, x, y + 10);
+
+        const dataAvt = canvas.toDataURL(); // Lấy dữ liệu canvas
+        
+        const formData = new FormData()
+        formData.append("dataAvt", dataAvt)
+        formData.append("name", name)
+        formData.append("email", email)
+        formData.append("password", pass)
+        formData.append("date_create", new Date())
+        try {
+            await accountApi.create(formData)
+        } catch(err) {
+            console.log(err)
         }
-
-
     }
     return (
         <form action method="POST" className="form" id="form-2">
@@ -134,6 +138,7 @@ const Signin = () => {
                     <input onChange={onChangeName} type="text" name="name" id="name" placeholder="Họ và tên" />
                     <div className="form-message"></div>
                 </div>
+                <canvas id="canvas" width="80" height="80"></canvas>
                 <div className="form-group">
                     <input className={checkMail ? '' : "check"} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
                     <div className="form-message">{checkMail ? "" : "Sai định dạng email."}</div>

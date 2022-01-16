@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import ProtoTypes from 'prop-types'
-
-import axios from 'axios'
-
-import ProductView from '../../user/product-view/ProductView'
-
 import { useParams } from 'react-router-dom'
+import ProtoTypes from 'prop-types'
+import axios from 'axios'
+import ProductView from '../../user/product-view/ProductView'
+import productClientApi from '../../../api/user/productApi'
 
 const Product = props => {
 
@@ -19,20 +17,25 @@ const Product = props => {
     const [president2, setPresident2] = useState([])
 
     useEffect(() => {
-        
-        axios.get(`http://localhost/vinfast/vinfast-backend/api/deposit/read_${params.slug}.php`)
-            .then(res => {
-                const persons = res.data;
-                setPresident2( persons.data);
-            })
-            .catch(error => console.log(error));
-        
-        axios.get('http://localhost/vinfast/vinfast-backend/api/readProduct.php')
-            .then(res => {
-                const persons = res.data;
-                setProductData( persons.data);
-            })
-            .catch(error => console.log(error));
+        const getCarBlock3 = async () => {
+            try {
+                const res = await productClientApi.getCarBlock3(params.slug)
+                setPresident2(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getCarBlock3() 
+
+        const getAllProduct = async () => {
+            try {
+                const res = await productClientApi.getAll()
+                setProductData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getAllProduct() 
                     
     }, [])
     return (

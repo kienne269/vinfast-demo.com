@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import productApi from '../../../api/admin/productApi'
 import './new-product.scss'
 const NewProduct = () => {
 
@@ -28,7 +29,8 @@ const NewProduct = () => {
             deposts: deposts,
         }
         try {
-            const res = await axios.post('http://localhost/vinfast/vinfast-backend/api/admin/createProducts.php', params)
+            const res = await productApi.create(params)
+            alert("Thêm thành công")
             navigate(`/admin/products`)
             console.log(res)
         } catch(err) {

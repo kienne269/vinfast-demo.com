@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
-
-import axios from 'axios'
-
 import { Link } from 'react-router-dom';
 
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import block3Api from '../../../api/home/block3Api'
 
 import 'swiper/swiper-bundle.css'
 
@@ -20,19 +18,19 @@ const Block3 = () => {
     const [block3Data, setBlock3Data] = useState([])
 
     useEffect(() => {
-        
-        axios.get('http://localhost/vinfast/vinfast-backend/api/home/readBlock3.php')
-                .then(res => {
-                    const persons = res.data;
-                    setBlock3Data( persons.data);
-                })
-                .catch(error => console.log(error));
-                
+        const getBlock3 = async () => {
+            try {
+                const res = await block3Api.getAll()
+                setBlock3Data(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getBlock3()  
     }, [])
 
     return (
         <div className="block3">
-            <div className="block3__title">Xe ô tô</div>
                 <Swiper
                     modules={[Autoplay, Pagination, Navigation]}
                     spaceBetween={0}

@@ -1,65 +1,128 @@
 @use "../../../scss/" as *;
 
 .new__post {
-  margin: 7rem 0;
-
-  .container {
-    border: 1px solid $blue;
-    padding: 4rem;
+  position: relative;
+  float: left;
+  width: 100%;
+  display: block;
+  padding: 7rem 0;
+  .rdw-editor-main {
+    background-color: #f5f6f9;
+    border: 1px solid#eee;
+    margin-bottom: 1.7rem;
+    padding: 7px 1.7rem 7px 1.7rem;
+    line-height: 2.7rem;
   }
-
-  &__title {
-    input {
-      width: 100%;
-      font-size: 4rem;
-      padding: 1rem 5px;
-      font-weight: 500;
-      color: $black;
-      outline: none;
-      line-height: 1.4;
-    }
+  .public-DraftEditor-content {
+    min-height: 30rem;
   }
-
-  .rdw-editor-wrapper {
-    margin-bottom: 3rem;
-
-    .rdw-editor-toolbar {
-      position: sticky;
-      top: 6rem;
-      z-index: 1;
-      border-bottom: none;
-      background-color: $white;
-    }
-    .DraftEditor-root {
-      height: calc(100vh - 20rem);
-      overflow: auto;
-    }
+  .rdw-dropdown-optionwrapper {
+    width: 100% !important;
   }
-
-  &__submit {
+  select,
+  textarea,
+  input[type="text"] {
+    margin: 0 !important;
+    border-radius: 8px;
+    border: 1px solid #f0f5f7;
+    padding: 5px 2rem;
+    font-size: 1.5rem;
+    background: #f0f5f7;
+    width: 100% !important;
+    color: #696969;
+    transition: all 0.3s ease-in-out 0s;
+    box-shadow: none;
+    height: 6rem;
+  }
+  input,
+  button,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  label {
+    padding: 0;
+    font-size: 1.7rem;
+    color: #202124;
+    font-weight: 500;
+    margin: 2.7rem 0 10px;
+    display: block;
+  }
+  .btn {
     display: inline-block;
-    position: relative;
-    right: 0;
-
-    button {
-      font-size: 1.6rem;
-      font-weight: 500;
-      padding: 1rem 2rem;
-      border-radius: $border-radius;
-      color: $white;
-      background: $blue;
-      outline: none;
-      border: 0;
-
-      &:hover {
-        opacity: 0.9;
-        cursor: pointer;
-      }
-    }
+    margin-bottom: 0;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    letter-spacing: 0;
+    padding: 9px 3rem;
+    font-size: 1.5rem;
+    line-height: 2;
+    border-radius: 8px;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.3s ease-in-out 0s;
   }
-}
+  .btn,
+  button {
+    outline: none !important;
+  }
+  .btn__theme {
+    color: #fff;
+    background-color: #1967d2;
+    border-color: #1967d2;
+  }
 
-.errors {
-  font-size: 1.4rem;
-  color: $red;
+  h1 {
+    text-align: center;
+    font-size: 3.4rem;
+    font-weight: 600;
+  }
+  h1 span {
+    color: #1967d2;
+  }
+  .post__list {
+    margin: 3.7rem 0 1.7rem 0;
+    border-bottom: 1px solid lavender;
+    padding-bottom: 1.7rem;
+  }
+  .post__list h2 {
+    margin-bottom: 1.7rem;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .post__list p {
+    margin-bottom: 1.7rem;
+    font-size: 18px;
+    font-weight: 400;
+    color: #524c4c;
+  }
+  span.required {
+    color: #f44336;
+  }
+  form.update__forms {
+    border: 1px solid #1967d2;
+    box-shadow: 0 6px 1.5rem 0 rgb(64 79 104 / 5%);
+    padding: 3.7rem;
+  }
+  .errors {
+    color: #f44336;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1.7rem;
+  }
+  .btn__add {
+    margin: 3.7rem auto;
+    display: table;
+    padding: 1.4rem 3.7rem 1.4rem 3.7rem;
+    font-size: 2rem;
+    line-height: normal;
+  }
 }

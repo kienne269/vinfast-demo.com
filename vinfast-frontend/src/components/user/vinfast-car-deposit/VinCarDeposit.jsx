@@ -2,67 +2,79 @@ import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
 import ThreeSixty from 'react-360-view'
-
 import OrderLast from '../order-last/OrderLast'
+import productDepositApi from '../../../api/depost/depositApi'
 
 import './vin-car-deposit.scss'
 
 import thumb from '../../../assets/images/thumb-MD04-PO21.jpg'
 
-import luxsaRed from '../../../assets/images/lux-sa/red.png'
-import luxaWhite from '../../../assets/images/lux-a/white.png'
-import fadilGray from '../../../assets/images/fadil/gray.png'
-import vfe34Black from '../../../assets/images/vfe34/black.png'
-import presidentBlack from '../../../assets/images/president/black.png'
-
 const VinCarDetail = () => {
 
-    const carFirst = [presidentBlack, luxsaRed, luxaWhite, fadilGray, vfe34Black]
+    const carFisrt = [17, 0, 6, 12, 25]
     
     const [container, setContainer] = useState([])
     const [postData, setPostData] = useState([])
     const [allCar, setAllCar] = useState([])
-
+    console.log(container)
+    console.log(postData)
     console.log(allCar)
     
     const name = ['president', 'lux-sa', 'lux-a', 'fadil', 'vfe34'];
     const nameTitle = ['PRESIDENT', 'LUX SA2.0', 'LUX A2.0', 'FADIL', 'VF e34'];
 
     const [type, setType] = useState('lux-sa')
-
+    
     useEffect(() => {
-        axios.get(`http://localhost/vinfast/vinfast-backend/api/deposit/read_${type}.php`)
-            .then(res => {
-                const persons = res.data;
-                setPostData( persons.data);
-            })
-            .catch(error => console.log(error));
-                
-    }, [type])
-
-    useEffect(() => {
-        axios.get('http://localhost/vinfast/vinfast-backend/api/deposit/readDepositContainer.php')
-            .then(res => {
-                const persons = res.data;
-                setContainer( persons.data);
-            })
-            .catch(error => console.log(error));
+        const getCarContainer = async () => {
+            try {
+                const res = await productDepositApi.getAllCarContainer()
+                setContainer(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getCarContainer() 
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost/vinfast/vinfast-backend/api/deposit/readAll.php')
-            .then(res => {
-                const persons = res.data;
-                setAllCar( persons.data);
-            })
-        .catch(error => console.log(error));
+        const getCarDeposit = async () => {
+            console.log(type)
+            try {
+                const res = await productDepositApi.getOneCar(type)
+                setPostData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getCarDeposit()          
+    }, [type])
+
+
+    useEffect(() => {
+        const getAllCarDeposit = async () => {
+            try {
+                const res2 = await productDepositApi.getAllCarDeposit()
+                setAllCar(res2.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getAllCarDeposit()
     }, [])
 
     const [active, setActive] = useState(1);
-    const [active2, setActive2] = useState(0);
-    const [background, setBackground] = useState(carFirst[1])
+    const [active2, setActive2] = useState(carFisrt[1]);
+    const [background, setBackground] = useState(carFisrt[1])
+
+    let car = []
+    if (allCar) {
+        car = allCar.filter((item, index) => {
+            return item.name === nameTitle[active]
+        })
+    }
+    console.log(car)
 
     const li = () => {
         return (
@@ -77,6 +89,8 @@ const VinCarDetail = () => {
         )
     }
 
+    console.log(active2)
+
     return (
         <>
             <div className="vin__car__deposit">
@@ -85,7 +99,7 @@ const VinCarDetail = () => {
                         container ? container.map((item, index) => (
                             <li 
                                 onClick={
-                                    () => (setBackground(carFirst[index]), setActive(index), setType(name[index]), setActive2(0))
+                                    () => (setActive2(carFisrt[index]), setActive(index), setType(name[index]))
                                 } 
                                 className={`${index === active ? 'active' : ''}`} 
                                 key={index}>
@@ -101,7 +115,7 @@ const VinCarDetail = () => {
                         {/* <img src={background} alt="" /> */}
                         {
                             allCar ? allCar.map((item, index) => (
-                                <div key={index} className={index === active2 ? `${item.color2} check` : `${item.color2}`}>
+                                <div key={index} className={active2 === item.id ? `${item.color2} check` : `${item.color2}`}>
                                     <ThreeSixty
                                         amount={36}
                                         imagePath={`./images/${item.slug}`}
@@ -126,8 +140,8 @@ const VinCarDetail = () => {
                             <p className="select__color">Lựa chọn màu ngoại thất</p>
                             <ul>
                                 {
-                                    postData ? postData.map((item, index) => (
-                                        <li onClick={() => (setActive2(index), setBackground(item.image)) } className={active2 === index ? 'active' : ''} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`}}>{index}</li>
+                                    car ? car.map((item, index) => (
+                                        <li onClick={() => (setActive2(item.id), setBackground(item.image)) } className={item.id === active2 ? 'active' : ''} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`}}>{index}</li>
                                     )) : li
                                 }
                             </ul>

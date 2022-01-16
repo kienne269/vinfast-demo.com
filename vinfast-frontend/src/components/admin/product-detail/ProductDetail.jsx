@@ -1,29 +1,29 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-
 import {useNavigate} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import productApi from '../../../api/admin/productApi'
 
 import './product-detail.scss'
-import { useParams } from 'react-router-dom'
 const ProductDetail = () => {
 
     const { id } = useParams();
 
-    const [productData, setProductData] = useState([])
-
-    const getProductBySlug = (id) => productData.find(e => e.id === id)
-    const product = getProductBySlug(id)
+    const [productData, setProductData] = useState("")
     useEffect(() => {
-        
-        axios.get('http://localhost/vinfast/vinfast-backend/api/admin/readProducts.php')
-                .then(res => {
-                    const persons = res.data;
-                    setProductData( persons.data);
-                })
-                .catch(error => console.log(error));
+        const getProductApi = async () => {
+            try {
+                const res = await productApi.getOne(id)
+                setProductData(res)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getProductApi()
                 
-    }, [])
+    }, [id])
 
+    console.log(productData)
     return (
         <div className='product__detail'>
             <div className="new__product--top">
@@ -34,7 +34,7 @@ const ProductDetail = () => {
             <div className="form__create">
                 <form className="formCreate" action="">
                     {
-                        product ? <ProductInfo product={product} /> : ''
+                        productData ? <ProductInfo product={productData} /> : null
                     }
                 </form>
             </div>
@@ -45,7 +45,6 @@ const ProductDetail = () => {
 export default ProductDetail
 
 const ProductInfo = ({product}) => {
-
     const navigate = useNavigate();
 
     const [idProduct, setIdProduct] = useState(product.id)
@@ -56,6 +55,7 @@ const ProductInfo = ({product}) => {
     const [price, setPrice] = useState(product.price)
     const [deposits, setDeposits] = useState(product.deposits)
 
+    console.log(name)
     const updateProduct = async (e) => {
         e.preventDefault();
 
@@ -68,24 +68,24 @@ const ProductInfo = ({product}) => {
             price: price,
             deposits: deposits,
         }
-
-        console.log(params)
-        
-        try {
-            const res = await axios.post('http://localhost/vinfast/vinfast-backend/api/admin/updateProducts.php',params)
-            navigate(`/admin/products`)
-            console.log(res)
-        } catch(err) {
-            alert(err)
-            console.log(err)
+        const updateProductApi = async () => {
+            try {
+                const res = await productApi.update(params)
+                alert("Cập nhật thành công")
+                navigate(`/admin/products`)
+                console.log(res)
+            } catch(err) {
+                console.log(err)
+            }
         }
-        
+        updateProductApi()
     }
 
     const DeleteProduct = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.delete(`http://localhost/vinfast/vinfast-backend/api/admin/deleteProduct.php?id=${idProduct}`)
+            const res = await productApi.delete(idProduct)
+            alert("Xóa thành công")
             navigate(`/admin/products`)
             console.log(res)
         } catch(err) {
@@ -99,7 +99,7 @@ const ProductInfo = ({product}) => {
             <div className="row">
                 <div className="l-6">
                     <div className="form-group">
-                        <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder="Id product" />
+                        <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id product" />
                     </div>
                 </div>
                 <div className="l-6">

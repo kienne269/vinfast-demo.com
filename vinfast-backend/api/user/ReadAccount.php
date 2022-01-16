@@ -22,6 +22,7 @@ if ($num > 0) {
 
         $list_account_item = array(
             'id' => $id,
+            'avatar' => $avatar,
             'name' => $name,
             'email' => $email,
             'password' => $password,

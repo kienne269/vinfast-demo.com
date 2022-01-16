@@ -23,6 +23,17 @@ const OrderLast = () => {
     const [referralCode, setReferralCode] = useState('')
     const [show, setShow] = useState(false);
 
+    const obj = {
+        nameText: nameText,
+        phone: phone,
+        cccd: cccd,
+        email: email,
+        province: province,
+        referralCode: referralCode,
+    }
+
+    console.log(nameText)
+    console.log(email)
     const handleChangeName = (e) => {
         setNameText(e.target.value);
     }
@@ -61,7 +72,7 @@ const OrderLast = () => {
                             <div className="l-12">
                                 <div className="row">
                                     <div className="l-6 group__personal">
-                                        <GroupInput value={user ? user.name : ""} handleChange={handleChangeName} label="Họ tên cá nhân"/>
+                                        <GroupInput value={user ? user.name : nameText} disabled={user ? true : false} handleChange={user ? null : handleChangeName} label="Họ tên cá nhân"/>
                                     </div>
                                     <div className="l-6 group__personal">
                                         <GroupInput handleChange={handleChangeCccd} label="CMND/CCCD"/>
@@ -132,7 +143,7 @@ const OrderLast = () => {
                     </form>
                 </div>
             </div>
-            <DepostConfirm show={show} handleNone={handleNone}/>
+            <DepostConfirm params={obj} show={show} handleNone={handleNone}/>
         </>
     )
 }

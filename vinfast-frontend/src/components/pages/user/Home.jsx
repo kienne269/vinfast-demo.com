@@ -9,10 +9,12 @@ const Home = () => {
     return (
         <>
             <VinSlide />
-            <div className="container">
-                <Block1 />
+            <div className="block__trangchu">
+                <div className="container">
+                    <Block1 />
+                </div>
+                <Block2 />
             </div>
-            <Block2 />
             <Block3 />
             <Block4 />
             {/* <RegisterSuccess /> */}

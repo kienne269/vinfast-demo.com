@@ -22,10 +22,9 @@ if ($num > 0) {
 
         $list_post_item = array(
             'id' => $id,
-            'image' => $image,
+            'picture' => $picture,
             'title' => $title,
-            'excerpt' => $excerpt,
-            'content' => $content,
+            'content' => html_entity_decode($content),
             'views_count' => $views_count,
             'views_heart' => $views_heart,
             'views_comment' => $views_comment,

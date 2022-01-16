@@ -1,13 +1,11 @@
-// import axiosClient from './axiosClient'
+import axiosClient from '../axiosClient'
 
-// const productEndpoint = 'http://localhost/vinfast/vinfast-backend/api/admin/ReadCustomer.php'
+const productApi = {
+    getAll: () => axiosClient.get('admin/readProducts.php'),
+    create: (params) => axiosClient.post('admin/createProducts.php', params),
+    getOne: (id) => axiosClient.get(`admin/showProducts.php?id=${id}`),
+    update: (params) => axiosClient.post("admin/updateProducts.php", params),
+    delete: (id) => axiosClient.post(`admin/deleteProduct.php?id=${id}`),
+}
 
-// const productApi = {
-//     getAll: () => axiosClient.get(productEndpoint),
-//     create: (params) => axiosClient.post(productEndpoint, params),
-//     getOne: (id) => axiosClient.get(`${productEndpoint}/${id}`),
-//     update: (id, params) => axiosClient.put(`${productEndpoint}/${id}`, params),
-//     vaccinated: (params) => axiosClient.post(`${productEndpoint}/vaccinated`, params)
-// }
-
-// export default productApi
+export default productApi

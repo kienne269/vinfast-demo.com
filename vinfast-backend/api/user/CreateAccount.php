@@ -4,22 +4,36 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header("Access-Control-Allow-Headers:Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Request-With");
 
-include_once('../../config/contacts.php');
-include_once('../../model/Account.php');
+$connect = mysqli_connect('localhost', 'root', '', 'vinfast_db');
 
-$db = new db();
-$connect = $db->connect();
+if (isset($_POST['dataAvt'])) {
+    // Nhận dữ liệu canvas
+    $avatar = $_POST['dataAvt'];
+    $name = mysqli_real_escape_string($connect, $_POST['name']);
+    $email = mysqli_real_escape_string($connect, $_POST['email']);
+    $password = mysqli_real_escape_string($connect, $_POST['password']);
+    $date_create = mysqli_real_escape_string($connect, $_POST['date_create']);
 
-$account = new Account($connect);
+    // Tìm kiếm và thay thế đường dẫn ảnh
+    $avatar = str_replace('data:image/png;base64,', '', $avatar);
+    $avatar = str_replace(' ', '+', $avatar);
 
-$data = json_decode(file_get_contents("php://input"));
+    $fileData = base64_decode($avatar); // Mã hoá file dạng Base64
 
-$account->name = $data->name;
-$account->email = $data->email;
-$account->password = $data->password;
+    // Tạo tên ảnh ngẫu nhiên để không bị trùng lặp 
+    $charName = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $randName = substr(str_shuffle($charName), 0, 15);
 
-if ($account->create()) {
-    echo json_encode(array('message', 'User Created'));
-} else {
-    echo json_encode(array('message', 'User Not Created'));
+    // Đường dẫn thư mục ảnh
+    $fileName = '../../../vinfast-frontend/public/images/avatars/' . $randName . '.png';
+
+    // Đặt dữ liệu canvas vào file ảnh
+    file_put_contents($fileName, $fileData);
+
+    $connection = "INSERT INTO vinfast_account (avatar, name, email, password, date_create) VALUES ('$randName', '$name' ,'$email', '$password', '$date_create')";
+    if (mysqli_query($connect, $connection)) {
+        echo 'success';
+    } else {
+        echo 'could not insert data into the database';
+    }
 }

@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux'
-import axios from 'axios'
 import cookies from 'react-cookies'
-
 import { Link, useNavigate } from 'react-router-dom';
-
 import { login } from '../../redux/user/userSlice';
 
+import accountApi from '../../api/account';
 import './login.scss';
 
 const Login = () => {
@@ -36,14 +34,15 @@ const Login = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadAccount.php')
-        .then(res => {
-            const persons = res.data;
-            setUserData( persons.data);
-        })
-        .catch(error => {
-            console.log(error.response)
-        })
+        const getAccount = async () => {
+            try {
+                const res = await accountApi.getAll()
+                setUserData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getAccount()
 
         if (userData) {
             const getUserData = (email) => userData.find(e => e.email === email)

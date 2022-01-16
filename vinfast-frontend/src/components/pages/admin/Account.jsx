@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
 import Table from '../../admin/table/Table'
+import accountApi from '../../../api/account'
 
 const loginTableHead = [
     '',
+    'avatar',
     'name',
     'email',
     'password',
@@ -17,6 +18,7 @@ const renderHead = (item, index) => <th key={index}>{item}</th>
 const renderBody = (item, index) => (
     <tr key={index}>
         <td>{item.id}</td>
+        <td>{item.avatar}</td>
         <td>{item.name}</td>
         <td>{item.email}</td>
         <td>{item.password}</td>
@@ -33,12 +35,17 @@ const Products = () => {
 
     const [accountData, setAccountData] = useState([])
 
+    console.log(accountData)
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get('http://localhost/vinfast/vinfast-backend/api/admin/readProducts.php')
-            setAccountData(result.data.data);        
+        const getAccountApi = async () => {
+            try {
+                const res = await accountApi.getAll()
+                setAccountData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
         }
-        fetchData();
+        getAccountApi()
     }, [])
     return (
         <>

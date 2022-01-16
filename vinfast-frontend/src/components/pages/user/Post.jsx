@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-
 import PostView from '../../user/post-view/PostView'
+import postApi from '../../../api/postApi'
 const Post = () => {
     let params = useParams();
     console.log(params)
@@ -15,13 +15,15 @@ const Post = () => {
 
     useEffect(() => {
         
-        axios.get('http://localhost/vinfast/vinfast-backend/api/post/readPost.php')
-                .then(res => {
-                    const persons = res.data;
-                    console.log(persons)
-                    setPosts( persons.data);
-                })
-                .catch(error => console.log(error));              
+        const getAllPost = async () => {
+            try {
+                const res = await postApi.getAll()
+                setPosts(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        getAllPost()          
     }, [])
 
     return (

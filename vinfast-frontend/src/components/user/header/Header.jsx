@@ -47,6 +47,7 @@ const Header = () => {
     }
 
     const user = useSelector(selectUser);
+    console.log(user)
 
     const dispatch = useDispatch();
     const handleClickTop = () => {
@@ -67,7 +68,10 @@ const Header = () => {
     if(user !== null && user !== undefined) {
         path = <>
                 <div className='account'>
-                    <div onClick={handleClick} className="header__right--account">{user.name}</div>
+                    <div onClick={handleClick} className="header__right--account">
+                        <img src={`/images/avatars/${user.avatar}.png`} alt="" />
+                        {user.name}
+                    </div>
                     <ul className={show ? 'account__list active' : 'account__list'}>
                         <li>Thông tin cá nhân</li>
                         <Link to='/new-post'>

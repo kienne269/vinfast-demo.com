@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
-
 import axios from 'axios'
-
 import Table from '../../admin/table/Table'
-
+import customerApi from '../../../api/depost/customerApi'
 
 const customerTableHead = [
     'id',
@@ -32,12 +30,15 @@ const renderBody = (item, index) => (
 const Customers = () => {
     const [customerData, setCustomerData] = useState([])
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get('http://localhost/vinfast/vinfast-backend/api/user/ReadCustomer.php')
-            setCustomerData(result.data.data);        
+        const getCustomerApi = async () => {
+            try {
+                const res = await customerApi.getAll()
+                setCustomerData(res.data)
+            } catch(err) {
+                console.log(err)
+            }
         }
-        fetchData();
-
+        getCustomerApi() 
     }, [])
     console.log(customerData)
     return (
