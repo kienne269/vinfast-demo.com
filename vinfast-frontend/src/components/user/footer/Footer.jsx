@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer__content container">
                 <div className="footer__content__logo">
                     <Link to="/" className="logo">
-                        <img src={logo} alt="" />
+                        <img src="http://localhost:3000/images/vinfast-data-01/logo_1627445467.png" alt="" />
                     </Link>
                 </div>
                 <div className="footer__content__menus row">
@@ -84,7 +84,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="footer__content__copyright--right">
-                        <img src="../../../assets/images/vinfast-data-01/bocongthuong_otm.webp" alt="Bộ công thương" />
+                        <img src="http://localhost:3000/images/vinfast-data-01/bocongthuong_otm.webp" alt="Bộ công thương" />
                     </div>
                 </div>
                 <div className="footer__content__bottom">

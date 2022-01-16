@@ -107,7 +107,7 @@ const Signin = () => {
         var y = canvas.height / 2;
 
     // Phủ màu cho canvas
-        context.rect(0, 0, 80, 80);
+        context.rect(0, 0, 40, 40);
         context.fillStyle = "#428bca";
     context.fill();
 
@@ -141,7 +141,7 @@ const Signin = () => {
                     <input onChange={onChangeName} type="text" name="name" id="name" placeholder="Họ và tên" />
                     <div className="form-message"></div>
                 </div>
-                <canvas id="canvas" width="80" height="80"></canvas>
+                <canvas id="canvas" width="40" height="40"></canvas>
                 <div className="form-group">
                     <input className={checkMail ? '' : "check"} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
                     <div className="form-message">{checkMail ? "" : "Sai định dạng email."}</div>

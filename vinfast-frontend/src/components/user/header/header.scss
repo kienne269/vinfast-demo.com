@@ -120,12 +120,18 @@
       transition: all 0.3s;
       cursor: pointer;
 
+      img {
+        margin-right: 1rem;
+        width: 35px;
+        border-radius: 50%;
+      }
+
       @include mobile-xs {
         display: none;
       }
 
       @include tablet-lg {
-        display: block;
+        @include flex(center, space-between);
       }
 
       &:hover {
