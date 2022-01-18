@@ -144,12 +144,57 @@
     }
   }
 
-  .group__personal {
+  .group {
     .group__input {
       margin-right: 1.2rem;
       margin-left: 1.2rem;
     }
   }
+
+  .group__showroom {
+    .select__results {
+      &__options {
+        overflow-y: scroll;
+        max-height: 24rem;
+        transition: all 0.3s ease;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+        li {
+          font-size: 13px;
+          padding: 5px 2rem;
+          line-height: 2rem;
+          background: $white;
+          &:hover {
+            color: $white;
+            background: $blue;
+          }
+        }
+      }
+    }
+
+    .select__selection {
+      &__rendered {
+        position: relative;
+      }
+
+      &__placeholder {
+      }
+
+      &__arrow {
+        background-image: url(http://localhost:3000/images/arrowdown.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: 6px;
+        top: 0;
+        z-index: 100;
+        content: "";
+        width: 2rem;
+        height: 100%;
+      }
+    }
+  }
+
   .radio {
     p {
       font-size: 1.6rem;

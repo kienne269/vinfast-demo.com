@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React, {useState, useEffect, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import productApi from '../../../api/admin/productApi'
@@ -22,11 +21,9 @@ const ProductDetail = () => {
         getProductApi()
                 
     }, [id])
-
-    console.log(productData)
     return (
-        <div className='product__detail'>
-            <div className="new__product--top">
+        <div className='public__detail'>
+            <div className="new__public--top">
                 <h2 className="page-header">
                     Product Detail
                 </h2>
@@ -47,10 +44,10 @@ export default ProductDetail
 const ProductInfo = ({product}) => {
     const navigate = useNavigate();
 
+    const selectFile = useRef()
     const [idProduct, setIdProduct] = useState(product.id)
     const [name, setName] = useState(product.name)
     const [color, setColor] = useState(product.color)
-    const [image, setImage] = useState(product.image)
     const [count, setCount] = useState(product.count)
     const [price, setPrice] = useState(product.price)
     const [deposits, setDeposits] = useState(product.deposits)
@@ -59,18 +56,18 @@ const ProductInfo = ({product}) => {
     const updateProduct = async (e) => {
         e.preventDefault();
 
-        const params = {
-            id: idProduct,
-            name: name,
-            color: color,
-            image: image,
-            count: count,
-            price: price,
-            deposits: deposits,
-        }
+        const formData = new FormData()
+        formData.append("id", idProduct)
+        formData.append("name", name)
+        formData.append("color", color)
+        formData.append("image", selectFile.current.files[0] || product.image)
+        formData.append("count", count)
+        formData.append("price", price)
+        formData.append("deposits", deposits)
+
         const updateProductApi = async () => {
             try {
-                const res = await productApi.update(params)
+                const res = await productApi.update(formData)
                 alert("Cập nhật thành công")
                 navigate(`/admin/products`)
                 console.log(res)
@@ -93,49 +90,71 @@ const ProductInfo = ({product}) => {
             console.log(err)
         }
     }
-    
+
+    const [stateFile, setStateFile] = useState();
+    const onChangeImage = (e) => {
+        setStateFile([]);
+        if(e.target.files) {
+          const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+          setStateFile((prevImages) => prevImages.concat(filesArray))
+          Array.from(e.target.files).map((file) => URL.revokeObjectURL(file))
+        }
+      }
+
+      console.log(product.image)
+      const renderPhotos = (source) => {
+        return source.map((photo, index) => {
+          return <img key={index} src={photo} alt="" width="350px" height="250px" />
+        })
+      }
+      console.log(stateFile)
     return (
         <>
-            <div className="row">
-                <div className="l-6">
-                    <div className="form-group">
-                        <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id product" />
-                    </div>
-                </div>
-                <div className="l-6">
-                    <div className="form-group">
-                        <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
-                    </div>
-                </div>
-                <div className="l-6">
-                    <div className="form-group">
-                        <input value={color } onChange={(e) => setColor(e.target.value)} type="text" name="color" id="color" placeholder="Color" />
-                    </div>
-                </div>
-                <div className="l-6">
-                    <div className="form-group">
-                        <input value={image } onChange={(e) => setImage(e.target.value)} type="text" name="image" id="image" placeholder="Image" />
-                    </div>
-                </div>
-                <div className="l-6">
-                    <div className="form-group">
-                        <input value={count } onChange={(e) => setCount(e.target.value)} type="text" name="count" id="count" placeholder="Count" />
-                    </div>
-                </div>
-                <div className="l-6">
-                    <div className="form-group">
-                        <input value={price } onChange={(e) => setPrice(e.target.value)} type="text" name="price" id="price" placeholder="Price" />
-                    </div>
-                </div>
-                <div className="l-6">
-                    <div className="form-group">
-                        <input value={deposits } onChange={(e) => setDeposits(e.target.value)} type="text" name="deposit" id="deposit" placeholder="Deposit" />
-                    </div>
-                </div>
-            </div>
             <div className='btn'>
                 <button onClick={updateProduct}>update</button>
                 <button onClick={DeleteProduct}>Delete</button>
+            </div>
+            <div className='row form__product__detail'>
+                <div className="l-4 form__product__detail__left">
+                    <div className="form-group">
+                        <input type="file" ref={selectFile} onChange={onChangeImage}  className="form-control" multiple required />
+                        {stateFile === undefined ? <img src={product.image} alt="" width="350px" height="250px"/> : <div className="result">{renderPhotos(stateFile)}</div>}
+                    </div>
+                </div>
+                <div className="l-8 form__product__detail__right">
+                    <div className="row">
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id product" />
+                            </div>
+                        </div>
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                            </div>
+                        </div>
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input value={color } onChange={(e) => setColor(e.target.value)} type="text" name="color" id="color" placeholder="Color" />
+                            </div>
+                        </div>
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input value={count } onChange={(e) => setCount(e.target.value)} type="text" name="count" id="count" placeholder="Count" />
+                            </div>
+                        </div>
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input value={price } onChange={(e) => setPrice(e.target.value)} type="text" name="price" id="price" placeholder="Price" />
+                            </div>
+                        </div>
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input value={deposits } onChange={(e) => setDeposits(e.target.value)} type="text" name="deposit" id="deposit" placeholder="Deposit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

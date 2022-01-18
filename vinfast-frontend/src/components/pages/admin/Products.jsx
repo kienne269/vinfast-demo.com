@@ -57,7 +57,7 @@ console.log(productsData)
         <>
             <h2 className="page-header page-header--product">
                 <p>Product list</p>
-                <Link to="/admin/products/newproduct">
+                <Link to="/admin/products/new_product">
                     <button className="productAddButton">Create</button>
                 </Link>
             </h2>

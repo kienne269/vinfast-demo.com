@@ -18,12 +18,14 @@ const renderHead = (item, index) => <th key={index}>{item}</th>
 const renderBody = (item, index) => (
     <tr key={index}>
         <td>{item.id}</td>
-        <td>{item.avatar}</td>
+        <td>
+            <img src={item.avatar} alt="" />
+        </td>
         <td>{item.name}</td>
         <td>{item.email}</td>
         <td>{item.password}</td>
         <td>
-            <Link to={`/admin/products/${item.id}`}>
+            <Link to={`/admin/accounts/${item.id}`}>
                 <i className="fas fa-external-link"></i>
                 <span className="action">Detail</span>
             </Link>
@@ -51,7 +53,7 @@ const Products = () => {
         <>
             <h2 className="page-header page-header--product">
                 <p>Account list</p>
-                <Link to="/admin/products/newproduct">
+                <Link to="/admin/accounts/new_account">
                     <button className="productAddButton">Create</button>
                 </Link>
             </h2>

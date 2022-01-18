@@ -1,15 +1,18 @@
 @use "../../../scss/" as *;
 
-.product__detail {
-  // width: 60%;
+.form__account__detail,
+.form__product__detail {
+  align-items: center;
+}
 
+.public__detail {
   .btn {
     @include flex(center, space-between);
 
     button {
       font-size: 1.2rem;
       font-weight: 600;
-      margin-top: 2rem;
+      margin-bottom: 2rem;
       padding: 1rem;
       border: none;
       border-radius: $border-radius;

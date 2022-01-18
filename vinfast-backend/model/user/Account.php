@@ -26,6 +26,25 @@ class Account
         return $stmt;
     }
 
+    //show data
+    public function show()
+    {
+        $query = "SELECT * FROM vinfast_account WHERE id=? LIMIT 1";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->id = $row['id'];
+        $this->avatar = $row['avatar'];
+        $this->name = $row['name'];
+        $this->email = $row['email'];
+        $this->password = $row['password'];
+    }
+
     //create data
     public function create()
     {

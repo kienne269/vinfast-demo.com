@@ -146,7 +146,7 @@ const VinCarDetail = () => {
                                 }
                             </ul>
                             {
-                                postData[active2] ? <div className='colorName'>{postData[active2].color}</div> : ''
+                                postData[active2] ? <div className='colorName'>{postData[active2].color}</div> : null
                             }
                             <p className="select__color">Lựa chọn màu nội thất</p>
                             <ul>
@@ -165,7 +165,7 @@ const VinCarDetail = () => {
                 </div>
                 
             </div>
-            <OrderLast />
+            <OrderLast money={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={postData[active2] ? postData[active2].color : null}/>
         </>
     )
 }

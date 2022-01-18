@@ -9,20 +9,27 @@ const DepostConfirm = (props) => {
 
     const navigate = useNavigate();
     const params = props.params
+    console.log(params)
     const createCustomer = async (e) => {
         e.preventDefault();
-        const obj = {
-            nameText: params.nameText,
-            phone: params.phone,
-            cccd: params.cccd,
-            email: params.email,
-            province: params.province,
-            referralCode: params.referralCode,
-        }
+        const formData = new FormData()
+        formData.append("name", params.nameText)
+        formData.append("phone", params.phone)
+        formData.append("cccd", params.cccd)
+        formData.append("email", params.email)
+        formData.append("province", params.province)
+        formData.append("referralCode", params.referralCode)
+        formData.append("file", params.referralCode)
+        formData.append("published_at", new Date())
+        formData.append("order_id", "Nội dung chuyển khoản")
+        formData.append("amount", 50000)
+        formData.append("order_desc", "Thanh toán qua thẻ tín dụng")
+        formData.append("language", "vn")
         try {
-            const res = await customerApi.create(obj)
-            navigate(`/dat-coc`)
-            console.log(res)
+            const res = await axios.post("http://localhost/vinfast/vinfast-backend/api/deposit/vnpay_php/vnpay_create_payment.php", formData)
+            // const res = await customerApi.create(formData)
+            navigate(res.data.data)
+            console.log(res.data)
         } catch(err) {
             console.log(err)
         }
@@ -37,15 +44,13 @@ const DepostConfirm = (props) => {
                         <p>Quý khách vui lòng kiểm tra lại thông tin trước khi thực hiện thanh toán.</p>
                     </div>
                     <div className="modal__content__body">
-                        <form action="" className='deposit__confirm' >
+                        <form className='deposit__confirm' id="create_form" method="post">
                             <div className="row group__info">
                                 <h5 className="l-12">THÔNG TIN SẢN PHẨM</h5>
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Mẫu xe</label>
-                                        <div className="l-7">
-                                            {/* <label htmlFor="" className="l-7">{name[active]}</label> */}
-                                        </div>
+                                        <div className="l-7">{props.nameCar}</div>
                                     </div>
                                 </div>
                                 <div className="l-6">
@@ -59,11 +64,7 @@ const DepostConfirm = (props) => {
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Màu ngoại thất</label>
-                                        <div className="l-7">
-                                        {
-                                            // postData[active2] ? <label htmlFor="" className="l-7">{postData[active2].color}</label> : ''
-                                        }
-                                        </div>
+                                        <div className="l-7">{props.colorCar}</div>
                                     </div>
                                 </div>
                                 <div className="l-6">
@@ -128,10 +129,16 @@ const DepostConfirm = (props) => {
                             </div>
                             <div className="row group__info">
                                 <h5 className="l-12">THÔNG TIN THANH TOÁN</h5>
+                                <div className="l-6" style={{display: 'none'}}>
+                                    <div className="row group__item">
+                                        <label htmlFor="order_id" className="l-5">Mã hóa đơn</label>
+                                        <input class="form-control" id="order_id" name="order_id" type="text" value={new Date()}/>
+                                    </div>
+                                </div>
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Hình thức</label>
-                                        <div className='l-7'>
+                                        <div className='l-7' name="order_desc">
                                             <label className="l-7">Thanh toán qua thẻ tín dụng</label>
                                         </div>
                                     </div>
@@ -139,9 +146,15 @@ const DepostConfirm = (props) => {
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Số tiền đặt cọc</label>
-                                        <div className='l-7'>
-                                            {/* <label className="l-7">{amountDeposit[active]} vnđ</label> */}
-                                        </div>
+                                        <div className='l-7' name="amount">{props.money}</div>
+                                    </div>
+                                </div>
+                                <div className="l-6" style={{display: 'none'}}>
+                                    <div className="row group__item">
+                                        <label htmlFor="language" className="l-5">Số tiền đặt cọc</label>
+                                        <select name="language" id="language" class="form-control">
+                                            <option value="vn">Tiếng Việt</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -149,9 +162,7 @@ const DepostConfirm = (props) => {
                     </div>
                     <div className="modal__content__footer">
                         <button onClick={props.handleNone} className="btn">Thay đổi thông tin</button>
-                        <button onClick={createCustomer} className="btn">
-                            <Link to='/'>Thanh toán</Link>
-                        </button>
+                        <button onClick={createCustomer} className="btn">Thanh toán</button>
                     </div>
                 </div>
             </div>

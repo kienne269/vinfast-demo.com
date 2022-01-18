@@ -69,7 +69,7 @@ const Header = () => {
         path = <>
                 <div className='account'>
                     <div onClick={handleClick} className="header__right--account">
-                        <img src={`/images/avatars/${user.avatar}.png`} alt="" />
+                        <img src={user.avatar} alt="" />
                         {user.name}
                     </div>
                     <ul className={show ? 'account__list active' : 'account__list'}>

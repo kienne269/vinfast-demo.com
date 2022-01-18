@@ -10,8 +10,10 @@ import DepostConfirm from '../depost-confirm/DepostConfirm'
 
 import './order-last.scss'
 
-const OrderLast = () => {
+const OrderLast = (props) => {
 
+    const colorCar = props.colorCar
+    const nameCar = props.nameCar
     const user = useSelector(selectUser);
 
     const [isDisabled, setIsDisabled] = useState(false)
@@ -71,35 +73,88 @@ const OrderLast = () => {
                             <div className="l-12 group__title">Thông tin khách hàng</div>
                             <div className="l-12">
                                 <div className="row">
-                                    <div className="l-6 group__personal">
+                                    <div className="l-6 group group__personal">
                                         <GroupInput value={user ? user.name : nameText} disabled={user ? true : false} handleChange={user ? null : handleChangeName} label="Họ tên cá nhân"/>
                                     </div>
-                                    <div className="l-6 group__personal">
+                                    <div className="l-6 group group__personal">
                                         <GroupInput handleChange={handleChangeCccd} label="CMND/CCCD"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="l-12">
                                 <div className="row">
-                                    <div className="l-6 group__personal">
+                                    <div className="l-6 group group__personal">
                                         <GroupInput handleChange={handleChangePhone} label="Số điện thoại"/>
                                     </div>
-                                    <div className="l-6 group__personal">
+                                    <div className="l-6 group group__personal">
                                         <GroupInput handleChange={handleChangeEmail} label="Email"/>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        {/* <div className="row group-showroom">
+                            <div className="l-12 group__title">Lựa chọn showroom mua xe</div>
                             <div className="l-12">
                                 <div className="row">
-                                    <div className="l-6 group__personal">
-                                        <GroupInput handleChange={handleChangeProvince} label="Tỉnh thành"/>
+                                    <div className="l-6 group group__showroom">
+                                        <div className="group__input">
+                                            <label> 
+                                                Tỉnh thành
+                                                <span>*</span>
+                                            </label>
+                                            <span className="select__container">
+                                                <span className="select__selection__rendered">
+                                                    <input className='select__search__field' placeholder='Lựa chọn tỉnh thành' type="text" />
+                                                    <span className="select__selection__arrow"></span>
+                                                </span>
+                                                <span className="select__dropdown">
+                                                    <span className="select__results">
+                                                        <ul className="select__results__options">
+                                                            <li className="select__results__option">Hà Nội</li>
+                                                            <li className="select__results__option">Hồ Chí Minh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                            <li className="select__results__option">Bắc Ninh</li>
+                                                        </ul>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className="l-6 group__personal">
-                                        <GroupInput handleChange={handleChangeReferralCode} label="Mã giới thiệu"/>
+                                    <div className="l-6 group group__showroom">
+                                        <div className="group__input">
+                                            <label> 
+                                                Showroom /Đại lý 
+                                                <span>*</span>
+                                            </label>
+                                            <span className="select__container">
+                                                <span className="select__selection__rendered">
+                                                    <input className='select__search__field' placeholder='Lựa chọn Showroom' type="text" />
+                                                    <span className="select__selection__arrow"></span>
+                                                </span>
+                                                <span className="select__dropdown">
+                                                    <span className="select__results">
+                                                        <ul className="select__results__options">
+                                                            <li className="select__results__option">No results found</li>
+                                                            <li className="select__results__option">test</li>
+                                                            <li className="select__results__option">test</li>
+                                                            <li className="select__results__option">test</li>
+                                                        </ul>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row checkbox checkbox__agree">
                             <div className="group__input">
                                 <input type="checkbox" id="1"/>
@@ -126,15 +181,11 @@ const OrderLast = () => {
                             <p>Hình thức thanh toán</p>
                             <div className="group__input">
                                 <input type="radio" id="radio1" name="payment" value="radio1"/>
-                                <label htmlFor='radio1'>Thanh toán qua thẻ tín dụng</label>
+                                <label htmlFor='radio1'>Thanh toán qua chuyển khoản ngân hàng</label>
                             </div>
                             <div className="group__input">
                                 <input type="radio" id="radio2" name="payment" value="radio2"/>
                                 <label htmlFor='radio2'>Thanh toán qua thẻ ATM nội địa/Internet Banking</label>
-                            </div>
-                            <div className="group__input">
-                                <input type="radio" id="radio3" name="payment" value="radio3"/>
-                                <label htmlFor='radio3'>Thanh toán qua chuyển khoản ngân hàng</label>
                             </div>
                         </div>
                         <div className="btn">
@@ -143,7 +194,7 @@ const OrderLast = () => {
                     </form>
                 </div>
             </div>
-            <DepostConfirm params={obj} show={show} handleNone={handleNone}/>
+            <DepostConfirm money={props.money} nameCar={props.nameCar} colorCar={props.colorCar} params={obj} show={show} handleNone={handleNone}/>
         </>
     )
 }

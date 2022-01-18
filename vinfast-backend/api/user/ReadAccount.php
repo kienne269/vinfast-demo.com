@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin:*');
 header('Content-Type: application/json');
 
 include_once('../../config/contacts.php');
-include_once('../../model/Account.php');
+include_once('../../model/user/Account.php');
 
 $db = new db();
 $connect = $db->connect();

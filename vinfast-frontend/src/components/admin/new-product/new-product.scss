@@ -1,8 +1,6 @@
 @use "../../../scss/" as *;
 
 .new__product {
-  width: 60%;
-
   &--top {
     @include flex(center, space-between);
 
@@ -34,7 +32,7 @@
 
   .form-group {
     position: relative;
-    margin: 1rem;
+    margin: 1rem 2rem;
 
     .label {
       font-weight: 600;
@@ -55,7 +53,7 @@
       }
     }
 
-    input {
+    input:not([type="file"]) {
       font-size: 1.6rem;
       border: 2px solid #707070;
       padding: 1rem;

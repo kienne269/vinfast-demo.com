@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React, {useState, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import productApi from '../../../api/admin/productApi'
 import './new-product.scss'
 const NewProduct = () => {
 
+    const selectFile = useRef()
     const navigate = useNavigate();
 
     const [idProduct, setIdProduct] = useState('')
@@ -13,23 +13,22 @@ const NewProduct = () => {
     const [image, setImage] = useState('')
     const [count, setCount] = useState('')
     const [price, setPrice] = useState('')
-    const [deposts, setDeposts] = useState('')
+    const [deposits, setDeposits] = useState('')
     const [focus, setFocus] = useState(false)
     console.log(focus)
     const createProduct = async (e) => {
         e.preventDefault();
 
-        const params = {
-            id: idProduct,
-            name: name,
-            color: color,
-            image: image,
-            count: count,
-            price: price,
-            deposts: deposts,
-        }
+        const formData = new FormData()
+        formData.append("id", idProduct)
+        formData.append("name", name)
+        formData.append("color", color)
+        formData.append("image", selectFile.current.files[0])
+        formData.append("count", count)
+        formData.append("price", price)
+        formData.append("deposits", deposits)
         try {
-            const res = await productApi.create(params)
+            const res = await productApi.create(formData)
             alert("Thêm thành công")
             navigate(`/admin/products`)
             console.log(res)
@@ -38,6 +37,22 @@ const NewProduct = () => {
             console.log(err)
         }
     }
+
+    const [stateFile, setStateFile] = useState([]);
+    const onChangeImage = (e) => {
+        setStateFile([]);
+        if(e.target.files) {
+          const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+          setStateFile((prevImages) => prevImages.concat(filesArray))
+          Array.from(e.target.files).map((file) => URL.revokeObjectURL(file))
+        }
+      }
+
+      const renderPhotos = (source) => {
+        return source.map((photo, index) => {
+          return <img key={index} src={photo} alt="" />
+        })
+      }
 
     return (
         <div className='new__product'>
@@ -52,44 +67,48 @@ const NewProduct = () => {
             </div>
             <div className="form__create">
                 <form className="formCreate" action="">
-                    <div className="row">
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id"  />
-                                <div onClick={(e) => setFocus(!focus)} className={focus ? "label" : "label focus"}>Id product</div>
-                            </div>
+                    <div className='row form__create__product'>
+                    <div className="l-4 form__create__product__left">
+                        <div className="form-group">
+                            <input type="file" ref={selectFile} onChange={onChangeImage}  className="form-control" multiple required />
+                            <div className="result">{renderPhotos(stateFile)}</div>
                         </div>
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                    </div>
+                    <div className="l-8 form__create__product__right">
+                        <div className="row">
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder="Id product" />
+                                </div>
                             </div>
-                        </div>
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setColor(e.target.value)} type="text" name="color" id="color" placeholder="Color" />
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                                </div>
                             </div>
-                        </div>
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setImage(e.target.value)} type="text" name="image" id="image" placeholder="Image" />
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={color } onChange={(e) => setColor(e.target.value)} type="text" name="color" id="color" placeholder="Color" />
+                                </div>
                             </div>
-                        </div>
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setCount(e.target.value)} type="text" name="count" id="count" placeholder="Count" />
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={count } onChange={(e) => setCount(e.target.value)} type="text" name="count" id="count" placeholder="Count" />
+                                </div>
                             </div>
-                        </div>
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setPrice(e.target.value)} type="text" name="price" id="price" placeholder="Price" />
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={price } onChange={(e) => setPrice(e.target.value)} type="text" name="price" id="price" placeholder="Price" />
+                                </div>
                             </div>
-                        </div>
-                        <div className="l-6">
-                            <div className="form-group">
-                                <input onChange={(e) => setDeposts(e.target.value)} type="text" name="deposts" id="deposts" placeholder="Deposts" />
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={deposits } onChange={(e) => setDeposits(e.target.value)} type="text" name="deposit" id="deposit" placeholder="Deposit" />
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </form>
             </div>
         </div>
