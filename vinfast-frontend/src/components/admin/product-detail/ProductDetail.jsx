@@ -51,8 +51,7 @@ const ProductInfo = ({product}) => {
     const [count, setCount] = useState(product.count)
     const [price, setPrice] = useState(product.price)
     const [deposits, setDeposits] = useState(product.deposits)
-
-    console.log(name)
+    
     const updateProduct = async (e) => {
         e.preventDefault();
 
@@ -101,13 +100,11 @@ const ProductInfo = ({product}) => {
         }
       }
 
-      console.log(product.image)
       const renderPhotos = (source) => {
         return source.map((photo, index) => {
           return <img key={index} src={photo} alt="" width="350px" height="250px" />
         })
       }
-      console.log(stateFile)
     return (
         <>
             <div className='btn'>
