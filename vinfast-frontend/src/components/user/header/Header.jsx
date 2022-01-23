@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import cookies from 'react-cookies'
 
 import { logout, selectUser } from '../../../redux/user/userSlice';
@@ -12,23 +12,23 @@ import arrow from '../../../assets/images/arrow.svg'
 const headerNav = [
     {
         display: 'Ô tô',
-        path: '/vinfast-cars-deposit'
+        path: '/vinfast-cars-deposit',
     },
     {
         display: 'Xe máy điện',
-        path: '/vinfast-bike'
+        path: '/vinfast-bike',
     },
     {
         display: 'Ưu đãi',
-        path: '/uu-dai'
+        path: '/uu-dai',
     },
     {
         display: 'Dịch vụ',
-        path: '/dich-vu'
+        path: '/dich-vu',
     },
     {
         display: 'Blog',
-        path: '/blog'
+        path: '/blog',
     }
 ]
 
@@ -36,18 +36,13 @@ const Header = () => {
 
     const { pathName } = useLocation();
     const headerRef = useRef(null);
+    const navigate = useNavigate();
     
     const active = headerNav.findIndex( e => e.path === pathName);
     
     const [isCheckheader, setIsCheckheader] = useState(false)
-    const [show, setShow] = useState(false)
-
-    const handleClick = (e) => {
-        setShow(!show)
-    }
 
     const user = useSelector(selectUser);
-    console.log(user)
 
     const dispatch = useDispatch();
     const handleClickTop = () => {
@@ -57,29 +52,38 @@ const Header = () => {
           });
     }
     const handleLogout = ()=> {
-        setShow(!show)
         cookies.remove("user")
         dispatch(logout())
     }
-
-    console.log(show)
 
     let path = <Link to="/login" className="header__right--account">Tài khoản</Link>
     if(user !== null && user !== undefined) {
         path = <>
                 <div className='account'>
-                    <div onClick={handleClick} className="header__right--account">
+                    <div className="header__right--account">
                         <img src={user.avatar} alt="" />
                         {user.name}
                     </div>
-                    <ul className={show ? 'account__list active' : 'account__list'}>
-                        <li>Thông tin cá nhân</li>
-                        <Link to='/new-post'>
-                            <li>Viết Blog</li>
-                        </Link>
-                        <li>Bài viết của tôi</li>
-                        <li onClick={handleLogout}>Đăng xuất</li>
-                    </ul>
+                    <div className='account__list active'>
+                        <ul>
+                            <li>
+                                <Link to='/settings/thong-tin-ca-nhan'>Thông tin tài khoản</Link>
+                            </li>
+                            <li>
+                                <Link to='/settings/lịch-su-giao-dich'>Lịch sử đơn hàng</Link>
+                            </li>
+                            <li>
+                                <Link to='/new-post'>Viết Blog</Link>
+                            </li>
+                                <li>
+                                    <Link to='/settings/me/my-post'>Bài viết của tôi</Link>
+                                </li>
+                            
+                            <li onClick={handleLogout}>
+                                <Link to='/'>Đăng xuất</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </>
     }
@@ -112,10 +116,10 @@ const Header = () => {
                         </div>
                         <ul className="header__left--nav">
                             {
-                                headerNav.map((e, i) => (
-                                    <li onClick={handleClickTop} key={i} className={`${i === active ? 'active' : ''}`}>
-                                        <Link to={e.path}>
-                                            {e.display}
+                                headerNav.map((item, index) => (
+                                    <li onClick={handleClickTop} key={index} className={`${index === active ? 'active' : ''}`}>
+                                        <Link to={item.path}>
+                                            {item.display}
                                         </Link>
                                     </li>
                                 ))

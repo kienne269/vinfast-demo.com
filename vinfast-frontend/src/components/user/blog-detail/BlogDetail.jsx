@@ -7,6 +7,7 @@ import purify from "dompurify";
 import CommentView from '../comment-view/CommentView';
 import postApi from '../../../api/postApi';
 import './blog-detail.scss'
+import { TabTitle } from '../../../assets/setTitle';
 
 const BlogDetail = () => {
     let params = useParams();
@@ -44,6 +45,7 @@ BlogDetail.prototype = {
 
 const BlogView = props => {
     const post = props.post
+    TabTitle(post.title)
     
     const [activeHeart, setActiveHeart] = useState(false)
     const [countHeart, setCountHeart] = useState(parseInt(post.views_heart))
@@ -81,8 +83,6 @@ const BlogView = props => {
     } else {
         document.body.classList.remove("stop-scrolling");
     }
-
-
 
     const BlockComment = () => {
         return (

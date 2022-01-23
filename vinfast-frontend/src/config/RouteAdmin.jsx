@@ -22,7 +22,7 @@ const RouteAdmin = () => {
                 <TopNav />
                 <div className="layout__content-main">        
                 <Routes>
-                    <Route exact path='/account' element={<Account />} />
+                    <Route exact path='/accounts' element={<Account />} />
                     <Route exact path='/customers' element={<Customers />} />
                     <Route exact path='/products' element={<Products />} />
                     <Route exact path='/products/:id' element={<ProductDetail />} />

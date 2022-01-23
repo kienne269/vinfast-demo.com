@@ -14,6 +14,7 @@ if (isset($_POST['title'])) {
     $files = $_FILES['picture'];
     $title = mysqli_real_escape_string($connect, $_POST['title']);
     $content = htmlspecialchars(mysqli_real_escape_string($connect, $_POST['content']));
+    $user_id = mysqli_real_escape_string($connect, $_POST['user_id']);
     $username = mysqli_real_escape_string($connect, $_POST['username']);
     $published_at = mysqli_real_escape_string($connect, $_POST['published_at']);
 
@@ -33,7 +34,7 @@ if (isset($_POST['title'])) {
             // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
             $file_destination = '../../../vinfast-frontend/public/images/posts/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
-                $connection = "INSERT INTO list_post (picture, title, content, username, published_at) VALUES ('$new_file_name', '$title' ,'$content', '$username', '$published_at')";
+                $connection = "INSERT INTO list_post (picture, title, content, user_id, username, published_at) VALUES ('http://localhost:3000/images/posts/$new_file_name', '$title' ,'$content', '$user_id', '$username', '$published_at')";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
                 } else {

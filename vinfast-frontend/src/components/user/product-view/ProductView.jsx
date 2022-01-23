@@ -13,6 +13,7 @@ import President5 from '../president-05/President5'
 import President6 from '../president-06/President6'
 
 import './product-view.scss';
+import { TabTitle } from '../../../assets/setTitle';
 
 
 const ProductView = props => {
@@ -21,8 +22,26 @@ const ProductView = props => {
 
     let product = props.product
     let president2 = props.president2
-    console.log(product)
-    console.log(president2)
+    switch(product ? product.slug : null) {
+        case 'lux-sa':
+            TabTitle("VinFast LUX SA2.0  - Bảng giá mới nhất, thông số, chương trình ưu đãi ,...")
+            break;
+        case 'lux-a':
+            TabTitle("VinFast LUX A2.0  - Bảng giá mới nhất, thông số, chương trình ưu đãi ,...")
+            break;
+        case 'fadil':
+            TabTitle("VinFast Fadil  - Bảng giá mới nhất, thông số, chương trình ưu đãi ,...")
+            break;
+        case 'president':
+            TabTitle("VinFast President SUV V8 - Thông số, Bảng giá mới nhất")
+            break;
+        case 'vfe-34':
+            TabTitle("VinFast VF-e34  - Bảng giá mới nhất, thông số, chương trình ưu đãi ,...")
+                break;
+        default :
+            TabTitle("Trang chủ")
+            break; 
+    }
 
     return (
         <div id="product">

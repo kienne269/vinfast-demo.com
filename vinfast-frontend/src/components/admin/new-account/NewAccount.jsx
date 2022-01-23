@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
-import productApi from '../../../api/admin/productApi'
+import accountApi from '../../../api/account'
 import './new-account.scss'
 const NewAccount = () => {
 
@@ -9,11 +9,8 @@ const NewAccount = () => {
 
     const [idProduct, setIdProduct] = useState('')
     const [name, setName] = useState('')
-    const [avatar, setAvatar] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [focus, setFocus] = useState(false)
-    console.log(focus)
     const createProduct = async (e) => {
         e.preventDefault();
 
@@ -23,10 +20,11 @@ const NewAccount = () => {
         formData.append("avatar", selectFile.current.files[0])
         formData.append("email", email)
         formData.append("password", password)
+        formData.append("date_create", new Date())
         try {
-            const res = await productApi.create(formData)
+            const res = await accountApi.createByAdmin(formData)
             alert("Thêm thành công")
-            navigate(`/admin/products`)
+            navigate(`/admin/accounts`)
             console.log(res)
         } catch(err) {
             alert(err)

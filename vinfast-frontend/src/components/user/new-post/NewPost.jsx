@@ -33,6 +33,7 @@ const NewPost = () => {
         formData.append("picture", selectFile.current.files[0])
         formData.append("title", userInfo.title)
         formData.append("content", userInfo.description.value)
+        formData.append("user_id", user.id)
         formData.append("username", user.name)
         formData.append("published_at", new Date())
         try {

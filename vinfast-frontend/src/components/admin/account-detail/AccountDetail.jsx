@@ -47,10 +47,10 @@ const AccountInfo = ({account}) => {
     const navigate = useNavigate();
 
     const selectFile = useRef()
-    const [idAccount, setIdAccount] = useState(accountApi.id)
-    const [name, setName] = useState(accountApi.name)
-    const [email, setEmail] = useState(accountApi.email)
-    const [password, setPassword] = useState(accountApi.password)
+    const [idAccount, setIdAccount] = useState(account.id)
+    const [name, setName] = useState(account.name)
+    const [email, setEmail] = useState(account.email)
+    const [password, setPassword] = useState(account.password)
     const updateAccount = async (e) => {
         e.preventDefault();
 
@@ -60,10 +60,11 @@ const AccountInfo = ({account}) => {
         formData.append("name", name)
         formData.append("email", email)
         formData.append("password", password)
+        formData.append("date_create", new Date())
 
         const updateAccountApi = async () => {
             try {
-                const res = await accountApi.update(formData)
+                const res = await accountApi.updateByAdmin(formData)
                 alert("Cập nhật thành công")
                 navigate(`/admin/accounts`)
                 console.log(res)
@@ -77,7 +78,7 @@ const AccountInfo = ({account}) => {
     const DeleteAccount = async (e) => {
         e.preventDefault();
         try {
-            const res = await accountApi.delete(idAccount)
+            const res = await accountApi.deleteByAdmin(idAccount)
             alert("Xóa thành công")
             navigate(`/admin/accounts`)
             console.log(res)
@@ -127,17 +128,17 @@ const AccountInfo = ({account}) => {
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={account.name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                                <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={account.email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder="email" />
+                                <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder="email" />
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={account.password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="password" />
+                                <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="password" />
                             </div>
                         </div>
                     </div>

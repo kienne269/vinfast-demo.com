@@ -4,7 +4,7 @@ import cookies from 'react-cookies'
 export const customerSlice = createSlice ({
     name: "customer",
     initialState: {
-        customer: null,
+        customer: cookies.load('customer'),
     },
     reducers: {
         customerCar: (state, action) => {
@@ -18,5 +18,5 @@ export const customerSlice = createSlice ({
 
 export const { customerCar, customerBike } = customerSlice.actions;
 
-export const selectCustomer = (state) => state.customer
+export const selectCustomer = (state) => state.customerCar.customer
 export default customerSlice.reducer

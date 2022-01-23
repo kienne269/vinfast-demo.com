@@ -16,7 +16,7 @@
     },
     {
         "display_name": "Account",
-        "route": "account",
+        "route": "accounts",
         "icon": "bx bx-cart"
     },
     {

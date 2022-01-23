@@ -18,6 +18,7 @@ if (isset($_POST['name'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $province = mysqli_real_escape_string($connect, $_POST['province']);
     $referralCode = mysqli_real_escape_string($connect, $_POST['referralCode']);
+    $note = mysqli_real_escape_string($connect, $_POST['note']);
     $published_at = mysqli_real_escape_string($connect, $_POST['published_at']);
 
     //file properties
@@ -33,9 +34,9 @@ if (isset($_POST['name'])) {
     if (in_array($fileextension, $allowed_extentions)) {
         if ($uploaderrors === 0) {
             $new_file_name = uniqid() . '.' . $fileextension;
-            $file_destination = '../../../vinfast-frontend/public/images/posts/' . $new_file_name;
+            $file_destination = '../../../../vinfast-frontend/public/images/customer/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
-                $connection = "INSERT INTO vinfast_customer (name, phone, cccd, email, province, referralCode) VALUES ('$name', '$phone' ,'$cccd', '$email', '$province', '$referralCode')";
+                $connection = "INSERT INTO vinfast_customer (name, phone, cccd, email, province, referralCode, note, file,  published_at) VALUES ('$name', '$phone' ,'$cccd', '$email', '$province', '$referralCode',  '$note', 'http://localhost:3000/images/customer/$new_file_name', '$published_at')";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
                 } else {

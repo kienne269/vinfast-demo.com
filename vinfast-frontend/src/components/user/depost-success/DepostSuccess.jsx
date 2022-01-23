@@ -1,10 +1,31 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import thanksPage from '../../../assets/images/thanks-page.png'
 import './depost-success.scss'
+import customerApi from '../../../api/depost/customerApi'
+import { selectCustomer } from '../../../redux/customer/customerSlice'
 const DepostSuccess = () => {
+    // const [customerSuccess, setCustomerSuccess] = useState([])
+    const customer = useSelector(selectCustomer);
+    
+    useEffect(() => {
+        if (customer.payment === 'Thanh toán qua thẻ ATM nội địa/Internet Banking') {
+            const formData = new FormData()
+            formData.append("name", customer.nameText)
+            formData.append("phone", customer.phone)
+            formData.append("cccd", customer.cccd)
+            formData.append("email", customer.email)
+            formData.append("province", customer.province)
+            formData.append("referralCode", customer.referralCode)
+            formData.append("published_at", customer.published_at)
+            formData.append("order_id", customer.order_id)
+            formData.append("order_desc", customer.payment)
+            const res = customerApi.createVNPay(formData)
+            console.log(res)
+        }
+    }, [])
     return (
         <div className="depost__cars">
             <div className="container">
@@ -17,8 +38,8 @@ const DepostSuccess = () => {
                     <div className="depost__success__right l-6">
                         <h2>Đặt hàng thành công</h2>
                         <p>
-                            Kính gửi Quý khách  
-                            <strong> Nguyễn Tiến Trung Kiên</strong>
+                            Kính gửi Quý khách
+                            <strong> {customer.nameText}</strong>
                         </p>
                         <p style={{marginBottom: '15px'}}>
                             Cảm ơn Quý khách đã đặt mua xe VinFast tại Vinfastauto.com.
@@ -27,7 +48,7 @@ const DepostSuccess = () => {
                         </p>
                         <p>
                             <strong>Đơn hàng: </strong>
-                            <strong>VinFast LUX SA2.0</strong>
+                            <strong>VinFast {customer.nameCar}</strong>
                         </p>
                         <p style={{marginBottom: '15px'}}>
                             <strong>Trạng thái đơn hàng: </strong>
@@ -39,11 +60,11 @@ const DepostSuccess = () => {
                         </p>
                         <p>
                             <strong>Số tiền đặt cọc: </strong>
-                            <span>50.000.000 đồng</span>
+                            <span>{customer.money} đồng</span>
                         </p>
                         <p style={{marginBottom: '15px'}}>
                             <strong>Phương thức thanh toán: </strong>
-                            <span>Chuyển khoản</span>
+                            <span>{customer.payment}</span>
                         </p>
                         <p style={{marginBottom: '15px'}}>Chúng tôi sẽ cập nhật tình trạng đơn hàng của Quý khách trong thời gian sớm nhất.</p>
                         <p style={{marginBottom: '40px'}}>Trân trọng!</p>

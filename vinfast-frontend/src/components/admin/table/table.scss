@@ -12,6 +12,10 @@ th,
 td {
   text-transform: capitalize;
   padding: 1.5rem 1rem;
+
+  img {
+    width: 8rem;
+  }
 }
 
 tbody > tr:hover {

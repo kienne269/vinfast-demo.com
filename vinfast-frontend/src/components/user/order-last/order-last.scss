@@ -118,16 +118,11 @@
     @include flex(center, center);
     margin-top: 4rem;
     margin-bottom: 6rem;
-    &:hover {
-      button {
-        cursor: pointer;
-        opacity: 0.8;
-      }
-    }
+
     button {
       outline: none;
       border: none;
-      background: #2e61f4;
+      background: $blue;
       border-radius: $border-radius;
       color: $white;
       width: 27.4rem;
@@ -137,6 +132,10 @@
       display: block;
       font-size: 1.3rem;
 
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
       &:disabled {
         background: #71747d;
         pointer-events: none;
@@ -148,6 +147,14 @@
     .group__input {
       margin-right: 1.2rem;
       margin-left: 1.2rem;
+
+      .message {
+        color: #dc3545;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding-right: 1rem;
+        margin-top: 4px;
+      }
     }
   }
 
@@ -210,6 +217,42 @@
       input {
         width: 2rem;
         height: 2rem;
+      }
+    }
+  }
+
+  .vf__payments {
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    margin-left: 3.5rem;
+    font-size: 1.3rem;
+
+    &.active {
+      height: 100%;
+      opacity: 1;
+    }
+    .label {
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .upload__file {
+      input[type="file"] {
+        // color: transparent;
+      }
+    }
+
+    .suppost {
+      margin-top: 1rem;
+      font-weight: 500;
+      span {
+        font-weight: 600;
       }
     }
   }

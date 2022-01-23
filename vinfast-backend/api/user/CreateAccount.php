@@ -25,12 +25,12 @@ if (isset($_POST['dataAvt'])) {
     $randName = substr(str_shuffle($charName), 0, 15);
 
     // Đường dẫn thư mục ảnh
-    $fileName = '../../../vinfast-frontend/public/images/avatars/' . $randName . '.png';
+    $fileName = '../../../vinfast-frontend/public/images/avatar/' . $randName . '.png';
 
     // Đặt dữ liệu canvas vào file ảnh
     file_put_contents($fileName, $fileData);
 
-    $connection = "INSERT INTO vinfast_account (avatar, name, email, password, date_create) VALUES ('$randName', '$name' ,'$email', '$password', '$date_create')";
+    $connection = "INSERT INTO vinfast_account (avatar, name, email, password, date_create) VALUES ('http://localhost:3000/images/avatar/$randName.png', '$name' ,'$email', '$password', '$date_create')";
     if (mysqli_query($connect, $connection)) {
         echo 'success';
     } else {

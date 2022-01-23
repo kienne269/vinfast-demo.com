@@ -17,9 +17,6 @@ const VinCarDetail = () => {
     const [container, setContainer] = useState([])
     const [postData, setPostData] = useState([])
     const [allCar, setAllCar] = useState([])
-    console.log(container)
-    console.log(postData)
-    console.log(allCar)
     
     const name = ['president', 'lux-sa', 'lux-a', 'fadil', 'vfe34'];
     const nameTitle = ['PRESIDENT', 'LUX SA2.0', 'LUX A2.0', 'FADIL', 'VF e34'];
@@ -40,7 +37,6 @@ const VinCarDetail = () => {
 
     useEffect(() => {
         const getCarDeposit = async () => {
-            console.log(type)
             try {
                 const res = await productDepositApi.getOneCar(type)
                 setPostData(res.data)
@@ -65,7 +61,7 @@ const VinCarDetail = () => {
     }, [])
 
     const [active, setActive] = useState(1);
-    const [active2, setActive2] = useState(carFisrt[1]);
+    const [active2, setActive2] = useState(0);
     const [background, setBackground] = useState(carFisrt[1])
 
     let car = []
@@ -74,7 +70,6 @@ const VinCarDetail = () => {
             return item.name === nameTitle[active]
         })
     }
-    console.log(car)
 
     const li = () => {
         return (
@@ -90,6 +85,8 @@ const VinCarDetail = () => {
     }
 
     console.log(active2)
+    console.log(car)
+    console.log(postData ? postData : null)
 
     return (
         <>
@@ -125,7 +122,7 @@ const VinCarDetail = () => {
                             )) : null
                         }
                         <div className="images-360">
-                            <img src="http://localhost/vinfast/vinfast-backend/images/360/360-images.png" alt="" />
+                            <img src="http://localhost:3000/images/360/360-images.png" alt="" />
                         </div>
                     </div>
                     <div className="vin__car__deposit__detail--right l-6">
@@ -141,7 +138,7 @@ const VinCarDetail = () => {
                             <ul>
                                 {
                                     car ? car.map((item, index) => (
-                                        <li onClick={() => (setActive2(item.id), setBackground(item.image)) } className={item.id === active2 ? 'active' : ''} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`}}>{index}</li>
+                                        <li onClick={() => (setActive2(item.id), setBackground(item.image)) } className={active2 === item.id ? 'active' : ''} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`}}>{index}</li>
                                     )) : li
                                 }
                             </ul>

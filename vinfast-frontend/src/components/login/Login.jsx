@@ -53,6 +53,7 @@ const Login = () => {
                 if (pass === user.password) {
                     setCheckPass(true)
                     dispatch(login({
+                        id: user.id,
                         name: user.name,
                         email: user.email,
                         password: user.pass,

@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import postApi from '../../../api/postApi'
+import { TabTitle } from '../../../assets/setTitle'
 
 const Blog = () => {
+    TabTitle("Blog - xe VinFast")
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -20,6 +21,7 @@ const Blog = () => {
         getAllPost()            
     }, [])
 
+    console.log(posts)
     return (
         <div className="blog">
             <div className="container">
@@ -28,11 +30,10 @@ const Blog = () => {
                         posts ? posts.map((item, index) => (
                             <Link className='l-4 post' to={`/blog/${item.id}`} key={index}>
                                 <div className='test'>
-                                    <img className="post__image" src={`/images/posts/${item.picture}`} alt="" />
+                                    <img className="post__image" src={item.picture} alt="" />
                                     <div className="post__footer">
                                         <p className="post__name">{item.username}</p>
                                         <h5 className="post__title">{item.title}</h5>
-                                        <div className="post__excerpt">{item.excerpt}</div>
                                     </div>
                                 </div>
                             </Link>
