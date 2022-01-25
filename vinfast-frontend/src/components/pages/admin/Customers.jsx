@@ -4,26 +4,32 @@ import Table from '../../admin/table/Table'
 import customerApi from '../../../api/depost/customerApi'
 
 const customerTableHead = [
-    'id',
+    'order id',
     'name',
     'phone',
     'Căn cước',
     'email',
-    'password',
-    'province'
+    'province',
+    'note',
+    'file',
+    'create at',
+    'status'
 ]
 
 const renderHead = (item, index) => <th key={index}>{item}</th>
 
 const renderBody = (item, index) => (
     <tr key={index}>
-        <td>{item.id}</td>
+        <td>{item.order_id}</td>
         <td>{item.name}</td>
         <td>{item.phone}</td>
         <td>{item.cccd}</td>
         <td>{item.email}</td>
-        <td>{item.password}</td>
         <td>{item.province}</td>
+        <td>{item.note}</td>
+        <td>{item.file}</td>
+        <td>{item.published_at}</td>
+        <td>{item.status}</td>
     </tr>
 )
 

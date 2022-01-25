@@ -18,7 +18,7 @@ if ($num > 0) {
     $banner_array['data'] = [];
 
     while ($row = $read->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
+        extract($row); 
 
         $banner_item = array(
             'id' => $id,

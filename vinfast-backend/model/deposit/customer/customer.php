@@ -5,12 +5,17 @@ class Customer
 
     // thông tin customer
     public $id;
+    public $order_id;
     public $name;
     public $phone;
     public $cccd;
     public $email;
     public $province;
     public $referralCode;
+    public $note;
+    public $file;
+    public $published_at;
+    public $status;
 
     //connect db
     public function __construct($db)
