@@ -185,10 +185,11 @@
 
       &__content {
         margin-top: 6rem;
-        margin-left: 4rem;
-
+        padding: 0 4rem 6rem;
+        width: 100%;
         .count {
           font-weight: 600;
+          margin-bottom: 5rem;
           p {
             display: inline-block;
             margin-left: 5px;

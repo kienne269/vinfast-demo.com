@@ -23,7 +23,7 @@ class Post
     //read data
     public function read()
     {
-        $query = "SELECT * FROM list_post";
+        $query = "SELECT * FROM list_post ORDER BY list_post.id DESC";
 
         $stmt = $this->conn->prepare($query);
 
@@ -111,5 +111,19 @@ class Post
         }
         printf("Error %s, \n" . $stmt->error);
         return false;
+    }
+
+    //read comments
+    public function readComments()
+    {
+        $query = "SELECT * FROM list_comment WHERE post_id = ? ORDER BY list_comment.comment_id DESC";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->post_id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
     }
 }

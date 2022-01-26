@@ -99,7 +99,7 @@ const BlogView = props => {
                             <p>bình luận</p>    
                         </div>
                         <div className="comment__view">
-                            <CommentView />
+                            <CommentView post_id = {post.id}/>
                         </div>
                     </div>
                 </div>

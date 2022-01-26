@@ -27,7 +27,9 @@ const renderBody = (item, index) => (
         <td>{item.email}</td>
         <td>{item.province}</td>
         <td>{item.note}</td>
-        <td>{item.file}</td>
+        <td>
+            <img src={item.file} alt="" />
+        </td>
         <td>{item.published_at}</td>
         <td>{item.status}</td>
     </tr>

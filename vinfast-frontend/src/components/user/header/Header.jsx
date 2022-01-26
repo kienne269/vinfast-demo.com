@@ -70,7 +70,7 @@ const Header = () => {
                                 <Link to='/settings/thong-tin-ca-nhan'>Thông tin tài khoản</Link>
                             </li>
                             <li>
-                                <Link to='/settings/lịch-su-giao-dich'>Lịch sử đơn hàng</Link>
+                                <Link to='/settings/lich-su-giao-dich'>Lịch sử đơn hàng</Link>
                             </li>
                             <li>
                                 <Link to='/new-post'>Viết Blog</Link>

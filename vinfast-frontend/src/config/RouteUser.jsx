@@ -22,43 +22,45 @@ import MyAccount from '../components/user/my-account/MyAccount';
 import SidebarUser from '../components/user/sidebar-user/SidebarUser';
 import TransactionHistory from '../components/user/transaction-history/TransactionHistory';
 import { useLocation } from 'react-router-dom';
+import NotFound from '../components/pages/NotFound';
 const RouteUser = () => {
     const location = useLocation();
    return (
         <>
             <Header />
-            <Routes>
-                <Route path='/vinfast-cars-deposit' element={<Car />} />
-                <Route path='/vinfast-bike' element={<Bike />} />
-                <Route path='/uu-dai' element={<Service />} />
-                <Route path='dich-vu' element={<Service />} />
-                <Route path='/blog' element={<Blog />} />
-                <Route path='/new-post' element={<NewPost />} />
-                <Route path='/login' element={< Login/>} />
-                <Route path='/signin' element={< Signin/>} />
-                <Route path='/dat-coc' element={<DepostSuccess />} />
-                <Route path='/blog/:id' element={<BlogDetail />} />
-                <Route path='/post/:id/edit' element={<PostEdit />} />
-                <Route path='/catalog/:slug' element={<Product  />} />
-                <Route path='/' element={<Home />} />
-            </Routes>
-            {
-                location.pathname.slice(0, 9) === '/settings' ? 
-                <div className='account__page'>
-                    <div className="container">
-                        <div className="row">
-                            <SidebarUser />
-                            <Routes>
-                                {/* <Route path='/settings' element={< Setting/>} /> */}
-                                <Route path='/settings/thong-tin-ca-nhan' element={< MyAccount />} />
-                                <Route path='/settings/lich-su-giao-dich' element={<TransactionHistory />} />
-                                <Route path='/settings/gio-hang' element={< MyAccount/>} />
-                                <Route path='/settings/me/my-post' element={<MyPost />} />
-                            </Routes>
+                {
+                    location.pathname.slice(0, 9) === '/settings' ? 
+                    <div className='account__page'>
+                        <div className="container">
+                            <div className="row">
+                                <SidebarUser />
+                                <Routes>
+                                    {/* <Route path='/settings' element={< Setting/>} /> */}
+                                    <Route path='/settings/thong-tin-ca-nhan' element={< MyAccount />} />
+                                    <Route path='/settings/lich-su-giao-dich' element={<TransactionHistory />} />
+                                    <Route path='/settings/gio-hang' element={< MyAccount/>} />
+                                    <Route path='/settings/me/my-post' element={<MyPost />} />
+                                </Routes>
+                            </div>
                         </div>
-                    </div>
-                </div> : null
-            }
+                    </div> : null
+                }
+                <Routes>
+                    <Route path='/vinfast-cars-deposit' element={<Car />} />
+                    <Route path='/vinfast-bike' element={<Bike />} />
+                    <Route path='/uu-dai' element={<Service />} />
+                    <Route path='dich-vu' element={<Service />} />
+                    <Route path='/blog' element={<Blog />} />
+                    <Route path='/new-post' element={<NewPost />} />
+                    <Route path='/login' element={< Login/>} />
+                    <Route path='/signin' element={< Signin/>} />
+                    <Route path='/dat-coc' element={<DepostSuccess />} />
+                    <Route path='/blog/:id' element={<BlogDetail />} />
+                    <Route path='/post/:id/edit' element={<PostEdit />} />
+                    <Route path='/catalog/:slug' element={<Product  />} />
+                    <Route path='/' element={<Home />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
             <Footer />
         </>
     )

@@ -28,6 +28,7 @@ if ($num > 0) {
             'views_count' => $views_count,
             'views_heart' => $views_heart,
             'views_comment' => $views_comment,
+            'user_id' => $user_id,
             'username' => $username,
             'published_at' => $published_at,
         );
