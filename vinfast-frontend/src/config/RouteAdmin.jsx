@@ -1,7 +1,7 @@
 import React from 'react';
-
-import { Route, Routes} from 'react-router-dom';
-
+import {useSelector} from 'react-redux'
+import { Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import { selectUser } from '../redux/user/userSlice';
 import Sidebar from '../components/admin/sidebar/Sidebar';
 import TopNav from '../components/admin/topNav/TopNav';
 import Customers from '../components/pages/admin/Customers';
@@ -33,48 +33,90 @@ import Block4 from '../components/pages/admin/Block4';
 import Newblock4 from '../components/admin/new-block4/Newblock4';
 import Block4Detail from '../components/admin/block4-detail/Block4Detail';
 
+import LoginAdmin from '../components/login/LoginAdmin'
+import NotFound from '../components/pages/NotFound';
+
 const RouteAdmin = () => {
+    const { pathName } = useLocation();
+    const navigate = useNavigate();
+    const user = useSelector(selectUser);
     return (
         <>
-        <div className='layout'>
-            <Sidebar />
-            <div className="layout__content">
-                <TopNav />
-                <div className="layout__content-main">        
-                <Routes>
-                    <Route exact path='/accounts' element={<Account />} />
-                    <Route exact path='/customers' element={<Customers />} />
-                    <Route exact path='/products' element={<Products />} />
-                    <Route exact path='/products/:id' element={<ProductDetail />} />
-                    <Route exact path='/accounts/:id' element={<AccountDetail />} />
-                    <Route exact path='/products/new_product' element={<NewProduct />} />
-                    <Route exact path='/accounts/new_account' element={<NewAccount />} />
-                    
-                    <Route exact path='/homeslide' element={<Banner />} />
-                    <Route exact path='/homeslide/new-slide' element={<Newslide />} />
-                    <Route exact path='/homeslide/:id' element={<SlideDetail />} /> 
+            {
+                user === undefined ? navigate('/login') : null
+            }
+            <div className='layout'>
+                <Sidebar />
+                <div className="layout__content">
+                    <TopNav />
+                    <div className="layout__content-main">
+                        {
+                            user && user.role === 'sell' ?
+                                <Routes>
+                                    <Route exact path='/customers' element={<Customers />} />
+                                    
+                                    <Route exact path='/homeslide' element={<Banner />} />
+                                    <Route exact path='/homeslide/new-slide' element={<Newslide />} />
+                                    <Route exact path='/homeslide/:id' element={<SlideDetail />} /> 
 
-                    <Route exact path='/homeblock1' element={<Block1 />} />
-                    <Route exact path='/homeblock1/new-block1' element={<Newblock1 />} />
-                    <Route exact path='/homeblock1/:id' element={<Block1Detail />} />
+                                    <Route exact path='/homeblock1' element={<Block1 />} />
+                                    <Route exact path='/homeblock1/new-block1' element={<Newblock1 />} />
+                                    <Route exact path='/homeblock1/:id' element={<Block1Detail />} />
 
-                    <Route exact path='/homeblock2' element={<Block2 />} />
-                    <Route exact path='/homeblock2/new-block2' element={<Newblock2 />} />
-                    <Route exact path='/homeblock2/:id' element={<Block2Detail />} />
+                                    <Route exact path='/homeblock2' element={<Block2 />} />
+                                    <Route exact path='/homeblock2/new-block2' element={<Newblock2 />} />
+                                    <Route exact path='/homeblock2/:id' element={<Block2Detail />} />
 
-                    <Route exact path='/homeblock3' element={<Block3 />} /> 
-                    <Route exact path='/homeblock3/new-block3' element={<Newblock3 />} />
-                    <Route exact path='/homeblock3/:id' element={<Block3Detail />} />
+                                    <Route exact path='/homeblock3' element={<Block3 />} /> 
+                                    <Route exact path='/homeblock3/new-block3' element={<Newblock3 />} />
+                                    <Route exact path='/homeblock3/:id' element={<Block3Detail />} />
 
-                    <Route exact path='/homeblock4' element={<Block4 />} />
-                    <Route exact path='/homeblock4/new-block4' element={<Newblock4 />} />
-                    <Route exact path='/homeblock4/:id' element={<Block4Detail />} />
+                                    <Route exact path='/homeblock4' element={<Block4 />} />
+                                    <Route exact path='/homeblock4/new-block4' element={<Newblock4 />} />
+                                    <Route exact path='/homeblock4/:id' element={<Block4Detail />} />
 
-                    <Route exact path='/' element={<Dashboard />} />
-                </Routes>
-                </div>
-            </div>  
-        </div>
+                                    <Route exact path='/' element={<Dashboard />} />
+                                    <Route path='*' element={<NotFound />} />
+                                </Routes> : null
+                        }
+                        {
+                            user && user.role === 'admin' ?
+                                <Routes>
+                                    <Route exact path='/accounts' element={<Account />} />
+                                    <Route exact path='/customers' element={<Customers />} />
+                                    <Route exact path='/products' element={<Products />} />
+                                    <Route exact path='/products/:id' element={<ProductDetail />} />
+                                    <Route exact path='/accounts/:id' element={<AccountDetail />} />
+                                    <Route exact path='/products/new_product' element={<NewProduct />} />
+                                    <Route exact path='/accounts/new_account' element={<NewAccount />} />
+                                    
+                                    <Route exact path='/homeslide' element={<Banner />} />
+                                    <Route exact path='/homeslide/new-slide' element={<Newslide />} />
+                                    <Route exact path='/homeslide/:id' element={<SlideDetail />} /> 
+
+                                    <Route exact path='/homeblock1' element={<Block1 />} />
+                                    <Route exact path='/homeblock1/new-block1' element={<Newblock1 />} />
+                                    <Route exact path='/homeblock1/:id' element={<Block1Detail />} />
+
+                                    <Route exact path='/homeblock2' element={<Block2 />} />
+                                    <Route exact path='/homeblock2/new-block2' element={<Newblock2 />} />
+                                    <Route exact path='/homeblock2/:id' element={<Block2Detail />} />
+
+                                    <Route exact path='/homeblock3' element={<Block3 />} /> 
+                                    <Route exact path='/homeblock3/new-block3' element={<Newblock3 />} />
+                                    <Route exact path='/homeblock3/:id' element={<Block3Detail />} />
+
+                                    <Route exact path='/homeblock4' element={<Block4 />} />
+                                    <Route exact path='/homeblock4/new-block4' element={<Newblock4 />} />
+                                    <Route exact path='/homeblock4/:id' element={<Block4Detail />} />
+
+                                    <Route exact path='/' element={<Dashboard />} />
+                                    <Route path='*' element={<NotFound />} />
+                                </Routes> : null
+                        }
+                    </div>
+                </div>  
+            </div>
         </>
     )
 }

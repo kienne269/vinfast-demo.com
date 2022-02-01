@@ -3,7 +3,7 @@
 .topnav {
   padding: 3rem;
   height: $topnav-height;
-  @include flex(center, space-between);
+  @include flex(center, flex-end);
 
   &__search {
     position: relative;

@@ -9,6 +9,7 @@ class Account
     public $avatar;
     public $email;
     public $password;
+    public $role;
 
     //connect db
     public function __construct($db)

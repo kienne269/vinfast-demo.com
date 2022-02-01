@@ -61,8 +61,8 @@ const VinCarDetail = () => {
     }, [])
 
     const [active, setActive] = useState(1);
-    const [active2, setActive2] = useState(0);
-    const [background, setBackground] = useState(carFisrt[1])
+    const [active2, setActive2] = useState(carFisrt[1]);
+    const [active3, setActive3] = useState(0);
 
     let car = []
     if (allCar) {
@@ -84,9 +84,7 @@ const VinCarDetail = () => {
         )
     }
 
-    console.log(active2)
-    console.log(car)
-    console.log(postData ? postData : null)
+    console.log(active3)
 
     return (
         <>
@@ -96,7 +94,7 @@ const VinCarDetail = () => {
                         container ? container.map((item, index) => (
                             <li 
                                 onClick={
-                                    () => (setActive2(carFisrt[index]), setActive(index), setType(name[index]))
+                                    () => (setActive3(0), setActive2(carFisrt[index]), setActive(index), setType(name[index]))
                                 } 
                                 className={`${index === active ? 'active' : ''}`} 
                                 key={index}>
@@ -112,7 +110,7 @@ const VinCarDetail = () => {
                         {/* <img src={background} alt="" /> */}
                         {
                             allCar ? allCar.map((item, index) => (
-                                <div key={index} className={active2 === item.id ? `${item.color2} check` : `${item.color2}`}>
+                                <div key={index} className={active2 === parseInt(item.id) ? `${item.color2} check` : `${item.color2}`}>
                                     <ThreeSixty
                                         amount={36}
                                         imagePath={`./images/${item.slug}`}
@@ -138,12 +136,12 @@ const VinCarDetail = () => {
                             <ul>
                                 {
                                     car ? car.map((item, index) => (
-                                        <li onClick={() => (setActive2(item.id), setBackground(item.image)) } className={active2 === item.id ? 'active' : ''} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`}}>{index}</li>
+                                        <li onClick={() => (setActive2(parseInt(item.id)), setActive3(index)) } className={active2 === parseInt(item.id) ? 'active' : ''} key={index} data={item.color} style={{backgroundColor: `${item.colorCode}`}}>{index}</li>
                                     )) : li
                                 }
                             </ul>
                             {
-                                postData[active2] ? <div className='colorName'>{postData[active2].color}</div> : null
+                                car[active3] ? <div className='colorName'>{car[active3].color}</div> : null
                             }
                             <p className="select__color">Lựa chọn màu nội thất</p>
                             <ul>
@@ -162,7 +160,7 @@ const VinCarDetail = () => {
                 </div>
                 
             </div>
-            <OrderLast money={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={postData[active2] ? postData[active2].color : null}/>
+            <OrderLast money={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={car[active3] ? car[active3].color : null}/>
         </>
     )
 }

@@ -15,6 +15,9 @@ const DepostConfirm = (props) => {
     const createCustomer = async (e) => {
         e.preventDefault();
         const formData = new FormData()
+        formData.append("order_id", customer.order_id)
+        formData.append("name_car", customer.nameCar)
+        formData.append("color_car", customer.colorCar)
         formData.append("name", customer.nameText)
         formData.append("phone", customer.phone)
         formData.append("cccd", customer.cccd)
@@ -25,6 +28,7 @@ const DepostConfirm = (props) => {
         formData.append("published_at", customer.published_at)
         formData.append("order_id", customer.order_id)
         formData.append("order_desc", customer.payment)
+        formData.append("status", "pending")
         if(customer.payment === 'Thanh toán qua thẻ ATM nội địa/Internet Banking') {
             formData.append("amount", 5000000000)
             formData.append("language", "vn")
@@ -37,7 +41,7 @@ const DepostConfirm = (props) => {
                 console.log(err)
             }
         } else if (customer.payment === 'Thanh toán qua chuyển khoản ngân hàng') {
-            formData.append("file", customer.file)
+            formData.append("file", props.file)
             try {
                 // const res = await customerApi.create(formData)
                 const res = await axios.post("http://localhost/vinfast/vinfast-backend/api/deposit/customer/createCustomer.php", formData)
@@ -64,7 +68,7 @@ const DepostConfirm = (props) => {
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Mẫu xe</label>
-                                        <div className="l-7">{props.nameCar}</div>
+                                        <div className="l-7">{customer.nameCar}</div>
                                     </div>
                                 </div>
                                 <div className="l-6">
@@ -78,7 +82,7 @@ const DepostConfirm = (props) => {
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Màu ngoại thất</label>
-                                        <div className="l-7">{props.colorCar}</div>
+                                        <div className="l-7">{customer.colorCar}</div>
                                     </div>
                                 </div>
                                 <div className="l-6">

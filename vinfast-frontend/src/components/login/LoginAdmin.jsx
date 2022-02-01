@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux'
 import cookies from 'react-cookies'
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../../redux/user/userSlice';
+import { login } from '../../redux/sell/sellSlice';
 
 import accountApi from '../../api/account';
 import './login.scss';
 
-const Login = () => {
+const LoginAdmin = () => {
 
     const [userData, setUserData] = useState('')
     const [email, setEmail] = useState('')
@@ -44,10 +44,10 @@ const Login = () => {
         }
         getAccount()
 
-        console.log(123)
         if (userData) {
             const getUserData = (email) => userData.find(e => e.email === email)
             const user = getUserData(email)
+            
             if (user) {
                 setCheckMail(true)
                 if (pass === user.password) {
@@ -58,16 +58,9 @@ const Login = () => {
                         email: user.email,
                         password: user.pass,
                         avatar: user.avatar,
-                        role: user.role,
                         loggedIn: true,
                     }))
-                    if (user.role === 'sell') {
-                        navigate('/admin')
-                    } else if (user.role === 'admin') {
-                        navigate('/admin')
-                    } else {
-                        navigate('/')
-                    }
+                    navigate('/admin')
                     
                     cookies.save("user", user)
                 } else {
@@ -115,4 +108,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LoginAdmin

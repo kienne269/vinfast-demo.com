@@ -139,7 +139,6 @@ const OrderLast = (props) => {
         colorCar: colorCar,
         payment: payment,
         note: payment,
-        file: selectFile.current ? selectFile.current.files[0] : null,
         published_at: String(today)
     }
     console.log(customer)
@@ -321,7 +320,7 @@ const OrderLast = (props) => {
                     <button onClick={onSubmit} disabled={isDisabled}>Đặt cọc</button>
                 </div>
             </div>
-            <DepostConfirm customer={customer} checkRadio={checkRadio} money={props.money} nameCar={props.nameCar} colorCar={props.colorCar} show={show} handleNone={handleNone}/>
+            <DepostConfirm customer={customer} file={selectFile.current ? selectFile.current.files[0] : null} checkRadio={checkRadio} show={show} handleNone={handleNone}/>
         </>
     )
 }

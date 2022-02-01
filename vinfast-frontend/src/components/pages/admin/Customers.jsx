@@ -5,6 +5,8 @@ import customerApi from '../../../api/depost/customerApi'
 
 const customerTableHead = [
     'order id',
+    'name car',
+    'color car',
     'name',
     'phone',
     'Căn cước',
@@ -21,6 +23,8 @@ const renderHead = (item, index) => <th key={index}>{item}</th>
 const renderBody = (item, index) => (
     <tr key={index}>
         <td>{item.order_id}</td>
+        <td>{item.name_car}</td>
+        <td>{item.color_car}</td>
         <td>{item.name}</td>
         <td>{item.phone}</td>
         <td>{item.cccd}</td>
@@ -31,7 +35,9 @@ const renderBody = (item, index) => (
             <img src={item.file} alt="" />
         </td>
         <td>{item.published_at}</td>
-        <td>{item.status}</td>
+        <td>
+            <span className="badge badge-warning">{item.status}</span>
+        </td>
     </tr>
 )
 

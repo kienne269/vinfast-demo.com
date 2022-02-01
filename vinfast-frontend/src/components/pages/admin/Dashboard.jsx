@@ -12,18 +12,38 @@ import Table from '../../admin/table/Table';
 
 import Badge from '../../admin/badge/Badge';
 
-import statusCards from '../../../assets/JsonData/status-card-data.json'
-
 import './dashboard.scss';
 
+const statusCards = [
+    {
+        "icon": "bx bx-shopping-bag",
+        "count": "1,995",
+        "title": "Total sales"
+    },
+    {
+        "icon": "bx bx-cart",
+        "count": "2,001",
+        "title": "Daily visits"
+    },
+    {
+        "icon": "bx bx-dollar-circle",
+        "count": "$2,632",
+        "title": "Total income"
+    },
+    {
+        "icon": "bx bx-receipt",
+        "count": "1,711",
+        "title": "Total orders"
+    }
+]
 
 const chartOptions = {
     series: [{
         name: 'Online Customers',
-        data: [40,70,20,90,36,80,30,91,60]
+        data: [40, 70, 20, 90, 36, 80, 30, 91, 60, 100, 200, 300]
     }, {
         name: 'Store Customers',
-        data: [40, 30, 70, 80, 40, 16, 40, 20, 51, 10]
+        data: [40, 30, 70, 80, 40, 16, 40, 20, 51, 10, 150, 250]
     }],
     options: {
         lor: ['#6ab04c', '#2980b9'],
@@ -37,7 +57,7 @@ const chartOptions = {
             curve: 'smooth'
         },
         xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
         legend: {
             position: 'top'

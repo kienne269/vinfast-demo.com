@@ -6,6 +6,8 @@ class Customer
     // thông tin customer
     public $id;
     public $order_id;
+    public $name_car;
+    public $color_car;
     public $name;
     public $phone;
     public $cccd;

@@ -8,7 +8,6 @@ import Home from '../components/pages/user/Home';
 import Car from '../components/pages/user/Car';
 import Bike from '../components/pages/user/Bike';
 import Service from '../components/pages/user/Service';
-import Setting from '../components/pages/user/Setting';
 import Blog from '../components/pages/user/Blog';
 import Login from '../components/login/Login';
 import Signin from '../components/signin/Signin';
@@ -35,7 +34,6 @@ const RouteUser = () => {
                             <div className="row">
                                 <SidebarUser />
                                 <Routes>
-                                    {/* <Route path='/settings' element={< Setting/>} /> */}
                                     <Route path='/settings/thong-tin-ca-nhan' element={< MyAccount />} />
                                     <Route path='/settings/lich-su-giao-dich' element={<TransactionHistory />} />
                                     <Route path='/settings/gio-hang' element={< MyAccount/>} />

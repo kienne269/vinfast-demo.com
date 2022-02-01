@@ -1,4 +1,9 @@
 <?php
+require('../../../model/carbon/autoload.php');
+
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
+
 // Allow from any origin
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
@@ -12,15 +17,19 @@ $connect = mysqli_connect('localhost', 'root', '', 'vinfast_db');
 
 if (isset($_POST['name'])) {
     $name = mysqli_real_escape_string($connect, $_POST['name']);
+    $name_car = mysqli_real_escape_string($connect, $_POST['name_car']);
+    $color_car = mysqli_real_escape_string($connect, $_POST['color_car']);
     $phone = mysqli_real_escape_string($connect, $_POST['phone']);
     $cccd = mysqli_real_escape_string($connect, $_POST['cccd']);
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $province = mysqli_real_escape_string($connect, $_POST['province']);
     $referralCode = mysqli_real_escape_string($connect, $_POST['referralCode']);
-    $published_at = mysqli_real_escape_string($connect, $_POST['published_at']);
+    // $published_at = mysqli_real_escape_string($connect, $_POST['published_at']);
+    $published_at = carbon::now('Asia/Ho_Chi_Minh');
+    $status = mysqli_real_escape_string($connect, $_POST['status']);
     $order_id = mysqli_real_escape_string($connect, $_POST['order_id']);
     $order_desc = mysqli_real_escape_string($connect, $_POST['order_desc']);
-    $connection = "INSERT INTO vinfast_customer (order_id, name, phone, cccd, email, province, referralCode, note,  published_at) VALUES ('$order_id', '$name', '$phone' ,'$cccd', '$email', '$province', '$referralCode', '$order_desc', '$published_at')";
+    $connection = "INSERT INTO vinfast_customer (order_id, name_car, color_car, name, phone, cccd, email, province, referralCode, note,  published_at, status) VALUES ('$order_id', '$name_car' , '$color_car', '$name', '$phone' ,'$cccd', '$email', '$province', '$referralCode', '$order_desc', '$published_at', '$status')";
     if (mysqli_query($connect, $connection)) {
         echo 'success';
     } else {

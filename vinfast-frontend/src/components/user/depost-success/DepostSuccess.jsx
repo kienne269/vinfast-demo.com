@@ -14,6 +14,8 @@ const DepostSuccess = () => {
         if (customer.payment === 'Thanh toán qua thẻ ATM nội địa/Internet Banking') {
             const formData = new FormData()
             formData.append("name", customer.nameText)
+            formData.append("name_car", customer.nameCar)
+            formData.append("color_car", customer.colorCar)
             formData.append("phone", customer.phone)
             formData.append("cccd", customer.cccd)
             formData.append("email", customer.email)
@@ -22,10 +24,11 @@ const DepostSuccess = () => {
             formData.append("published_at", customer.published_at)
             formData.append("order_id", customer.order_id)
             formData.append("order_desc", customer.payment)
+            formData.append("status", "pending")
             const res = customerApi.createVNPay(formData)
             console.log(res)
         }
-    }, [])
+    }, [customer.cccd, customer.colorCar, customer.email, customer.nameCar, customer.nameText, customer.order_id, customer.payment, customer.phone, customer.province, customer.published_at, customer.referralCode])
     return (
         <div className="depost__cars">
             <div className="container">

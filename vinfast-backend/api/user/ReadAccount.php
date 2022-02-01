@@ -26,6 +26,7 @@ if ($num > 0) {
             'name' => $name,
             'email' => $email,
             'password' => $password,
+            'role' => $role,
         );
         array_push($list_account_array['data'], $list_account_item);
     }

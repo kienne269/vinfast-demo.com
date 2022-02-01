@@ -23,6 +23,8 @@ if ($num > 0) {
         $list_customer_item = array(
             'id' => $id,
             'order_id' => $order_id,
+            'name_car' => $name_car,
+            'color_car' => $color_car,
             'name' => $name,
             'phone' => $phone,
             'cccd' => $cccd,
