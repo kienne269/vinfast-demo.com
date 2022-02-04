@@ -144,13 +144,13 @@ const OrderLast = (props) => {
     console.log(customer)
       const onSubmit = async (e) => {
         e.preventDefault()
-        // setIsCheckName(nameText === '')
-        // setIsCheckCccd(cccd === '')
-        // setIsCheckPhone(phone.length !== 10)
+        setIsCheckName(nameText === '')
+        setIsCheckCccd(cccd === '')
+        setIsCheckPhone(phone.length !== 10)
         
-        // // setIsCheckMail(email === '')
-        // const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        // setIsCheckMail(!regex.test(email));
+        // setIsCheckMail(email === '')
+        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        setIsCheckMail(!regex.test(email));
         dispatch(customerCar(customer))
         cookies.save("customer", customer)
         if(checkRadio === 2) {

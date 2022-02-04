@@ -38,6 +38,7 @@ const RouteUser = () => {
                                     <Route path='/settings/lich-su-giao-dich' element={<TransactionHistory />} />
                                     <Route path='/settings/gio-hang' element={< MyAccount/>} />
                                     <Route path='/settings/me/my-post' element={<MyPost />} />
+                                    <Route path='*' element={<NotFound />} />
                                 </Routes>
                             </div>
                         </div>
@@ -57,9 +58,12 @@ const RouteUser = () => {
                     <Route path='/post/:id/edit' element={<PostEdit />} />
                     <Route path='/catalog/:slug' element={<Product  />} />
                     <Route path='/' element={<Home />} />
-                    <Route path='*' element={<NotFound />} />
+                    {/* <Route path='*' element={<NotFound />} /> */}
                 </Routes>
             <Footer />
+            <Routes>
+                <Route path='*' element={<NotFound />} />
+            </Routes>
         </>
     )
 }

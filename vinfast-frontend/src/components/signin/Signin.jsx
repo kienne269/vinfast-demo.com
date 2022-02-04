@@ -36,6 +36,9 @@ const Signin = () => {
     const [checkLengthCase, setCheckLengthCase] = useState(false)
     const [checkNumberCase, setCheckNumberCase] = useState(false)
 
+    const [checkIsMail, setCheckIsMail] = useState(true)
+    const [submit, setSubmit] = useState(false)
+
     // On change text
     const onChangeName = (e) => {
         setName(e.target.value);
@@ -97,39 +100,47 @@ const Signin = () => {
         const check = checkUpperCase && checkLowerCase && checkLengthCase && checkNumberCase;
         setCheckPass(check)
 
-        // Khai báo các biến canvas
-        var canvas = document.getElementById('canvas');
-        var context = canvas.getContext('2d');
+        const found = accountData.find(item => item.email === email);
+        setCheckIsMail(found === undefined)
 
-        // Lấy x, y căn giữa canvas
-        var x = canvas.width / 2;
-        var y = canvas.height / 2;
-
-    // Phủ màu cho canvas
-        context.rect(0, 0, 80, 80);
-        context.fillStyle = "#428bca";
-    context.fill();
-
-    // Viết tắt họ và tên lên canvas
-        context.font = "30px Arial";
-        context.textAlign = "center";
-        context.fillStyle = "white";
-        context.fillText(first_name + last_name, x, y + 10);
-
-        const dataAvt = canvas.toDataURL(); // Lấy dữ liệu canvas
+        setSubmit(checkMail && checkPass && checkPassConfirm && checkIsMail)
         
-        const formData = new FormData()
-        formData.append("dataAvt", dataAvt)
-        formData.append("name", name)
-        formData.append("email", email)
-        formData.append("password", pass)
-        formData.append("date_create", new Date())
-        try {
-            await accountApi.create(formData)
-            alert("Đăng ký tài khoản thành công")
-            navigate("/login")
-        } catch(err) {
-            console.log(err)
+        if (submit === true) {
+
+            // Khai báo các biến canvas
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+    
+            // Lấy x, y căn giữa canvas
+            var x = canvas.width / 2;
+            var y = canvas.height / 2;
+    
+            // Phủ màu cho canvas
+            context.rect(0, 0, 40, 40);
+            context.fillStyle = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            context.fill();
+    
+            // Viết tắt họ và tên lên canvas
+            context.font = "15px Arial";
+            context.textAlign = "center";
+            context.fillStyle = "white";
+            context.fillText(first_name + last_name, x, y + 5);
+    
+            const dataAvt = canvas.toDataURL(); // Lấy dữ liệu canvas
+            
+            const formData = new FormData()
+            formData.append("dataAvt", dataAvt)
+            formData.append("name", name)
+            formData.append("email", email)
+            formData.append("password", pass)
+            formData.append("date_create", new Date())
+            try {
+                await accountApi.create(formData)
+                alert("Đăng ký tài khoản thành công")
+                navigate("/login")
+            } catch(err) {
+                console.log(err)
+            }
         }
     }
     return (
@@ -142,8 +153,9 @@ const Signin = () => {
                 </div>
                 <canvas style={{display: 'none'}} id="canvas" width="40" height="40"></canvas>
                 <div className="form-group">
-                    <input className={checkMail ? '' : "check"} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
+                    <input className={checkMail ? '' : "check" , checkIsMail ? '' : "check"} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
                     <div className="form-message">{checkMail ? "" : "Sai định dạng email."}</div>
+                    <div className="form-message">{checkIsMail ? "" : "Địa chỉ email đã tồn tại"}</div>
                 </div>
                 <div className="form-group">
                     <div className="password">
