@@ -8,6 +8,7 @@ const customerTableHead = [
     'order id',
     'name car',
     'color car',
+    'money deposit',
     'name',
     'phone',
     'Căn cước',
@@ -32,6 +33,7 @@ const Customers = () => {
             <td>{item.order_id}</td>
             <td>{item.name_car}</td>
             <td>{item.color_car}</td>
+            <td>{item.money_deposit}</td>
             <td>{item.name}</td>
             <td>{item.phone}</td>
             <td>{item.cccd}</td>
@@ -64,7 +66,7 @@ const Customers = () => {
             id : id,
             status: "accept"
         }
-        const updateAccountApi = async () => {
+        const updateCustomer = async () => {
             try {
                 const res = await customerApi.update(formData)
                 alert("Cập nhật thành công")
@@ -75,7 +77,7 @@ const Customers = () => {
                 console.log(err)
             }
         }
-        updateAccountApi()
+        updateCustomer()
         setActive(false)
     }
 
@@ -86,7 +88,7 @@ const Customers = () => {
             id : id,
             status: "reject"
         }
-        const updateAccountApi = async () => {
+        const updateCustomer = async () => {
             try {
                 const res = await customerApi.update(formData)
                 alert("Cập nhật thành công")
@@ -97,7 +99,7 @@ const Customers = () => {
                 console.log(err)
             }
         }
-        updateAccountApi()
+        updateCustomer()
         setActive(false)
     }
 
@@ -116,6 +118,10 @@ const Customers = () => {
             {
                 header: 'Color car',
                 body: customerOneData.color_car
+            },
+            {
+                header: 'Money deposit',
+                body: customerOneData.money_deposit
             },
             {
                 header: 'Name',

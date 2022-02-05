@@ -51,15 +51,14 @@ const SidebarUser = () => {
         },{
             display_name: 'Bài viết của tôi',
             route: "/settings/me/my-post",
-            icon: <i class="fas fa-blog"></i>,
-            icon_active: <i style={{color: '#2c72c6'}} class="fas fa-blog"></i>
+            icon: <i className="fas fa-blog"></i>,
+            icon_active: <i style={{color: '#2c72c6'}} className="fas fa-blog"></i>
         },
     ]
 
     const user = useSelector(selectUser);
     const location = useLocation();
     const activeItem = sidebar_user_item.findIndex(item => `${item.route}` === location.pathname)
-    console.log(user)
     return <div className='l-3 sidebar__user'>
         <div className="sidebar__user__top">
             <div className="img">

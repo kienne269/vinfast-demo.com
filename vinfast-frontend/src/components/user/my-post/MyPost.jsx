@@ -37,7 +37,6 @@ const MyPost = () => {
         }
     })
 
-    console.log(reRender)
     const handleDelete = async (e, id) => {
         e.preventDefault();
 

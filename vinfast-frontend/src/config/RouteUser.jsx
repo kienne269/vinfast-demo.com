@@ -22,6 +22,7 @@ import SidebarUser from '../components/user/sidebar-user/SidebarUser';
 import TransactionHistory from '../components/user/transaction-history/TransactionHistory';
 import { useLocation } from 'react-router-dom';
 import NotFound from '../components/pages/NotFound';
+import OrderDetail from '../components/user/order-detail/OrderDetail';
 const RouteUser = () => {
     const location = useLocation();
    return (
@@ -36,9 +37,9 @@ const RouteUser = () => {
                                 <Routes>
                                     <Route path='/settings/thong-tin-ca-nhan' element={< MyAccount />} />
                                     <Route path='/settings/lich-su-giao-dich' element={<TransactionHistory />} />
-                                    <Route path='/settings/gio-hang' element={< MyAccount/>} />
+                                    <Route path='/settings/gio-hang' element={< TransactionHistory/>} />
                                     <Route path='/settings/me/my-post' element={<MyPost />} />
-                                    <Route path='*' element={<NotFound />} />
+                                    <Route path='/settings/don-hang/chi-tiet/orderID=:id' element={<OrderDetail />} />
                                 </Routes>
                             </div>
                         </div>
@@ -58,12 +59,9 @@ const RouteUser = () => {
                     <Route path='/post/:id/edit' element={<PostEdit />} />
                     <Route path='/catalog/:slug' element={<Product  />} />
                     <Route path='/' element={<Home />} />
-                    {/* <Route path='*' element={<NotFound />} /> */}
+                    <Route path='*' element={<NotFound />} />
                 </Routes>
             <Footer />
-            <Routes>
-                <Route path='*' element={<NotFound />} />
-            </Routes>
         </>
     )
 }

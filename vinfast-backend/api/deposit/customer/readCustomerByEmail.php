@@ -9,7 +9,10 @@ $db = new db();
 $connect = $db->connect();
 
 $customer = new Customer($connect);
-$read = $customer->read();
+
+$customer->email = isset($_GET['email']) ? $_GET['email'] : die();
+
+$read = $customer->showByUser();
 
 $num = $read->rowCount();
 
@@ -25,6 +28,7 @@ if ($num > 0) {
             'order_id' => $order_id,
             'name_car' => $name_car,
             'color_car' => $color_car,
+            'image_car' => $image_car,
             'name' => $name,
             'phone' => $phone,
             'cccd' => $cccd,

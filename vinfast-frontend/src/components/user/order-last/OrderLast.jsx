@@ -15,6 +15,7 @@ import postApi from '../../../api/postApi'
 const OrderLast = (props) => {
 
     const colorCar = props.colorCar
+    const image_car = props.image_car
     const money = props.money
     const nameCar = props.nameCar
     const user = useSelector(selectUser);
@@ -25,7 +26,7 @@ const OrderLast = (props) => {
     const [cccd, setCccd] = useState('')
     const [email, setEmail] = useState(user ? user.email : '')
     const [province, setProvince] = useState('')
-    const [referralCode, setReferralCode] = useState('')
+    
     const [show, setShow] = useState(false);
 
     const [isCheckName, setIsCheckName] = useState(false)
@@ -51,10 +52,6 @@ const OrderLast = (props) => {
 
     const handleChangeProvince = (e) => {
         setProvince(e.target.value);
-    }
-
-    const handleChangeReferralCode = (e) => {
-        setReferralCode(e.target.value);
     }
 
     const handleNone = (e) => {
@@ -126,6 +123,7 @@ const OrderLast = (props) => {
         
     }
     
+    const [submit, setSubmit] = useState(false)
     const customer = {
         order_id: order_id,
         nameText: nameText,
@@ -133,39 +131,45 @@ const OrderLast = (props) => {
         cccd: cccd,
         email: email,
         province: province,
-        referralCode: referralCode,
         nameCar: nameCar,
         money: money,
         colorCar: colorCar,
+        image_car: image_car,
+        money_deposit: props.money_deposit,
         payment: payment,
         note: payment,
         published_at: String(today)
     }
-    console.log(customer)
       const onSubmit = async (e) => {
         e.preventDefault()
         setIsCheckName(nameText === '')
-        setIsCheckCccd(cccd === '')
+        setIsCheckCccd(cccd.length !== 12)
         setIsCheckPhone(phone.length !== 10)
         
-        // setIsCheckMail(email === '')
+        setIsCheckMail(email === '')
         const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         setIsCheckMail(!regex.test(email));
         dispatch(customerCar(customer))
         cookies.save("customer", customer)
-        if(checkRadio === 2) {
-            if(selectFile.current.files.length === 0) {
-                alert("Vui lòng chọn ảnh biên lai")
-                setShow(false)
-            } else {
-                try {
-                    setShow(true)
-                } catch (error) {
-                    console.log(error)
+
+        setSubmit(!isCheckName && !isCheckCccd && !isCheckMail && !isCheckPhone)
+        if (submit) {
+            if(checkRadio === 2) {
+                if(selectFile.current.files.length === 0) {
+                    alert("Vui lòng chọn ảnh biên lai")
+                    setShow(false)
+                }else {
+                    try {
+                        setShow(true)
+                    } catch (error) {
+                        console.log(error)
+                    }
                 }
+            } else if(checkRadio === 1) {
+                setShow(true)
+            } else {
+                setShow(false)
             }
-        } else {
-            setShow(!show)
         }
     }
     return (
@@ -211,7 +215,7 @@ const OrderLast = (props) => {
                                                     <input className='select__search__field' placeholder='Lựa chọn tỉnh thành' type="text" />
                                                     <span className="select__selection__arrow"></span>
                                                 </span>
-                                                <span className="select__dropdown">
+                                                {/* <span className="select__dropdown">
                                                     <span className="select__results">
                                                         <ul className="select__results__options">
                                                             <li className="select__results__option">Hà Nội</li>
@@ -228,7 +232,7 @@ const OrderLast = (props) => {
                                                             <li className="select__results__option">Bắc Ninh</li>
                                                         </ul>
                                                     </span>
-                                                </span>
+                                                </span> */}
                                             </span>
                                         </div>
                                     </div>
@@ -243,7 +247,7 @@ const OrderLast = (props) => {
                                                     <input className='select__search__field' placeholder='Lựa chọn Showroom' type="text" />
                                                     <span className="select__selection__arrow"></span>
                                                 </span>
-                                                <span className="select__dropdown">
+                                                {/* <span className="select__dropdown">
                                                     <span className="select__results">
                                                         <ul className="select__results__options">
                                                             <li className="select__results__option">No results found</li>
@@ -252,7 +256,7 @@ const OrderLast = (props) => {
                                                             <li className="select__results__option">test</li>
                                                         </ul>
                                                     </span>
-                                                </span>
+                                                </span> */}
                                             </span>
                                         </div>
                                     </div>

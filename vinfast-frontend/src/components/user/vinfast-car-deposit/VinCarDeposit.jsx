@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import ThreeSixty from 'react-360-view'
 import OrderLast from '../order-last/OrderLast'
@@ -18,11 +17,11 @@ const VinCarDetail = () => {
     const [postData, setPostData] = useState([])
     const [allCar, setAllCar] = useState([])
     
-    const name = ['president', 'lux-sa', 'lux-a', 'fadil', 'vfe34'];
+    const name = ['president', 'lux-sa', 'lux-a', 'fadil', 'vfe-34'];
     const nameTitle = ['PRESIDENT', 'LUX SA2.0', 'LUX A2.0', 'FADIL', 'VF e34'];
 
     const [type, setType] = useState('lux-sa')
-    
+
     useEffect(() => {
         const getCarContainer = async () => {
             try {
@@ -83,8 +82,6 @@ const VinCarDetail = () => {
             </ul>
         )
     }
-
-    console.log(active3)
 
     return (
         <>
@@ -160,7 +157,7 @@ const VinCarDetail = () => {
                 </div>
                 
             </div>
-            <OrderLast money={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={car[active3] ? car[active3].color : null}/>
+            <OrderLast image_car={name[active] && car[active3] ? `http://localhost:3000/images/${name[active]}/${car[active3].color2}/2.png` : null} money={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={car[active3] ? car[active3].color : null}/>
         </>
     )
 }

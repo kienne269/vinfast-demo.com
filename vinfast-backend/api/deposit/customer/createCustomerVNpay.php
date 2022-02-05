@@ -23,13 +23,13 @@ if (isset($_POST['name'])) {
     $cccd = mysqli_real_escape_string($connect, $_POST['cccd']);
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $province = mysqli_real_escape_string($connect, $_POST['province']);
-    $referralCode = mysqli_real_escape_string($connect, $_POST['referralCode']);
-    // $published_at = mysqli_real_escape_string($connect, $_POST['published_at']);
+    $image_car = mysqli_real_escape_string($connect, $_POST['image_car']);
+    $money_deposit = mysqli_real_escape_string($connect, $_POST['money_deposit']);
     $published_at = carbon::now('Asia/Ho_Chi_Minh');
     $status = mysqli_real_escape_string($connect, $_POST['status']);
     $order_id = mysqli_real_escape_string($connect, $_POST['order_id']);
     $order_desc = mysqli_real_escape_string($connect, $_POST['order_desc']);
-    $connection = "INSERT INTO vinfast_customer (order_id, name_car, color_car, name, phone, cccd, email, province, referralCode, note,  published_at, status) VALUES ('$order_id', '$name_car' , '$color_car', '$name', '$phone' ,'$cccd', '$email', '$province', '$referralCode', '$order_desc', '$published_at', '$status')";
+    $connection = "INSERT INTO vinfast_customer (order_id, name_car, color_car, name, phone, cccd, email, province, image_car, money_deposit, note,  published_at, status) VALUES ('$order_id', '$name_car' , '$color_car', '$name', '$phone' ,'$cccd', '$email', '$province', '$image_car', '$money_deposit', '$order_desc', '$published_at', '$status')";
     if (mysqli_query($connect, $connection)) {
         echo 'success';
     } else {

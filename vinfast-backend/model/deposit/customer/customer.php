@@ -8,12 +8,13 @@ class Customer
     public $order_id;
     public $name_car;
     public $color_car;
+    public $image_car;
     public $name;
     public $phone;
     public $cccd;
     public $email;
     public $province;
-    public $referralCode;
+    public $money_deposit;
     public $note;
     public $file;
     public $published_at;
@@ -39,7 +40,7 @@ class Customer
     //create data
     public function create()
     {
-        $query = "INSERT INTO vinfast_customer SET id=:id, name=:name, phone=:phone, cccd=:cccd, email=:email, province=:province, referralCode:=referralCode";
+        $query = "INSERT INTO vinfast_customer SET id=:id, name=:name, phone=:phone, cccd=:cccd, email=:email, province=:province, money_deposit:=money_deposit";
 
         $stmt = $this->conn->prepare($query);
 
@@ -49,7 +50,7 @@ class Customer
         $this->cccd = htmlspecialchars(strip_tags($this->cccd));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->province = htmlspecialchars(strip_tags($this->province));
-        $this->referralCode = htmlspecialchars(strip_tags($this->referralCode));
+        $this->money_deposit = htmlspecialchars(strip_tags($this->money_deposit));
 
         //bind data
         $stmt->bindParam(':name', $this->name);
@@ -57,7 +58,7 @@ class Customer
         $stmt->bindParam(':cccd', $this->cccd);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':province', $this->province);
-        $stmt->bindParam(':referralCode', $this->referralCode);
+        $stmt->bindParam(':money_deposit', $this->money_deposit);
 
         if ($stmt->execute()) {
             return true;
@@ -86,7 +87,7 @@ class Customer
         $this->cccd = $row['cccd'];
         $this->email = $row['email'];
         $this->province = $row['province'];
-        $this->referralCode = $row['referralCode'];
+        $this->money_deposit = $row['money_deposit'];
         $this->note = $row['note'];
         $this->file = $row['file'];
         $this->published_at = $row['published_at'];
@@ -96,28 +97,15 @@ class Customer
     //show data by user
     public function showByUser()
     {
-        $query = "SELECT * FROM vinfast_customer WHERE user_id = ? LIMIT 1";
+        $query = "SELECT * FROM vinfast_customer WHERE vinfast_customer.email = ?";
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(1, $this->email);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->id = $row['id'];
-        $this->order_id = $row['order_id'];
-        $this->name_car = $row['name_car'];
-        $this->color_car = $row['color_car'];
-        $this->name = $row['name'];
-        $this->phone = $row['phone'];
-        $this->cccd = $row['cccd'];
-        $this->email = $row['email'];
-        $this->province = $row['province'];
-        $this->referralCode = $row['referralCode'];
-        $this->note = $row['note'];
-        $this->file = $row['file'];
-        $this->published_at = $row['published_at'];
-        $this->status = $row['status'];
+        return $stmt;
     }
 
     //update data

@@ -20,7 +20,8 @@ const DepostSuccess = () => {
             formData.append("cccd", customer.cccd)
             formData.append("email", customer.email)
             formData.append("province", customer.province)
-            formData.append("referralCode", customer.referralCode)
+            formData.append("image_car", customer.image_car)
+            formData.append("money_deposit", customer.money)
             formData.append("published_at", customer.published_at)
             formData.append("order_id", customer.order_id)
             formData.append("order_desc", customer.payment)
@@ -28,7 +29,7 @@ const DepostSuccess = () => {
             const res = customerApi.createVNPay(formData)
             console.log(res)
         }
-    }, [customer.cccd, customer.colorCar, customer.email, customer.nameCar, customer.nameText, customer.order_id, customer.payment, customer.phone, customer.province, customer.published_at, customer.referralCode])
+    }, [customer.cccd, customer.colorCar, customer.email, customer.nameCar, customer.nameText, customer.order_id, customer.payment, customer.phone, customer.province, customer.published_at, customer.image_car, customer.money])
     return (
         <div className="depost__cars">
             <div className="container">

@@ -85,4 +85,18 @@ class Deposit
         $stmt->execute();
         return $stmt;
     }
+
+    //show data by name car and color
+    public function showByCar()
+    {
+        $query = "SELECT * FROM full_color_car WHERE name = ?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->name);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt;
+    }
 }
