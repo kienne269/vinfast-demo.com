@@ -1,4 +1,9 @@
 <?php
+require('../../model/carbon/autoload.php');
+
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
+
 header("Access-Control-Allow-Origin:*");
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
@@ -12,7 +17,7 @@ if (isset($_POST['dataAvt'])) {
     $name = mysqli_real_escape_string($connect, $_POST['name']);
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $password = mysqli_real_escape_string($connect, $_POST['password']);
-    $date_create = mysqli_real_escape_string($connect, $_POST['date_create']);
+    $date_create = carbon::now('Asia/Ho_Chi_Minh');
 
     // Tìm kiếm và thay thế đường dẫn ảnh
     $avatar = str_replace('data:image/png;base64,', '', $avatar);

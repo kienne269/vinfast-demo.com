@@ -133,7 +133,6 @@ const Signin = () => {
             formData.append("name", name)
             formData.append("email", email)
             formData.append("password", pass)
-            formData.append("date_create", new Date())
             try {
                 await accountApi.create(formData)
                 alert("Đăng ký tài khoản thành công")
