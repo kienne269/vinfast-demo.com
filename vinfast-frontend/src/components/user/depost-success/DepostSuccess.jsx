@@ -6,7 +6,6 @@ import './depost-success.scss'
 import customerApi from '../../../api/depost/customerApi'
 import { selectCustomer } from '../../../redux/customer/customerSlice'
 const DepostSuccess = () => {
-    // const [customerSuccess, setCustomerSuccess] = useState([])
     const customer = useSelector(selectCustomer);
     
     useEffect(() => {
@@ -20,7 +19,8 @@ const DepostSuccess = () => {
             formData.append("email", customer.email)
             formData.append("province", customer.province)
             formData.append("image_car", customer.image_car)
-            formData.append("money_deposit", customer.money)
+            formData.append("money_deposit", customer.money_deposit)
+            formData.append("price", customer.price)
             formData.append("published_at", customer.published_at)
             formData.append("order_id", customer.order_id)
             formData.append("order_desc", customer.payment)
@@ -28,7 +28,7 @@ const DepostSuccess = () => {
             const res = customerApi.createVNPay(formData)
             console.log(res)
         }
-    }, [customer.cccd, customer.colorCar, customer.email, customer.nameCar, customer.nameText, customer.order_id, customer.payment, customer.phone, customer.province, customer.published_at, customer.image_car, customer.money])
+    }, [customer.cccd, customer.colorCar, customer.email, customer.nameCar, customer.nameText, customer.order_id, customer.payment, customer.phone, customer.province, customer.published_at, customer.image_car, customer.money, customer.money_deposit, customer.price])
     return (
         <div className="depost__cars">
             <div className="container">

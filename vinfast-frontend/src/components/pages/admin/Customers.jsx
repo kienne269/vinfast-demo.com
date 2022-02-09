@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Table from '../../admin/table/Table'
 import customerApi from '../../../api/depost/customerApi'
 import '../../admin/customer-detail/customer-detail.scss'
@@ -9,6 +9,7 @@ const customerTableHead = [
     'name car',
     'color car',
     'money deposit',
+    'price',
     'name',
     'phone',
     'Căn cước',
@@ -22,7 +23,7 @@ const customerTableHead = [
 
 const Customers = () => {
     const [active, setActive] = useState(false)
-    const [id, setId] = useState(76)
+    const [id, setId] = useState(94)
     const [customerData, setCustomerData] = useState([])
     const [customerOneData, setCustomerOneData] = useState([])
 
@@ -34,6 +35,7 @@ const Customers = () => {
             <td>{item.name_car}</td>
             <td>{item.color_car}</td>
             <td>{item.money_deposit}</td>
+            <td>{item.price}</td>
             <td>{item.name}</td>
             <td>{item.phone}</td>
             <td>{item.cccd}</td>
@@ -103,8 +105,6 @@ const Customers = () => {
         setActive(false)
     }
 
-    console.log(reRender)
-
     const CustomerDetail = () => {
         const detail = [
             {
@@ -124,11 +124,15 @@ const Customers = () => {
                 body: customerOneData.money_deposit
             },
             {
+                header: 'Price',
+                body: customerOneData.price
+            },
+            {
                 header: 'Name',
                 body: customerOneData.name
             },
             {
-                header: 'phone',
+                header: 'Phone',
                 body: customerOneData.phone
             },
             {
@@ -150,10 +154,6 @@ const Customers = () => {
             {
                 header: 'Create at',
                 body: customerOneData.published_at
-            },
-            {
-                header: 'Image',
-                body: <img src={customerOneData.file} alt="" />
             },
         ]
         return <div className='customer__detail'>
@@ -177,30 +177,37 @@ const Customers = () => {
                             </div>
                         ))
                     }
-                    {
-                        customerOneData.status === "pending" ? <div className="l-12 customer__detail__status">
-                            <button onClick={handleSubmitAccept} className="button">
-                                <span>
-                                    <svg className="MuiSvgIcon-root MuiSvgIcon-colorPrimary" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style={{paddingRight: '0.5em', color: 'green'}}>
-                                        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path>
-                                    </svg>
-                                    Accept
-                                </span>
-                            </button>
-                            <button onClick={handleSubmitReject} className="button">
-                                <span>
-                                    <svg className="MuiSvgIcon-root MuiSvgIcon-colorPrimary" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style={{paddingRight: '0.5em', color: 'red'}}>
-                                        <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path>
-                                    </svg>
-                                    Reject
-                                </span>
-                            </button>
-                        </div> : null
-                    }
+                    <div className="l-12">
+                        <div className="wrapper">
+                            <div className='head'>Image</div>
+                            <div className="body">
+                                <img src={customerOneData.file} alt="" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="customer__detail__footer">
-    
+                {
+                    customerOneData.status === "pending" ? <div className="l-12 customer__detail__status">
+                        <button onClick={handleSubmitAccept} className="button">
+                            <span>
+                                <svg className="MuiSvgIcon-root MuiSvgIcon-colorPrimary" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style={{paddingRight: '0.5em', color: 'green'}}>
+                                    <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path>
+                                </svg>
+                                Accept
+                            </span>
+                        </button>
+                        <button onClick={handleSubmitReject} className="button">
+                            <span>
+                                <svg className="MuiSvgIcon-root MuiSvgIcon-colorPrimary" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style={{paddingRight: '0.5em', color: 'red'}}>
+                                    <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path>
+                                </svg>
+                                Reject
+                            </span>
+                        </button>
+                    </div> : null
+                }
             </div>
         </div>;
     };
@@ -214,16 +221,14 @@ const Customers = () => {
                 console.log(err)
             }
         }
-        getCustomerApi() 
-        console.log(123)
+        getCustomerApi()
     }, [reRender])
 
     useEffect(() => {
         setReRender(true)
         const getOneCustomerApi = async () => {
             try {
-                // const res = await customerApi.getOne(id)
-                const res = await axios.get(`http://localhost/vinfast/vinfast-backend/api/deposit/customer/showCustomer.php?id=${id}`)
+                const res = await customerApi.getOne(id)
                 setCustomerOneData(res.data)
             } catch(err) {
                 console.log(err)
@@ -231,6 +236,7 @@ const Customers = () => {
         }
         getOneCustomerApi() 
     }, [id, reRender])
+    console.log(id)
     return (
         <>
             <h2 className="page-header">

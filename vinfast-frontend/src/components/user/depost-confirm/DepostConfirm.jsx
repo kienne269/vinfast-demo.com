@@ -4,7 +4,6 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import customerApi from '../../../api/depost/customerApi'
-import { selectCustomer } from '../../../redux/customer/customerSlice'
 import './depost-confirm.scss'
 
 const DepostConfirm = (props) => {
@@ -24,7 +23,8 @@ const DepostConfirm = (props) => {
         formData.append("email", customer.email)
         formData.append("province", customer.province)
         formData.append("image_car", customer.image_car)
-        formData.append("money_deposit", customer.money)
+        formData.append("money_deposit", customer.money_deposit)
+        formData.append("price", customer.price)
         formData.append("note", customer.note)
         formData.append("published_at", customer.published_at)
         formData.append("order_id", customer.order_id)
@@ -137,14 +137,6 @@ const DepostConfirm = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="l-6">
-                                    <div className="row group__item">
-                                        <label htmlFor="" className="l-5">Mã giới thiệu</label>
-                                        <div className="l-7">
-                                            <label htmlFor="" className="l-7">{customer.referralCode}</label>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div className="row group__info">
                                 <h5 className="l-12">THÔNG TIN THANH TOÁN</h5>
@@ -165,7 +157,7 @@ const DepostConfirm = (props) => {
                                 <div className="l-6">
                                     <div className="row group__item">
                                         <label htmlFor="" className="l-5">Số tiền đặt cọc</label>
-                                        <div className='l-7' name="amount">{props.money}</div>
+                                        <div className='l-7' name="amount">{customer.money_deposit}</div>
                                     </div>
                                 </div>
                                 <div className="l-6" style={{display: 'none'}}>

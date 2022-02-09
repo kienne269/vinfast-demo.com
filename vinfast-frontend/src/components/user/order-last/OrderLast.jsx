@@ -5,18 +5,16 @@ import {useDispatch} from 'react-redux'
 import cookies from 'react-cookies'
 import { selectUser } from '../../../redux/user/userSlice';
 import { customerCar } from '../../../redux/customer/customerSlice';
-
 import GroupInput from '../group-input/GroupInput'
 import DepostConfirm from '../depost-confirm/DepostConfirm'
-import customerApi from '../../../api/depost/customerApi'
 import './order-last.scss'
-import postApi from '../../../api/postApi'
 
 const OrderLast = (props) => {
 
     const colorCar = props.colorCar
     const image_car = props.image_car
-    const money = props.money
+    const price = props.price
+    const money_deposit = props.money_deposit
     const nameCar = props.nameCar
     const user = useSelector(selectUser);
 
@@ -26,7 +24,6 @@ const OrderLast = (props) => {
     const [cccd, setCccd] = useState('')
     const [email, setEmail] = useState(user ? user.email : '')
     const [province, setProvince] = useState('')
-    
     const [show, setShow] = useState(false);
 
     const [isCheckName, setIsCheckName] = useState(false)
@@ -132,10 +129,10 @@ const OrderLast = (props) => {
         email: email,
         province: province,
         nameCar: nameCar,
-        money: money,
+        price: price,
         colorCar: colorCar,
         image_car: image_car,
-        money_deposit: props.money_deposit,
+        money_deposit: money_deposit,
         payment: payment,
         note: payment,
         published_at: String(today)
@@ -205,36 +202,7 @@ const OrderLast = (props) => {
                             <div className="l-12">
                                 <div className="row">
                                     <div className="l-6 group group__showroom">
-                                        <div className="group__input">
-                                            <label> 
-                                                Tỉnh thành
-                                                <span>*</span>
-                                            </label>
-                                            <span className="select__container">
-                                                <span className="select__selection__rendered">
-                                                    <input className='select__search__field' placeholder='Lựa chọn tỉnh thành' type="text" />
-                                                    <span className="select__selection__arrow"></span>
-                                                </span>
-                                                {/* <span className="select__dropdown">
-                                                    <span className="select__results">
-                                                        <ul className="select__results__options">
-                                                            <li className="select__results__option">Hà Nội</li>
-                                                            <li className="select__results__option">Hồ Chí Minh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                            <li className="select__results__option">Bắc Ninh</li>
-                                                        </ul>
-                                                    </span>
-                                                </span> */}
-                                            </span>
-                                        </div>
+                                    <GroupInput handleChange={handleChangeProvince} label="Tỉnh thành"/>
                                     </div>
                                     <div className="l-6 group group__showroom">
                                         <div className="group__input">
@@ -247,16 +215,6 @@ const OrderLast = (props) => {
                                                     <input className='select__search__field' placeholder='Lựa chọn Showroom' type="text" />
                                                     <span className="select__selection__arrow"></span>
                                                 </span>
-                                                {/* <span className="select__dropdown">
-                                                    <span className="select__results">
-                                                        <ul className="select__results__options">
-                                                            <li className="select__results__option">No results found</li>
-                                                            <li className="select__results__option">test</li>
-                                                            <li className="select__results__option">test</li>
-                                                            <li className="select__results__option">test</li>
-                                                        </ul>
-                                                    </span>
-                                                </span> */}
                                             </span>
                                         </div>
                                     </div>

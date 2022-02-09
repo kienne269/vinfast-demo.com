@@ -25,6 +25,7 @@ $customer_item = array(
     'email' => $customer->email,
     'province' => $customer->province,
     'money_deposit' => $customer->money_deposit,
+    'price' => $customer->price,
     'note' => $customer->note,
     'file' => $customer->file,
     'published_at' => $customer->published_at,

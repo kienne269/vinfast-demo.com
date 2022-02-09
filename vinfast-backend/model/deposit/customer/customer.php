@@ -15,6 +15,7 @@ class Customer
     public $email;
     public $province;
     public $money_deposit;
+    public $price;
     public $note;
     public $file;
     public $published_at;
@@ -56,36 +57,6 @@ class Customer
         return $stmt;
     }
 
-    //create data
-    public function create()
-    {
-        $query = "INSERT INTO vinfast_customer SET id=:id, name=:name, phone=:phone, cccd=:cccd, email=:email, province=:province, money_deposit:=money_deposit";
-
-        $stmt = $this->conn->prepare($query);
-
-        //clean data
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->phone = htmlspecialchars(strip_tags($this->phone));
-        $this->cccd = htmlspecialchars(strip_tags($this->cccd));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->province = htmlspecialchars(strip_tags($this->province));
-        $this->money_deposit = htmlspecialchars(strip_tags($this->money_deposit));
-
-        //bind data
-        $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':phone', $this->phone);
-        $stmt->bindParam(':cccd', $this->cccd);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':province', $this->province);
-        $stmt->bindParam(':money_deposit', $this->money_deposit);
-
-        if ($stmt->execute()) {
-            return true;
-        }
-        printf("Error %s, \n" . $stmt->error);
-        return false;
-    }
-
     //show data by id
     public function show()
     {
@@ -107,6 +78,7 @@ class Customer
         $this->email = $row['email'];
         $this->province = $row['province'];
         $this->money_deposit = $row['money_deposit'];
+        $this->price = $row['price'];
         $this->note = $row['note'];
         $this->file = $row['file'];
         $this->published_at = $row['published_at'];

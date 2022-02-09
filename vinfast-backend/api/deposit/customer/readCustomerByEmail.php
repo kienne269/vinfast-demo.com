@@ -35,6 +35,7 @@ if ($num > 0) {
             'email' => $email,
             'province' => $province,
             'money_deposit' => $money_deposit,
+            'price' => $price,
             'note' => $note,
             'file' => $file,
             'published_at' => $published_at,

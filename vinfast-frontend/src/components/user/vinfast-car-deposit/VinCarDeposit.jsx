@@ -155,7 +155,7 @@ const VinCarDetail = () => {
                 </div>
                 
             </div>
-            <OrderLast image_car={name[active] && car[active3] ? `http://localhost:3000/images/${name[active]}/${car[active3].color2}/2.png` : null} money={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={car[active3] ? car[active3].color : null}/>
+            <OrderLast image_car={name[active] && car[active3] ? `http://localhost:3000/images/${name[active]}/${car[active3].color2}/2.png` : null} price={postData[active] ? postData[active].price : null} money_deposit={postData[active] ? postData[active].deposits : null} nameCar={nameTitle[active] ? nameTitle[active] : null} colorCar={car[active3] ? car[active3].color : null}/>
         </>
     )
 }
