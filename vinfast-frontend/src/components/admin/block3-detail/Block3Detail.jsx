@@ -132,47 +132,56 @@ const ProductInfo = ({product}) => {
                     <div className="row">
                         <div className="l-6">
                             <div className="form-group">
-                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id block" />
+                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder=" " />
+                                <label className='label' htmlFor="id">Id</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={slug } onChange={(e) => setSlug(e.target.value)} type="text" name="name" id="name" placeholder="Slug" />
+                                <input value={slug } onChange={(e) => setSlug(e.target.value)} type="text" name="Slug" id="Slug" placeholder=" " />
+                                <label className='label' htmlFor="Slug">Slug</label>
                             </div>
                         </div> 
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={dongxe}  onChange={(e) => setDongxe(e.target.value)} type="text" name="name" id="name" placeholder="Dongxe" />
+                                <input value={dongxe}  onChange={(e) => setDongxe(e.target.value)} type="text" name="Dongxe" id="Dongxe" placeholder=" " />
+                                <label className='label' htmlFor="Dongxe">Dongxe</label>
                             </div>
                         </div> 
                         <div className="l-6">
                             <div className="form-group">
-                                <input value= {slogan} onChange={(e) => setSlogan(e.target.value)} type="text" name="name" id="name" placeholder="Slogan" />
+                                <input value= {slogan} onChange={(e) => setSlogan(e.target.value)} type="text" name="Slogan" id="Slogan" placeholder=" " />
+                                <label className='label' htmlFor="Slogan">Slogan</label>
                             </div>
                         </div> 
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                                <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="Name" id="Name" placeholder=" " />
+                                <label className='label' htmlFor="Name">Name</label>
                             </div>
                         </div> 
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={description1 } onChange={(e) => setDescription1(e.target.value)} type="text" name="name" id="name" placeholder="Description1" />
+                                <input value={description1 } onChange={(e) => setDescription1(e.target.value)} type="text" name="Description1" id="Description1" placeholder=" " />
+                                <label className='label' htmlFor="Description1">Description1</label>
                             </div>
                         </div> 
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={description2 } onChange={(e) => setDescription2(e.target.value)} type="text" name="name" id="name" placeholder="Description2" />
+                                <input value={description2 } onChange={(e) => setDescription2(e.target.value)} type="text" name="Description2" id="Description2" placeholder=" " />
+                                <label className='label' htmlFor="Description2">Description2</label>
                             </div>
                         </div>     
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={description3 } onChange={(e) => setDescription3(e.target.value)} type="text" name="name" id="name" placeholder="Description3" />
+                                <input value={description3 } onChange={(e) => setDescription3(e.target.value)} type="text" name="Description3" id="Description3" placeholder=" " />
+                                <label className='label' htmlFor="Description3">Description3</label>
                             </div>
                         </div>     
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={description4 } onChange={(e) => setDescription4(e.target.value)} type="text" name="name" id="name" placeholder="Description4" />
+                                <input value={description4 } onChange={(e) => setDescription4(e.target.value)} type="text" name="Description4" id="Description4" placeholder=" " />
+                                <label className='label' htmlFor="Description4">Description4</label>
                             </div>
                         </div>              
 

@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import ProtoTypes from 'prop-types'
-import axios from 'axios'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import purify from "dompurify";
 
 import CommentView from '../comment-view/CommentView';
 import postApi from '../../../api/postApi';
 import './blog-detail.scss'
 import { TabTitle } from '../../../assets/setTitle';
-
 const BlogDetail = () => {
     let params = useParams();
     

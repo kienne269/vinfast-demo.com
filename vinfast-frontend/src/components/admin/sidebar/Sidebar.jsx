@@ -5,9 +5,6 @@ import { selectUser } from '../../../redux/user/userSlice';
 
 import './sidebar.scss'
 
-import logo_main_w from '../../../assets/logo-main-w.svg';
-import userSlice from '../../../redux/user/userSlice';
-
 const SidebarItem = props => {
     const active = props.active ? 'active' : ''
 
@@ -116,7 +113,7 @@ const Sidebar = props => {
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
-                <img src={logo_main_w} alt="company logo" />
+                <img src="http://localhost:3000/images/logo-header.svg" alt="company logo" />
             </div>
             {
                 sidebar_items.map((item, index) => (

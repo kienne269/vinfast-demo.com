@@ -20,7 +20,7 @@ if (isset($_POST['id_xe'])) {
     $description2 = mysqli_real_escape_string($connect, $_POST['description2']);
     $description3 = mysqli_real_escape_string($connect, $_POST['description3']);
     $description4 = mysqli_real_escape_string($connect, $_POST['description4']);
-   
+
 
     //file properties
     $filename = $files['name'];
@@ -30,19 +30,18 @@ if (isset($_POST['id_xe'])) {
     $splitedname = explode('.', $filename);
     $fileextension = strtolower(end($splitedname));
 
-    $allowed_extentions = ['png', 'jpg', 'jpeg']; 
+    $allowed_extentions = ['png', 'jpg', 'jpeg'];
 
-    if (in_array($fileextension, $allowed_extentions)) {  
+    if (in_array($fileextension, $allowed_extentions)) {
         if ($uploaderrors === 0) {
-            $new_file_name = uniqid() . '.' . $fileextension; 
-            // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
+            $new_file_name = uniqid() . '.' . $fileextension;
             $file_destination = '../../../vinfast-frontend/public/images/admin/car/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
                 $connection = "UPDATE list_bike SET id_xe='$id', image= 'http://localhost:3000/images/admin/car/$new_file_name', name = '$name', slogan= '$slogan', description1 = '$description1', description2 = '$description2', description3 = '$description3',  description4 = '$description4' WHERE id_xe = '$id'";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
                 } else {
-                    echo 'could not update data into the database'; 
+                    echo 'could not update data into the database';
                     echo $id;
                 }
             }

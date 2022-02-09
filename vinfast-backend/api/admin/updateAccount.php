@@ -32,10 +32,8 @@ if (isset($_POST['id'])) {
     if (in_array($fileextension, $allowed_extentions)) {
         if ($uploaderrors === 0) {
             $new_file_name = uniqid() . '.' . $fileextension;
-            // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
             $file_destination = '../../../vinfast-frontend/public/images/avatar/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
-                // $connection = "INSERT INTO vinfast_account (id, avatar, name, email, password, date_create) VALUES ('$id', 'http://localhost:3000/images/avatar/$new_file_name', '$name', '$email', '$password', '$date_create')";
                 $connection = "UPDATE vinfast_account SET id= '$id', name= '$name', avatar= 'http://localhost:3000/images/avatar/$new_file_name', email= '$email', password= '$password', date_create= '$date_create' WHERE id = '$id'";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';

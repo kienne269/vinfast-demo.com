@@ -72,22 +72,26 @@ const NewAccount = () => {
                         <div className="row">
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder="Id product" />
+                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder=" " />
+                                    <label className='label' htmlFor="id">Id Account</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                                    <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder=" " />
+                                    <label className='label' htmlFor="id">Name</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder="Email" />
+                                    <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder=" " />
+                                    <label className='label' htmlFor="id">Email</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="Password" />
+                                    <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder=" " />
+                                    <label className='label' htmlFor="id">Password</label>
                                 </div>
                             </div>
                         </div>

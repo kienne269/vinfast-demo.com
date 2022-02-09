@@ -91,17 +91,20 @@ const ProductInfo = ({product}) => {
             <div className="row">
                 <div className="l-6">
                     <div className="form-group">
-                        <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id block" />
+                        <input disabled value={idProduct } type="text" name="id" id="id" placeholder=" " />
+                        <label className='label' htmlFor="id">id</label>
                     </div>
                 </div>
                 <div className="l-6">
                     <div className="form-group">
-                        <input value={quote } onChange={(e) => setQuote(e.target.value)} type="text" name="name" id="name" placeholder="Quote" />
+                        <input value={quote } onChange={(e) => setQuote(e.target.value)} type="text" name="Quote" id="Quote" placeholder=" " />
+                        <label className='label' htmlFor="Quote">Quote</label>
                     </div>
                 </div>
                 <div className="l-6">
                     <div className="form-group">
-                        <input value={author } onChange={(e) => setAuthor(e.target.value)} type="text" name="color" id="color" placeholder="Author" />
+                        <input value={author } onChange={(e) => setAuthor(e.target.value)} type="text" name="Author" id="Author" placeholder=" " />
+                        <label className='label' htmlFor="Author">Author</label>
                     </div>
                 </div>
             </div>

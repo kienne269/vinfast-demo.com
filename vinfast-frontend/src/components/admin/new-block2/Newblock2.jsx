@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
-import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import productApi from '../../../api/admin/productApi'
-import './new-block2.scss'
 const NewProduct = () => {
 
     const navigate = useNavigate();
@@ -10,8 +8,6 @@ const NewProduct = () => {
     const [idProduct, setIdProduct] = useState('')
     const [quote, setQuote] = useState('')
     const [author, setAuthor] = useState('')
-    const [focus, setFocus] = useState(false)
-    console.log(focus)
     const createProduct = async (e) => {
         e.preventDefault();
 
@@ -47,18 +43,20 @@ const NewProduct = () => {
                     <div className="row">
                         <div className="l-6"> 
                             <div className="form-group">
-                                <input onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id"  />
-                                <div onClick={(e) => setFocus(!focus)} className={focus ? "label" : "label focus"}>Id block</div>
+                                <input onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder=' ' />
+                                <label className='label' htmlFor="title">Title</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input onChange={(e) => setQuote(e.target.value)} type="text" name="name" id="name" placeholder="Quote" />
+                                <input onChange={(e) => setQuote(e.target.value)} type="text" name="quote" id="quote" placeholder=" " />
+                                <label className='label' htmlFor="quote">Quote</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input onChange={(e) => setAuthor(e.target.value)} type="text" name="color" id="color" placeholder="Author" />
+                                <input onChange={(e) => setAuthor(e.target.value)} type="text" name="author" id="author" placeholder=" " />
+                                <label className='label' htmlFor="author">Author</label>
                             </div>
                         </div>
                     </div>

@@ -62,9 +62,9 @@ const Login = () => {
                         loggedIn: true,
                     }))
                     if (user.role === 'sell') {
-                        navigate('/admin')
+                        navigate('/admin/')
                     } else if (user.role === 'admin') {
-                        navigate('/admin')
+                        navigate('/admin/')
                     } else {
                         navigate('/')
                     }

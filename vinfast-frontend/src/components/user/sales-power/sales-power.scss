@@ -70,9 +70,6 @@
         line-height: 2.2rem;
         color: $black;
         background-color: $white;
-
-        .power-text {
-        }
       }
 
       .buy {
@@ -125,7 +122,7 @@
         height: 40px;
         background-color: $blue;
         border-radius: 50%;
-        background-image: url("../../../assets/images/arrow-product.svg");
+        background-image: url("http://localhost:3000/images/arrow-product.svg");
         background-repeat: no-repeat;
         background-position: center;
         &::after {

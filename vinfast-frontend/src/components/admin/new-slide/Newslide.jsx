@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import productApi from '../../../api/admin/productApi'
-import './new-slide.scss'
 const NewProduct = () => {
 
     const selectFile = useRef()
@@ -9,9 +8,6 @@ const NewProduct = () => {
 
     const [idProduct, setIdProduct] = useState('')
     const [placement, setPlacement] = useState('')
-    const [banner, setBanner] = useState('')
-    const [focus, setFocus] = useState(false)
-    console.log(focus)
     const createBanner = async (e) => {
         e.preventDefault();
 
@@ -69,12 +65,14 @@ const NewProduct = () => {
                         <div className="row">
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder="Id banner" />
+                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder=" " />
+                                    <label className='label' htmlFor="id">Id</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={placement } onChange={(e) => setPlacement(e.target.value)} type="text" name="placement" id="placement" placeholder="Placement" />
+                                    <input value={placement } onChange={(e) => setPlacement(e.target.value)} type="text" name="placement" id="placement" placeholder=" " />
+                                    <label className='label' htmlFor="placement">Placement</label>
                                 </div>
                             </div>
                             

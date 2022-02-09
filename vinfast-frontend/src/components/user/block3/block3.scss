@@ -28,7 +28,7 @@
   }
 
   .info {
-    background-image: url("../../../assets/images/vinfast-data-01/bgcar.webp");
+    background-image: url("http://localhost:3000/images/vinfast-data-01/bgcar.webp");
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: top;
@@ -36,7 +36,7 @@
     transition: 0.3s;
 
     &:hover {
-      background-image: url("../../../assets/images/vinfast-data-01/bgcar_2.webp");
+      background-image: url("http://localhost:3000/images/vinfast-data-01/bgcar_2.webp");
     }
 
     &__body {

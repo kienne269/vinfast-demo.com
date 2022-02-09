@@ -34,23 +34,20 @@
     position: relative;
     margin: 1rem 2rem;
 
-    .label {
-      font-weight: 600;
-      position: absolute;
-      color: #1464f4;
-      padding: 0 8px;
-      font-size: 16px;
-      color: #707070;
-      top: 8px;
-      left: 6px;
+    input {
+      opacity: 1;
+    }
 
-      &.focus {
-        color: #1464f4;
-        font-size: 1rem;
-        top: -7px;
-        left: 8px;
-        background: $white;
-      }
+    .label {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #999;
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      pointer-events: none;
+      user-select: none;
+      transition: all 0.3s ease;
     }
 
     input:not([type="file"]) {
@@ -60,16 +57,19 @@
       width: 100%;
       border-radius: $border-radius;
 
+      &:not(:placeholder-shown),
       &:focus {
         border: 2px solid #1464f4;
         box-sizing: border-box;
-        // box-shadow: 0px 0px 0px 3.2px rgb(0 123 255 / 25%);
+        box-shadow: none;
 
         & ~ .label {
           color: #1464f4;
           font-size: 1rem;
           top: -7px;
-          left: 8px;
+          left: 20px;
+          padding: 0 1rem;
+          display: inline-block;
           background: $white;
         }
       }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import thanksPage from '../../../assets/images/thanks-page.png'
 import './depost-success.scss'
 import customerApi from '../../../api/depost/customerApi'
 import { selectCustomer } from '../../../redux/customer/customerSlice'
@@ -36,7 +35,7 @@ const DepostSuccess = () => {
                 <div className='depost__success row'>
                     <div className="depost__success__left l-6">
                         <div className="img">
-                            <img src={thanksPage} alt="thank-page" />
+                            <img src="http://localhost:3000/images/thanks-page.png" alt="thank-page" />
                         </div>
                     </div>
                     <div className="depost__success__right l-6">

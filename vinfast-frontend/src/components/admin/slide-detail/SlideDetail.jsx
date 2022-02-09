@@ -117,12 +117,14 @@ const ProductInfo = ({product}) => {
                     <div className="row">
                         <div className="l-6">
                             <div className="form-group">
-                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id banner" />
+                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder=" " />
+                                <label className='label' htmlFor="id">Id banner</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={placement } onChange={(e) => setPlacement(e.target.value)} type="text" name="name" id="name" placeholder="Placement" />
+                                <input value={placement } onChange={(e) => setPlacement(e.target.value)} type="text" name="placement" id="placement" placeholder=" " />
+                                <label className='label' htmlFor="placement">Placement</label>
                             </div>
                         </div>       
 

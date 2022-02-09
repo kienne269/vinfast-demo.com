@@ -38,7 +38,7 @@
         display: inline-block;
         height: 11px;
         width: 14px;
-        background-image: url("../../assets/images/icons/unmark.png");
+        background-image: url("http://localhost:3000/images/icons/unmark.png");
       }
     }
   }
@@ -74,6 +74,6 @@
     color: $blue;
   }
   &::before {
-    background-image: url("../../assets/images/icons/checkCharacter.svg");
+    background-image: url("http://localhost:3000/images/icons/checkCharacter.svg");
   }
 }

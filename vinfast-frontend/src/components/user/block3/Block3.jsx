@@ -8,9 +8,6 @@ import block3Api from '../../../api/home/block3Api'
 
 import 'swiper/swiper-bundle.css'
 
-import logoTitle from '../../../assets/images/vinfast-data-01/bg-title-car.png'
-import logoVin from '../../../assets/images/vinfast/logo_gray.svg'
-
 import './block3.scss'
 
 const Block3 = () => {
@@ -80,7 +77,7 @@ const Block3Item = props => (
             <div className="info__body--slogan">{props.item.slogan}</div>
             <div className="info__body--name">{props.item.name}</div>
         </div>
-        <img className="swiper-lazy swiper-lazy-loaded" src={logoTitle} alt="" />
+        <img className="swiper-lazy swiper-lazy-loaded" src="http://localhost:3000/images/vinfast-data-01/bg-title-car.png" alt="" />
         <div className="info__body">
             <div className="info__body--body">
                 <div className="info__body--desc">{props.item.description1}</div>
@@ -92,7 +89,7 @@ const Block3Item = props => (
         <div className="img">
             <div className="img__lienket">
                 Chi tiết
-                <img className="swiper-lazy swiper-lazy-loaded" src={logoVin} alt="" />
+                <img className="swiper-lazy swiper-lazy-loaded" src="http://localhost:3000/images/vinfast/logo_gray.svg" alt="" />
             </div>
             <img src={props.item.image} alt="" />
         </div>

@@ -15,7 +15,7 @@ if (isset($_POST['id'])) {
     $files = $_FILES['banner'];
     $id = mysqli_real_escape_string($connect, $_POST['id']);
     $placement = mysqli_real_escape_string($connect, $_POST['placement']);
-   
+
 
     //file properties
     $filename = $files['name'];
@@ -27,17 +27,16 @@ if (isset($_POST['id'])) {
 
     $allowed_extentions = ['png', 'jpg', 'jpeg'];
 
-    if (in_array($fileextension, $allowed_extentions)) { 
+    if (in_array($fileextension, $allowed_extentions)) {
         if ($uploaderrors === 0) {
             $new_file_name = uniqid() . '.' . $fileextension;
-            // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
             $file_destination = '../../../vinfast-frontend/public/images/admin/car/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
                 $connection = "UPDATE banner SET id= '$id', placement = '$placement', banner= 'http://localhost:3000/images/admin/car/$new_file_name' WHERE id = '$id'";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
                 } else {
-                    echo 'could not update data into the database'; 
+                    echo 'could not update data into the database';
                     echo $id;
                 }
             }

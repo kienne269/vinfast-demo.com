@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './footer.scss'
-import logo from '../../../assets/images/vinfast-data-01/logo_1627445467.png'
 
 const Footer = () => {
     return (

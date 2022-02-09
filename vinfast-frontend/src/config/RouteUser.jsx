@@ -21,7 +21,7 @@ import MyAccount from '../components/user/my-account/MyAccount';
 import SidebarUser from '../components/user/sidebar-user/SidebarUser';
 import TransactionHistory from '../components/user/transaction-history/TransactionHistory';
 import { useLocation } from 'react-router-dom';
-import NotFound from '../components/pages/NotFound';
+import NotFound from '../components/user/not-found/NotFound'
 import OrderDetail from '../components/user/order-detail/OrderDetail';
 const RouteUser = () => {
     const location = useLocation();

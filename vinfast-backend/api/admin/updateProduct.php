@@ -33,7 +33,6 @@ if (isset($_POST['id'])) {
     if (in_array($fileextension, $allowed_extentions)) {
         if ($uploaderrors === 0) {
             $new_file_name = uniqid() . '.' . $fileextension;
-            // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
             $file_destination = '../../../vinfast-frontend/public/images/admin/car/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
                 $connection = "UPDATE full_color_car SET id= '$id', name= '$name', count= '$count', image= 'http://localhost:3000/images/admin/car/$new_file_name', color= '$color', price= '$price', deposits= '$deposits' WHERE id = '$id'";

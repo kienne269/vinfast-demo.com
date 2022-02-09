@@ -7,8 +7,6 @@ import cookies from 'react-cookies'
 import { logout, selectUser } from '../../../redux/user/userSlice';
 import './header.scss';
 
-import logo_main_w from '../../../assets/logo-main-w.svg';
-import arrow from '../../../assets/images/arrow.svg'
 const headerNav = [
     {
         display: 'Ô tô',
@@ -111,7 +109,7 @@ const Header = () => {
                     <div className="header__left">
                         <div className="header__left--logo" onClick={handleClickTop}>
                             <Link to='/'>
-                                <img src={logo_main_w} alt="" />
+                                <img src="http://localhost:3000/images/logo-header.svg" alt="" />
                             </Link>
                         </div>
                         <ul className="header__left--nav">

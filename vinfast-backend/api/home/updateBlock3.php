@@ -22,7 +22,7 @@ if (isset($_POST['id_xe'])) {
     $description2 = mysqli_real_escape_string($connect, $_POST['description2']);
     $description3 = mysqli_real_escape_string($connect, $_POST['description3']);
     $description4 = mysqli_real_escape_string($connect, $_POST['description4']);
-   
+
 
     //file properties
     $filename = $files['name'];
@@ -34,22 +34,21 @@ if (isset($_POST['id_xe'])) {
 
     $allowed_extentions = ['png', 'jpg', 'jpeg'];
 
-    if (in_array($fileextension, $allowed_extentions)) { 
-        if ($uploaderrors === 0) { 
+    if (in_array($fileextension, $allowed_extentions)) {
+        if ($uploaderrors === 0) {
             $new_file_name = uniqid() . '.' . $fileextension;
-            // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
             $file_destination = '../../../vinfast-frontend/public/images/admin/car/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
                 $connection = "UPDATE list_car SET id_xe= '$id', slug = '$slug', dongxe = '$dongxe', slogan= '$slogan', name = '$name', description1 = '$description1', description2 = '$description2', description3 ='$description3',  description4 = '$description4', image= 'http://localhost:3000/images/admin/car/$new_file_name' WHERE id_xe = '$id'";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
                 } else {
-                    echo 'could not update data into the database'; 
+                    echo 'could not update data into the database';
                     echo $id;
                 }
             }
         } else {
-            echo 'there was an error in upload'; 
+            echo 'there was an error in upload';
         }
     } else {
         echo 'file with this extension is not allowed';

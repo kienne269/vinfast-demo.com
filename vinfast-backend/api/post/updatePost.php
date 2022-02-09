@@ -31,7 +31,6 @@ if (isset($_POST['title'])) {
     if (in_array($fileextension, $allowed_extentions)) {
         if ($uploaderrors === 0) {
             $new_file_name = uniqid() . '.' . $fileextension;
-            // $file_destination = '../../../vinfast-frontend/src/assets/images/post/' . $new_file_name;
             $file_destination = '../../../vinfast-frontend/public/images/posts/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
                 $connection = "UPDATE list_post SET id= '$id', title= '$title', picture= 'http://localhost:3000/images/posts/$new_file_name', content= '$content', user_id= '$user_id', username= '$username' WHERE id = '$id'";

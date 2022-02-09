@@ -13,7 +13,8 @@ const TransactionHistory = () => {
     const user = useSelector(selectUser);
     
     const [customerData, setCustomerData] = useState([])
-
+    const [currentId, setCurrentId] = useState(0)
+    console.log(currentId)
     useEffect(() => {
       const getCustomerByEmail = async () => {
         try {
@@ -24,7 +25,7 @@ const TransactionHistory = () => {
         }
       }
       getCustomerByEmail()
-    }, [user.email])
+    }, [user.email,currentId])
     
     const handleSubmitReject = async (id) => {
       // e.preventDefault();
@@ -43,7 +44,7 @@ const TransactionHistory = () => {
           }
       }
       updateCustomer()
-      window.location.reload(false);
+      // window.location.reload(false);
   }
 
     return <div className='l-9 m-9 c-12 my__account'>
@@ -72,7 +73,7 @@ const TransactionHistory = () => {
                           item.status === 'pending' ? <>
                                                       <div className='product__status'>Chờ hoàn tất thủ tục đặt cọc</div>
                                                       <div className='button'>
-                                                        <button onClick={() => handleSubmitReject(item.id)}>Hủy đơn hàng</button>
+                                                        <button onClick={() => (handleSubmitReject(item.id), setCurrentId(item.id))}>Hủy đơn hàng</button>
                                                       </div>
                                                     </> : null
                         }

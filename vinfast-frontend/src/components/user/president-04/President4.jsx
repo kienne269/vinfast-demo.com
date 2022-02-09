@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import president4Api from '../../../api/president4Api'
 import './president4.scss'
-import first from '../../../assets/images/lux-sa/4.1.jpg'
-
 
 const President4 = props => {
 
@@ -34,7 +31,7 @@ const President4 = props => {
                 <div className="row">
                     <div className="l-8">
                         {/* <div style={{backgroundImage: `url(${background})`}}></div> */}
-                        <img src={background || first} alt="" />
+                        <img src={background || "http://localhost:3000/images/lux-sa/4.1.jpg"} alt="" />
                     </div>
                     <div className="l-4">
                         <div className="container">

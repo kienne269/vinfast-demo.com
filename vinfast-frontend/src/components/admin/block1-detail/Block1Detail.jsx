@@ -119,17 +119,20 @@ const ProductInfo = ({product}) => {
                     <div className="row">
                         <div className="l-6">
                             <div className="form-group">
-                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder="Id block" />
+                                <input disabled value={idProduct } type="text" name="id" id="id" placeholder=" " />
+                                <label className='label' htmlFor="id">Id</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={title } onChange={(e) => setTitle(e.target.value)} type="text" name="name" id="name" placeholder="Title" />
+                                <input value={title } onChange={(e) => setTitle(e.target.value)} type="text" name="Title" id="Title" placeholder=" " />
+                                <label className='label' htmlFor="Title">Title</label>
                             </div>
                         </div> 
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={description } onChange={(e) => setDescription(e.target.value)} type="text" name="name" id="name" placeholder="Description" />
+                                <input value={description } onChange={(e) => setDescription(e.target.value)} type="text" name="Description" id="Description" placeholder=" " />
+                                <label className='label' htmlFor="Description">Description</label>
                             </div>
                         </div>          
 

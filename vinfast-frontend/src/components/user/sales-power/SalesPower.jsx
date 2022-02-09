@@ -1,24 +1,13 @@
 import React from 'react'
 
-import SwiperCore, {Autoplay, Navigation} from 'swiper';
+import {Autoplay} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'; 
-
-import bike_feliz from '../../../assets/images/bike/bike-feliz.jpg'
-import bike_tempest from '../../../assets/images/bike/bike-tempest.jpg'
-
-import klaras from '../../../assets/images/bike/klaras.png'
-import feliz from '../../../assets/images/bike/feliz.png'
-import bike_klara_a2 from '../../../assets/images/bike/bike-klara-a2.jpg'
-import impres_red from '../../../assets/images/bike/impes-red.jpg'
-import impres_blue from '../../../assets/images/bike/impres-blue.jpg'
-import klara_s_black from '../../../assets/images/bike/klara-s-black.jpg'
-import ludo_red from '../../../assets/images/bike/ludo-red.jpg'
 
 import './sales-power.scss'
 
 const SalesPower = () => {
-    const list_bike = [klaras, feliz, bike_klara_a2, impres_red, impres_blue, klara_s_black, ludo_red]
-    const img_new = [bike_tempest, bike_feliz];
+    const list_bike = ["http://localhost:3000/images/bike/klaras.png", "http://localhost:3000/images/bike/feliz.png", 'http://localhost:3000/images/bike/bike-klara-a2.jpg', 'http://localhost:3000/images/bike/impes-red.jpg', 'http://localhost:3000/images/bike/impres-blue.jpg', 'http://localhost:3000/images/bike/klara-s-black.jpg', 'http://localhost:3000/images/bike/ludo-red.jpg']
+    const img_new = ["http://localhost:3000/images/bike/bike-tempest.jpg", "http://localhost:3000/images/bike/bike-feliz.jpg"];
     const name_new = ['TEMPEST', 'FELIZ']
     const price_new = ['19.250.000', '24.900.000']
     const name_hot = ['KLARA S - Xanh lục', 'FELIZ - Đỏ', 'KLARA A2 - 2021', 'IMPES - Xanh đậm', 'IMPES - Đỏ', 'KLARA S - Đen', 'LUDO - Đỏ']

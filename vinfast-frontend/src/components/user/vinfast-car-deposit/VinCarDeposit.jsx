@@ -7,8 +7,6 @@ import productDepositApi from '../../../api/depost/depositApi'
 
 import './vin-car-deposit.scss'
 
-import thumb from '../../../assets/images/thumb-MD04-PO21.jpg'
-
 const VinCarDetail = () => {
 
     const carFisrt = [17, 0, 6, 12, 25]
@@ -143,13 +141,13 @@ const VinCarDetail = () => {
                             <p className="select__color">Lựa chọn màu nội thất</p>
                             <ul>
                                 <li className="active">
-                                    <img src={thumb} alt="" />
+                                    <img src="http://localhost:3000/images/thumb-MD04-PO21.jpg" alt="" />
                                 </li>
                             </ul>
                             <div className="colorName">Da tiêu chuẩn</div>
                         </div>
                         <div className="detail__policy">
-                            <Link to="/images/Bang-gia_T12-02.jpg" target="_blank">
+                            <Link to="http://localhost:3000/images/Bang-gia_T12-02.jpg" target="_blank">
                                 Chi tiết chính sách bán hàng
                             </Link>
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux'
-import { Route, Routes, useLocation, useNavigate} from 'react-router-dom';
+import { Route, Routes, useNavigate} from 'react-router-dom';
 import { selectUser } from '../redux/user/userSlice';
 import Sidebar from '../components/admin/sidebar/Sidebar';
 import TopNav from '../components/admin/topNav/TopNav';
@@ -33,11 +33,9 @@ import Block4 from '../components/pages/admin/Block4';
 import Newblock4 from '../components/admin/new-block4/Newblock4';
 import Block4Detail from '../components/admin/block4-detail/Block4Detail';
 
-import LoginAdmin from '../components/login/LoginAdmin'
-import NotFound from '../components/pages/NotFound';
+import NotFound from '../components/user/not-found/NotFound';
 
 const RouteAdmin = () => {
-    const { pathName } = useLocation();
     const navigate = useNavigate();
     const user = useSelector(selectUser);
     return (

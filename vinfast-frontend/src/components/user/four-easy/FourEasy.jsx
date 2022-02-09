@@ -1,13 +1,9 @@
 import React from 'react'
 
-import login_register from '../../../assets/images/login-register.png'
-import order from '../../../assets/images/order.png'
-import payment_method from '../../../assets/images/payment-method.png'
-import showroom from '../../../assets/images/showroom.png'
 import './four-easy.scss'
 const FourEasy = () => {
 
-    const four_easy = [login_register, order, payment_method, showroom];
+    const four_easy = ['http://localhost:3000/images/login-register.png', 'http://localhost:3000/images/order.png', 'http://localhost:3000/images/payment-method.png', 'http://localhost:3000/images/showroom.png'];
     const four_desc_top = ['Đăng nhập / đăng ký', 'Đặt mua', 'Chọn phương thức thanh toán', 'Đến Showroom kiểm tra']
     const four_desc_bottom = ['& Lựa chọn xe', '& Chọn Showroom nhận xe', '(COD, trả trước, trả góp 0%)', '& nhận xe']
     return (

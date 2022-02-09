@@ -123,22 +123,26 @@ const AccountInfo = ({account}) => {
                     <div className="row">
                         <div className="l-6">
                             <div className="form-group">
-                                <input disabled value={account.id } type="text" name="id" id="id" placeholder="Id Account" />
+                                <input disabled value={account.id } type="text" name="id" id="id" placeholder=" " />
+                                <label className='label' htmlFor="id">Id Account</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                                <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder=" " />
+                                <label className='label' htmlFor="Name">Name</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder="email" />
+                                <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder=" " />
+                                <label className='label' htmlFor="email">email</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
-                                <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="password" />
+                                <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder=" " />
+                                <label className='label' htmlFor="password">password</label>
                             </div>
                         </div>
                     </div>

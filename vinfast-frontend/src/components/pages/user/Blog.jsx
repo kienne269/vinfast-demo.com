@@ -18,11 +18,12 @@ const Blog = () => {
             try {
                 const res = await postApi.getAll()
                 setPosts(res.data)
+                setFilteredResults(res.data)
             } catch(err) {
                 console.log(err)
             }
         }
-        getAllPost()            
+        getAllPost()    
     }, [])
 
     console.log(posts)
@@ -63,7 +64,7 @@ const Blog = () => {
                 <div className="blog__content">
                     <div className='row'>
                         {
-                            posts ? posts.map((item, index) => (
+                            filteredResults ? filteredResults.map((item, index) => (
                                 <Link className='l-4 post' to={`/blog/${item.id}`} key={index}>
                                     <div className='post__test'>
                                         <div className="post__image">

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import policy from '../../../assets/images/policy.png'
 import './policy-power.scss'
 const PolicyPower = () => {
     return (
@@ -12,7 +11,7 @@ const PolicyPower = () => {
                     hoặc thuê pin ưu việt với gói thuê pin chỉ từ 149.000 vnđ/pin/tháng.
                 </p>
                 <div className="img">
-                    <img src={policy} alt="policy" />
+                    <img src="http://localhost:3000/images/policy.png" alt="policy" />
                 </div>
                 <div className="btn">
                     <button>Chính sách thuê pin</button>

@@ -1,7 +1,7 @@
 @use "../../../scss/" as *;
 
 .block__trangchu {
-  background-image: url(../../../assets/images/home_bg_top.webp);
+  background-image: url("http://localhost:3000/images/home_bg_top.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

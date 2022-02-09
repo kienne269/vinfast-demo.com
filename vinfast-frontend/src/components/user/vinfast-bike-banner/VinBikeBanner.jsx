@@ -1,20 +1,15 @@
 import React from 'react'
-import banner from '../../../assets/images/Slide/3.png'
-
-import pay from '../../../assets/images/bike/pay.png'
-import sales from '../../../assets/images/bike/sales.png'
-import car from '../../../assets/images/bike/car.png'
 
 import './vin-bike-banner.scss'
 const VinBikeBanner = () => {
     return (
         <div className='vinfast__bike__banner'>
-            <img src={banner} alt="banner"/>
+            <img src='http://localhost:3000/images/Slide/3.png' alt="banner"/>
             <div className="table">
                 <div className="container">
                     <div className="row">
                         <div className="text-center l-4 m-4 c-12">
-                            <img src={pay} alt="pay" />
+                            <img src='http://localhost:3000/images/bike/pay.png' alt="pay" />
                             <p className='col-text'>
                                 <span className='color-blue'>Thanh toán</span>
                                 <br />
@@ -22,7 +17,7 @@ const VinBikeBanner = () => {
                             </p>
                         </div>
                         <div className="text-center l-4 m-4 c-12">
-                            <img src={sales} alt="sales" />
+                            <img src='http://localhost:3000/images/bike/sales.png' alt="sales" />
                             <p className='col-text'>
                                 Ưu đãi trả góp
                                 <br />
@@ -30,7 +25,7 @@ const VinBikeBanner = () => {
                             </p>
                         </div>
                         <div className="text-center l-4 m-4 c-12">
-                            <img src={car} alt="" />
+                            <img src='http://localhost:3000/images/bike/car.png' alt="" />
                             <p className='col-text'>
                                 Nhận xe tại hệ thống showroom
                                 <br />

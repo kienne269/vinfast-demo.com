@@ -10,12 +10,9 @@ const NewProduct = () => {
     const [idProduct, setIdProduct] = useState('')
     const [name, setName] = useState('')
     const [color, setColor] = useState('')
-    const [image, setImage] = useState('')
     const [count, setCount] = useState('')
     const [price, setPrice] = useState('')
     const [deposits, setDeposits] = useState('')
-    const [focus, setFocus] = useState(false)
-    console.log(focus)
     const createProduct = async (e) => {
         e.preventDefault();
 
@@ -78,32 +75,38 @@ const NewProduct = () => {
                         <div className="row">
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder="Id product" />
+                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder=" " />
+                                    <label className='label' htmlFor="id">Id product</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder="Name" />
+                                    <input value={name } onChange={(e) => setName(e.target.value)} type="text" name="name" id="name" placeholder=" " />
+                                    <label className='label' htmlFor="Name">Name</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={color } onChange={(e) => setColor(e.target.value)} type="text" name="color" id="color" placeholder="Color" />
+                                    <input value={color } onChange={(e) => setColor(e.target.value)} type="text" name="color" id="color" placeholder=" " />
+                                    <label className='label' htmlFor="Color">Color</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={count } onChange={(e) => setCount(e.target.value)} type="text" name="count" id="count" placeholder="Count" />
+                                    <input value={count } onChange={(e) => setCount(e.target.value)} type="text" name="count" id="count" placeholder=" " />
+                                    <label className='label' htmlFor="Count">Count</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={price } onChange={(e) => setPrice(e.target.value)} type="text" name="price" id="price" placeholder="Price" />
+                                    <input value={price } onChange={(e) => setPrice(e.target.value)} type="text" name="price" id="price" placeholder=" " />
+                                    <label className='label' htmlFor="id">Price</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={deposits } onChange={(e) => setDeposits(e.target.value)} type="text" name="deposit" id="deposit" placeholder="Deposit" />
+                                    <input value={deposits } onChange={(e) => setDeposits(e.target.value)} type="text" name="deposit" id="deposit" placeholder=" " />
+                                    <label className='label' htmlFor="id">Deposit</label>
                                 </div>
                             </div>
                         </div>

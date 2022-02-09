@@ -7,7 +7,6 @@ import {login, selectUser } from '../../../redux/user/userSlice';
 import accountApi from '../../../api/account';
 import { TabTitle } from '../../../assets/setTitle'
 import './my-account.scss'
-import { useSearchParams } from 'react-router-dom';
 const MyAccount = () => {
 
   TabTitle("Tài khoản của tôi | VinFast Online")

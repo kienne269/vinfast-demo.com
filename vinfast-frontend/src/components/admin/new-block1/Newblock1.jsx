@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import productApi from '../../../api/admin/productApi'
-import './new-block1.scss'
 const NewProduct = () => {
 
     const selectFile = useRef()
@@ -10,9 +9,6 @@ const NewProduct = () => {
     const [idProduct, setIdProduct] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [image, setImage] = useState('')
-    const [focus, setFocus] = useState(false)
-    console.log(focus)
     const createBanner = async (e) => {
         e.preventDefault();
 
@@ -71,17 +67,20 @@ const NewProduct = () => {
                         <div className="row">
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder="Id block" />
+                                    <input value={idProduct } onChange={(e) => setIdProduct(e.target.value)} type="text" name="id" id="id" placeholder=" " />
+                                    <label className='label' htmlFor="id">Id block</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={title } onChange={(e) => setTitle(e.target.value)} type="text" name="placement" id="placement" placeholder="Title" />
+                                    <input value={title } onChange={(e) => setTitle(e.target.value)} type="text" name="title" id="title" placeholder=" " />
+                                    <label className='label' htmlFor="title">Title</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
-                                    <input value={description } onChange={(e) => setDescription(e.target.value)} type="text" name="placement" id="placement" placeholder="Description" />
+                                    <input value={description } onChange={(e) => setDescription(e.target.value)} type="text" name="description" id="description" placeholder=" " />
+                                    <label className='label' htmlFor="description">Description</label>
                                 </div>
                             </div>
                             
