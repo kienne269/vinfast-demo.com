@@ -26,8 +26,6 @@ const Blog = () => {
         getAllPost()    
     }, [])
 
-    console.log(posts)
-
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
@@ -42,7 +40,6 @@ const Blog = () => {
         }
     }
 
-    console.log(filteredResults)
     return (
         <div className="blog">
             <div className="container">

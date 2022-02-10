@@ -236,7 +236,7 @@ const Customers = () => {
         }
         getOneCustomerApi() 
     }, [id, reRender])
-    console.log(id)
+    console.log(customerOneData)
     return (
         <>
             <h2 className="page-header">

@@ -43,24 +43,24 @@ const RouteUser = () => {
                                 </Routes>
                             </div>
                         </div>
-                    </div> : null
+                    </div> : <Routes>
+                                <Route path='/vinfast-cars-deposit' element={<Car />} />
+                                <Route path='/vinfast-bike' element={<Bike />} />
+                                <Route path='/uu-dai' element={<Service />} />
+                                <Route path='dich-vu' element={<Service />} />
+                                <Route path='/blog' element={<Blog />} />
+                                <Route path='/new-post' element={<NewPost />} />
+                                <Route path='/login' element={< Login/>} />
+                                <Route path='/signin' element={< Signin/>} />
+                                <Route path='/dat-coc' element={<DepostSuccess />} />
+                                <Route path='/blog/:id' element={<BlogDetail />} />
+                                <Route path='/post/:id/edit' element={<PostEdit />} />
+                                <Route path='/catalog/:slug' element={<Product  />} />
+                                <Route path='/' element={<Home />} />
+                                <Route path='*' element={<NotFound />} />
+                            </Routes>
                 }
-                <Routes>
-                    <Route path='/vinfast-cars-deposit' element={<Car />} />
-                    <Route path='/vinfast-bike' element={<Bike />} />
-                    <Route path='/uu-dai' element={<Service />} />
-                    <Route path='dich-vu' element={<Service />} />
-                    <Route path='/blog' element={<Blog />} />
-                    <Route path='/new-post' element={<NewPost />} />
-                    <Route path='/login' element={< Login/>} />
-                    <Route path='/signin' element={< Signin/>} />
-                    <Route path='/dat-coc' element={<DepostSuccess />} />
-                    <Route path='/blog/:id' element={<BlogDetail />} />
-                    <Route path='/post/:id/edit' element={<PostEdit />} />
-                    <Route path='/catalog/:slug' element={<Product  />} />
-                    <Route path='/' element={<Home />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                
             <Footer />
         </>
     )

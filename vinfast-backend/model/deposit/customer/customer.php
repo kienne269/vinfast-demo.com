@@ -30,7 +30,7 @@ class Customer
     //read data
     public function read()
     {
-        $query = "SELECT * FROM vinfast_customer";
+        $query = "SELECT * FROM vinfast_customer ORDER BY vinfast_customer.published_at DESC";
 
         $stmt = $this->conn->prepare($query);
 
