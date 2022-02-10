@@ -1,7 +1,7 @@
 import axios from "axios"
 import queryString from 'query-string'
 
-const baseUrl = 'http://localhost/vinfast/vinfast-backend/api/'
+const baseUrl = 'http://18.141.188.173/vinfast-backend/api'
 
 const axiosClient = axios.create({
     baseURL: baseUrl,
