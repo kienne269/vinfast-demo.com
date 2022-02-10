@@ -15,3 +15,5 @@ cd vinfast-frontend
 npm install react-scripts
 
 npm start
+
+#Preview
