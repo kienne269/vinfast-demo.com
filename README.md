@@ -16,6 +16,10 @@ add vinfast folder to htdocs folder in xampp
 
      npm start
      
+# Video demo
+
+https://youtu.be/Ff0z6WzJqsY
+
 # Preview Home and Responsive
 
 ![1](https://user-images.githubusercontent.com/88047306/153750213-73351112-df1e-4709-86aa-8834c8032366.png)
