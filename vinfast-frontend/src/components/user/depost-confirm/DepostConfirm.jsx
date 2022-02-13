@@ -1,7 +1,4 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import customerApi from '../../../api/depost/customerApi'
 import './depost-confirm.scss'
@@ -44,8 +41,7 @@ const DepostConfirm = (props) => {
         } else if (customer.payment === 'Thanh toán qua chuyển khoản ngân hàng') {
             formData.append("file", props.file)
             try {
-                // const res = await customerApi.create(formData)
-                const res = await axios.post("http://localhost/vinfast/vinfast-backend/api/deposit/customer/createCustomer.php", formData)
+                const res = await customerApi.create(formData)
                 navigate('/dat-coc')
                 console.log(res.data)
             } catch(err) {

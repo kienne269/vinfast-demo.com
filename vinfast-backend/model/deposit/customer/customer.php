@@ -41,15 +41,7 @@ class Customer
     //read count customer in current month
     public function readMonth()
     {
-        $query = "SELECT count(id) as count,
-                        YEAR(published_at) as year,
-                        MONTH(published_at) as month 
-                FROM vinfast_customer 
-                WHERE YEAR(CURRENT_DATE) = YEAR(published_at)
-                GROUP BY YEAR(published_at),
-                        MONTH(published_at) 
-                ORDER BY YEAR(published_at),
-                        MONTH(published_at)";
+        $query = "select sum(CAST(vinfast_customer.price AS decimal(18,6))) as total FROM vinfast_customer WHERE vinfast_customer.status = 'accept'";
 
         $stmt = $this->conn->prepare($query);
 

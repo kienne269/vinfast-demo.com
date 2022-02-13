@@ -14,11 +14,11 @@ const MyAccount = () => {
   const user = useSelector(selectUser)
   const dispatch = useDispatch();
   const [userData, setUserData] = useState(123);
+  console.log(userData)
   useEffect(() => {
     const getAccount = async () => {
       try {
-          // const res = await accountApi.getOne(user.id)
-          const res = await axios.get(`http://localhost/vinfast/vinfast-backend/api/user/showAccount.php?id=${user.id}`, user.id)
+          const res = await accountApi.getOne(user.id)
           console.log(user.id)
           setUserData(res.data)
       } catch(err) {
@@ -112,6 +112,8 @@ const handleShowPassConfirm = () => {
         const updateProductApi = async () => {
             try {
                 const res = await accountApi.update(formData)
+                alert('Cập nhật thông tin thành công')
+                setShowFormInfo(false)
                 console.log(res)
             } catch(err) {
                 console.log(err)
@@ -142,6 +144,8 @@ const handleShowPassConfirm = () => {
       const updateProductApi = async () => {
           try {
               const res = await accountApi.update(formData)
+              alert('Cập nhật mật khẩu thành công')
+              setShowForm(false)
               console.log(res)
           } catch(err) {
               console.log(err)
@@ -190,7 +194,9 @@ const handleShowPassConfirm = () => {
       </div>
       {showForm ? <div className="my__account__form">
         <div className="showForm"  id="register__success">
-          <div className="logo "></div>
+          <div className="logo ">
+            <img src="http://localhost:3000/images/logo-header.svg" alt="close_yctv" />
+          </div>
           <div onClick={() => setShowForm(false)} className="close__form">
             <img src="http://localhost:3000/images/vinfast-data-01/close_yctv.svg" alt="close_yctv" />
           </div>

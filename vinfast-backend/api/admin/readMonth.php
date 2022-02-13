@@ -18,9 +18,7 @@ while ($row = $read->fetch(PDO::FETCH_ASSOC)) {
     extract($row);
 
     $list_customer_item = array(
-        'count' => $count,
-        'year' => $year,
-        'month' => $month,
+        'total' => $total,
     );
     array_push($list_customer_array['data'], $list_customer_item);
 }

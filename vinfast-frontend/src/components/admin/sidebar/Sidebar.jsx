@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import { Link , useLocation} from 'react-router-dom';
+import { Link , useLocation, useNavigate} from 'react-router-dom';
 import { selectUser } from '../../../redux/user/userSlice';
 
 import './sidebar.scss'
@@ -22,6 +22,7 @@ const SidebarItem = props => {
 
 const Sidebar = props => {
     const user = useSelector(selectUser);
+    const navigate = useNavigate();
     let sidebar_items = [
         {
             "display_name": "Dashboard",
@@ -112,7 +113,7 @@ const Sidebar = props => {
     const activeItem = sidebar_items.findIndex(item => `/admin/${item.route}` === location.pathname)
     return (
         <div className='sidebar'>
-            <div className="sidebar__logo">
+            <div className="sidebar__logo" onClick={() => navigate('/')} >
                 <img src="http://localhost:3000/images/logo-header.svg" alt="company logo" />
             </div>
             {
