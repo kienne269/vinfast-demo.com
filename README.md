@@ -1,7 +1,4 @@
-# Website: 
-https://vinfastautodemo.tk/vinfast-frontend/build/ do dùng free nên web load chậm
-
-http://18.141.188.173/vinfast-frontend/build/
+# Deploy: http://18.141.188.173/vinfast-frontend/build/
 
 # Run app
 
