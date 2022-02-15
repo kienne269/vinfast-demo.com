@@ -17,10 +17,6 @@ add vinfast folder to htdocs folder in xampp
      npm install react-scripts
 
      npm start
-     
-# Video demo
-
-https://youtu.be/Ff0z6WzJqsY
 
 # Preview Home and Responsive
 
