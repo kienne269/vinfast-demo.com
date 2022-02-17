@@ -1,3 +1,5 @@
+# Deploy: http://18.141.188.173/vinfast-frontend/build/
+
 # Run app
 
 add vinfast folder to htdocs folder in xampp
@@ -15,10 +17,6 @@ add vinfast folder to htdocs folder in xampp
      npm install react-scripts
 
      npm start
-     
-# Video demo
-
-https://youtu.be/Ff0z6WzJqsY
 
 # Preview Home and Responsive
 
