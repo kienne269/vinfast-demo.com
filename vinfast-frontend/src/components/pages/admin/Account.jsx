@@ -10,6 +10,7 @@ const loginTableHead = [
     'name',
     'email',
     'password',
+    'role',
     'action',
 ]
 
@@ -24,6 +25,7 @@ const renderBody = (item, index) => (
         <td>{item.name}</td>
         <td>{item.email}</td>
         <td>{item.password}</td>
+        <td>{item.role}</td>
         <td>
             <Link to={`/admin/accounts/${item.id}`}>
                 <i className="fas fa-external-link"></i>

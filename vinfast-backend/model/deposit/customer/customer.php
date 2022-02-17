@@ -38,10 +38,21 @@ class Customer
         return $stmt;
     }
 
+    //read top 5 data
+    public function readTopCustomer()
+    {
+        $query = "SELECT * FROM vinfast_customer ORDER BY vinfast_customer.published_at DESC LIMIT 5";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
     //read count customer in current month
     public function readMonth()
     {
-        $query = "select sum(CAST(vinfast_customer.price AS decimal(18,6))) as total FROM vinfast_customer WHERE vinfast_customer.status = 'accept'";
+        $query = "SELECT SUM(price) as total FROM vinfast_customer WHERE vinfast_customer.status = 'accept'";
 
         $stmt = $this->conn->prepare($query);
 

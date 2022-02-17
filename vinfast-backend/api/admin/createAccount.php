@@ -1,5 +1,8 @@
 <?php
+require('../../model/carbon/autoload.php');
 
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 // Allow from any origin
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
@@ -17,7 +20,8 @@ if (isset($_POST['id'])) {
     $name = mysqli_real_escape_string($connect, $_POST['name']);
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $password = mysqli_real_escape_string($connect, $_POST['password']);
-    $date_create = mysqli_real_escape_string($connect, $_POST['date_create']);
+    $role = mysqli_real_escape_string($connect, $_POST['role']);
+    $date_create = carbon::now('Asia/Ho_Chi_Minh');
 
     //file properties
     $filename = $files['name'];
@@ -34,7 +38,7 @@ if (isset($_POST['id'])) {
             $new_file_name = uniqid() . '.' . $fileextension;
             $file_destination = '../../../vinfast-frontend/public/images/avatar/' . $new_file_name;
             if (move_uploaded_file($templocation, $file_destination)) {
-                $connection = "INSERT INTO vinfast_account (id, avatar, name, email, password, date_create) VALUES ('$id', 'http://localhost:3000/images/avatar/$new_file_name', '$name', '$email', '$password', '$date_create')";
+                $connection = "INSERT INTO vinfast_account (id, avatar, name, email, password, role, date_create) VALUES ('$id', 'http://localhost:3000/images/avatar/$new_file_name', '$name', '$email', '$password', '$role', '$date_create')";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
                 } else {

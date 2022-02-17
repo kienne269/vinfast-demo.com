@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const customerApi = {
     getAll: () => axiosClient.get('deposit/customer/readCustomer.php'),
+    getTopCustomer: () => axiosClient.get('deposit/customer/readTopCustomer.php'),
     create: (params) => axiosClient.post('deposit/customer/createCustomer.php', params),
     postVNPay: (params) => axiosClient.post('deposit/vnpay_php/vnpay_create_payment.php', params),
     createVNPay: (params) => axiosClient.post('deposit/customer/createCustomerVNpay.php', params),

@@ -28,6 +28,8 @@ if ($num > 0) {
             'post_id' => $post_id,
             'user_id' => $user_id,
             'content' => $content,
+            'avatar' => $avatar,
+            'name' => $name,
         );
         array_push($list_comment_array['data'], $list_comment_item);
     }

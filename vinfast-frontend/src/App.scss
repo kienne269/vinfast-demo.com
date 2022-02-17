@@ -119,6 +119,12 @@ input:focus {
 .page-header {
   margin-bottom: 4rem;
   text-transform: capitalize;
+
+  select {
+    padding: 5px 1rem;
+    font-size: 1.4rem;
+    border-radius: 4px;
+  }
 }
 
 .page-body {
@@ -138,7 +144,7 @@ input:focus {
 }
 
 .card.full-height {
-  height: calc(100% - 3rem);
+  height: calc(40rem - 3rem);
 }
 
 .card__header {
@@ -152,6 +158,12 @@ input:focus {
 .card__footer {
   text-align: center;
   text-transform: capitalize;
+  a {
+    display: block;
+    padding: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: -3rem;
+  }
 }
 
 .text-center {

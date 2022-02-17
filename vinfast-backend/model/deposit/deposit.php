@@ -23,7 +23,7 @@ class Deposit
     //read data all car
     public function readAll()
     {
-        $query = "SELECT * FROM full_color_car";
+        $query = "SELECT distinct * FROM full_color_car";
 
         $stmt = $this->conn->prepare($query);
 
@@ -34,7 +34,7 @@ class Deposit
     //read data LUX-SA2.0
     public function readLuxSa()
     {
-        $query = "SELECT * FROM full_color_car where name = 'LUX SA2.0'";
+        $query = "SELECT distinct * FROM full_color_car where name = 'LUX SA2.0'";
 
         $stmt = $this->conn->prepare($query);
 
@@ -45,7 +45,7 @@ class Deposit
     //read data LUX-A2.0
     public function readLuxA()
     {
-        $query = "SELECT * FROM full_color_car where name = 'LUX A2.0'";
+        $query = "SELECT distinct * FROM full_color_car where name = 'LUX A2.0'";
 
         $stmt = $this->conn->prepare($query);
 
@@ -56,7 +56,7 @@ class Deposit
     //read data FADIL
     public function readFADIL()
     {
-        $query = "SELECT * FROM full_color_car where name = 'FADIL'";
+        $query = "SELECT distinct * FROM full_color_car where name = 'FADIL'";
 
         $stmt = $this->conn->prepare($query);
 
@@ -67,7 +67,7 @@ class Deposit
     //read data PRESIDENT
     public function readPRESIDENT()
     {
-        $query = "SELECT * FROM full_color_car where name = 'PRESIDENT'";
+        $query = "SELECT distinct * FROM full_color_car where name = 'PRESIDENT'";
 
         $stmt = $this->conn->prepare($query);
 
@@ -78,7 +78,7 @@ class Deposit
     //read data VFE-34
     public function readVFE34()
     {
-        $query = "SELECT * FROM full_color_car where name = 'VF e34'";
+        $query = "SELECT distinct * FROM full_color_car where name = 'VF e34'";
 
         $stmt = $this->conn->prepare($query);
 
@@ -89,7 +89,7 @@ class Deposit
     //show data by name car and color
     public function showByCar()
     {
-        $query = "SELECT * FROM full_color_car WHERE name = ?";
+        $query = "SELECT distinct * FROM full_color_car WHERE name = ?";
 
         $stmt = $this->conn->prepare($query);
 

@@ -116,7 +116,8 @@ class Post
     //read comments
     public function readComments()
     {
-        $query = "SELECT * FROM list_comment WHERE post_id = ? ORDER BY list_comment.comment_id DESC";
+        $query = "SELECT comment_id, content, user_id, post_id, vinfast_account.avatar, vinfast_account.name
+        FROM list_comment INNER JOIN vinfast_account ON list_comment.user_id = vinfast_account.id WHERE post_id = ? ORDER BY list_comment.comment_id DESC";
 
         $stmt = $this->conn->prepare($query);
 
@@ -125,5 +126,33 @@ class Post
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stmt;
+    }
+
+    //create comment
+    public function createComment()
+    {
+        $query = "INSERT INTO list_comment SET content=:content, user_id=:user_id, post_id=:post_id, published_at=:published_at";
+
+        $stmt = $this->conn->prepare($query);
+
+        //clean data
+        // $this->comment_id = htmlspecialchars(($this->comment_id));
+        $this->content = htmlspecialchars(($this->content));
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+        $this->post_id = htmlspecialchars(strip_tags($this->post_id));
+        $this->published_at = htmlspecialchars(strip_tags($this->published_at));
+
+        //bind data
+        // $stmt->bindParam(':comment_id', $this->comment_id);
+        $stmt->bindParam(':content', $this->content);
+        $stmt->bindParam(':user_id', ($this->user_id));
+        $stmt->bindParam(':post_id', $this->post_id);
+        $stmt->bindParam(':published_at', $this->published_at);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+        printf("Error %s, \n" . $stmt->error);
+        return false;
     }
 }

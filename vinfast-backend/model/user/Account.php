@@ -28,6 +28,17 @@ class Account
         return $stmt;
     }
 
+    //read top 5 data
+    public function readTopAccount()
+    {
+        $query = "SELECT * FROM vinfast_account ORDER BY vinfast_account.id DESC LIMIT 5;";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
     //show data
     public function show()
     {
@@ -45,6 +56,7 @@ class Account
         $this->name = $row['name'];
         $this->email = $row['email'];
         $this->password = $row['password'];
+        $this->role = $row['role'];
     }
 
     //create data

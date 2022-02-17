@@ -13,7 +13,7 @@ const AccountDetail = () => {
         const getAccountApi = async () => {
             try {
                 const res = await accountApi.getOne(id)
-                setAccountData(res)
+                setAccountData(res.data)
             } catch(err) {
                 console.log(err)
             }
@@ -44,23 +44,25 @@ const AccountDetail = () => {
 export default AccountDetail
 
 const AccountInfo = ({account}) => {
+    console.log(account)
     const navigate = useNavigate();
 
     const selectFile = useRef()
-    const [idAccount, setIdAccount] = useState(account.id)
+    // const [account.id, setaccount.id] = useState(account.id)
     const [name, setName] = useState(account.name)
     const [email, setEmail] = useState(account.email)
     const [password, setPassword] = useState(account.password)
+    const [role, setRole] = useState(account.role)
     const updateAccount = async (e) => {
         e.preventDefault();
 
         const formData = new FormData()
-        formData.append("id", idAccount)
+        formData.append("id", account.id)
         formData.append("avatar", selectFile.current.files[0] || account.image)
         formData.append("name", name)
         formData.append("email", email)
         formData.append("password", password)
-        formData.append("date_create", new Date())
+        formData.append("role", role)
 
         const updateAccountApi = async () => {
             try {
@@ -78,7 +80,7 @@ const AccountInfo = ({account}) => {
     const DeleteAccount = async (e) => {
         e.preventDefault();
         try {
-            const res = await accountApi.deleteByAdmin(idAccount)
+            const res = await accountApi.deleteByAdmin(account.id)
             alert("Xóa thành công")
             navigate(`/admin/accounts`)
             console.log(res)
@@ -98,7 +100,6 @@ const AccountInfo = ({account}) => {
         }
       }
 
-      console.log(account.avatar)
       const renderPhotos = (source) => {
         return source.map((photo, index) => {
           return <img key={index} src={photo} alt="" width="350px" height="250px" />
@@ -136,13 +137,19 @@ const AccountInfo = ({account}) => {
                         <div className="l-6">
                             <div className="form-group">
                                 <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder=" " />
-                                <label className='label' htmlFor="email">email</label>
+                                <label className='label' htmlFor="email">Email</label>
                             </div>
                         </div>
                         <div className="l-6">
                             <div className="form-group">
                                 <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder=" " />
                                 <label className='label' htmlFor="password">password</label>
+                            </div>
+                        </div>
+                        <div className="l-6">
+                            <div className="form-group">
+                                <input value={role } onChange={(e) => setRole(e.target.value)} type="text" name="role" id="role" placeholder=" " />
+                                <label className='label' htmlFor="role">Role</label>
                             </div>
                         </div>
                     </div>

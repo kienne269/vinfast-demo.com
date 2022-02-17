@@ -21,6 +21,7 @@ $account_item = array(
     'name' => $account->name,
     'email' => $account->email,
     'password' => $account->password,
+    'role' => $account->role,
 );
 
 print_r(json_encode($account_item));

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const accountApi = {
     getAll: () => axiosClient.get('user/ReadAccount.php'),
+    getTopAccount: () => axiosClient.get('user/ReadTopAccount.php'),
     create: (params) => axiosClient.post('user/CreateAccount.php', params),
     getOne: (id) => axios.get(`http://localhost/vinfast/vinfast-backend/api/user/showAccount.php?id=${id}`),
     update: (params) => axiosClient.post(`user/UpdateAccount.php`, params),

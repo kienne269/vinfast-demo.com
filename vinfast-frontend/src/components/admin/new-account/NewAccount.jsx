@@ -11,6 +11,7 @@ const NewAccount = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [role, setRole] = useState('')
     const createProduct = async (e) => {
         e.preventDefault();
 
@@ -20,7 +21,7 @@ const NewAccount = () => {
         formData.append("avatar", selectFile.current.files[0])
         formData.append("email", email)
         formData.append("password", password)
-        formData.append("date_create", new Date())
+        formData.append("role", role)
         try {
             const res = await accountApi.createByAdmin(formData)
             alert("Thêm thành công")
@@ -60,7 +61,7 @@ const NewAccount = () => {
                 </div>
             </div>
             <div className="form__create">
-                <form className="formCreate" action="">
+                <form className="formCreate" role="">
                     <div className='row form__create__product'>
                     <div className="l-4 form__create__product__left">
                         <div className="form-group">
@@ -85,13 +86,19 @@ const NewAccount = () => {
                             <div className="l-6">
                                 <div className="form-group">
                                     <input value={email } onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" placeholder=" " />
-                                    <label className='label' htmlFor="id">Email</label>
+                                    <label className='label' htmlFor="email">Email</label>
                                 </div>
                             </div>
                             <div className="l-6">
                                 <div className="form-group">
                                     <input value={password } onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder=" " />
-                                    <label className='label' htmlFor="id">Password</label>
+                                    <label className='label' htmlFor="password">Password</label>
+                                </div>
+                            </div>
+                            <div className="l-6">
+                                <div className="form-group">
+                                    <input value={role } onChange={(e) => setRole(e.target.value)} type="text" name="role" id="role" placeholder=" " />
+                                    <label className='label' htmlFor="role">Role</label>
                                 </div>
                             </div>
                         </div>

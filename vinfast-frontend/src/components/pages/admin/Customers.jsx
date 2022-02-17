@@ -236,11 +236,13 @@ const Customers = () => {
         }
         getOneCustomerApi() 
     }, [id, reRender])
-    console.log(customerOneData)
     return (
         <>
-            <h2 className="page-header">
-                customers
+            <h2 className="page-header page-header--product">
+                <p>Customers</p>
+                <span className='page-header--export'>
+                    <button className="productAddButton">Export</button>
+                </span>
             </h2>
             <div className="page-body">
                 <div className="row">
