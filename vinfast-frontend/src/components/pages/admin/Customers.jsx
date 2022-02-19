@@ -23,7 +23,7 @@ const customerTableHead = [
 
 const Customers = () => {
     const [active, setActive] = useState(false)
-    const [id, setId] = useState(94)
+    const [id, setId] = useState(134)
     const [customerData, setCustomerData] = useState([])
     const [customerOneData, setCustomerOneData] = useState([])
 
@@ -35,7 +35,7 @@ const Customers = () => {
             <td>{item.name_car}</td>
             <td>{item.color_car}</td>
             <td>{item.money_deposit}</td>
-            <td>{item.price}</td>
+            <td>{item.price ? new Intl.NumberFormat('en').format(item.price) + 'đ' : 0}</td>
             <td>{item.name}</td>
             <td>{item.phone}</td>
             <td>{item.cccd}</td>
@@ -60,7 +60,8 @@ const Customers = () => {
         </tr>
     )
 
-    const [reRender, setReRender] = useState(true)
+    const [reRender, setReRender] = useState(false)
+    const [clickRender, setClickRender] = useState(false)
     const handleSubmitAccept = async (e) => {
         e.preventDefault();
 
@@ -72,8 +73,8 @@ const Customers = () => {
             try {
                 const res = await customerApi.update(formData)
                 alert("Cập nhật thành công")
+                setClickRender(true)
                 setReRender(false)
-                // navigate(`/admin/accounts`)
                 console.log(res)
             } catch(err) {
                 console.log(err)
@@ -94,6 +95,7 @@ const Customers = () => {
             try {
                 const res = await customerApi.update(formData)
                 alert("Cập nhật thành công")
+                setClickRender(true)
                 setReRender(false)
                 // navigate(`/admin/accounts`)
                 console.log(res)
@@ -217,15 +219,16 @@ const Customers = () => {
             try {
                 const res = await customerApi.getAll()
                 setCustomerData(res.data)
+                setReRender(true)
+                setClickRender(false)
             } catch(err) {
                 console.log(err)
             }
         }
         getCustomerApi()
-    }, [reRender])
+    }, [clickRender])
 
     useEffect(() => {
-        setReRender(true)
         const getOneCustomerApi = async () => {
             try {
                 const res = await customerApi.getOne(id)
@@ -235,7 +238,7 @@ const Customers = () => {
             }
         }
         getOneCustomerApi() 
-    }, [id, reRender])
+    }, [id, clickRender])
     return (
         <>
             <h2 className="page-header page-header--product">
@@ -249,13 +252,15 @@ const Customers = () => {
                     <div className="l-12">
                         <div className="card">
                             <div className="card__body">
-                                <Table 
-                                    limit='10'
-                                    headData={customerTableHead}
-                                    renderHead={(item, index) => renderHead(item, index)}
-                                    bodyData={customerData}
-                                    renderBody={(item, index) => renderBody(item, index)}
-                                />
+                                {
+                                    reRender && <Table 
+                                                    limit='10'
+                                                    headData={customerTableHead}
+                                                    renderHead={(item, index) => renderHead(item, index)}
+                                                    bodyData={customerData}
+                                                    renderBody={(item, index) => renderBody(item, index)}
+                                                />
+                                }
                             </div>
                         </div>
                     </div>

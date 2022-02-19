@@ -18,7 +18,7 @@ const renderHead = (item, index) => <th key={index}>{item}</th>
 
 const renderBody = (item, index) => (
     <tr key={index}>
-        <td>{item.id}</td>
+        <td>{index}</td>
         <td>
             <img src={item.avatar} alt="" />
         </td>
@@ -38,13 +38,14 @@ const renderBody = (item, index) => (
 const Products = () => {
 
     const [accountData, setAccountData] = useState([])
+    const [render, setRender] = useState(false)
 
-    console.log(accountData)
     useEffect(() => {
         const getAccountApi = async () => {
             try {
                 const res = await accountApi.getAll()
                 setAccountData(res.data)
+                setRender(true)
             } catch(err) {
                 console.log(err)
             }
@@ -63,13 +64,15 @@ const Products = () => {
                 <div className="l-12">
                     <div className="card">
                         <div className="card__body">
-                            <Table 
-                                limit='10'
-                                headData={loginTableHead}
-                                renderHead={(item, index) => renderHead(item, index)}
-                                bodyData={accountData}
-                                renderBody={(item, index) => renderBody(item, index)}
-                            />
+                            {
+                                render && <Table 
+                                            limit='10'
+                                            headData={loginTableHead}
+                                            renderHead={(item, index) => renderHead(item, index)}
+                                            bodyData={accountData}
+                                            renderBody={(item, index) => renderBody(item, index)}
+                                        />
+                            }
                         </div>
                     </div>
                 </div>

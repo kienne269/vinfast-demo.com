@@ -54,6 +54,7 @@ const Header = () => {
         dispatch(logout())
     }
 
+    console.log(user)
     let path = <Link to="/login" className="header__right--account">Tài khoản</Link>
     if(user !== null && user !== undefined) {
         path = <>
@@ -64,6 +65,11 @@ const Header = () => {
                     </div>
                     <div className='account__list active'>
                         <ul>
+                            {
+                                user.role !== 'user' ? <li>
+                                                            <Link to='/admin/'>Trang quản trị</Link>
+                                                        </li> : null
+                            }
                             <li>
                                 <Link to='/settings/thong-tin-ca-nhan'>Thông tin tài khoản</Link>
                             </li>

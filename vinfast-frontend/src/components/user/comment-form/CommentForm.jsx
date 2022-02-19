@@ -7,17 +7,7 @@ import './comment-form.scss'
 const CommentForm = () => {
     const user = useSelector(selectUser);
     const [text, setText] = useState('');
-    const [active, setActive] = useState(false);
-    const [hide, setHide] = useState(false);
     const location = useLocation()
-    
-    useEffect(() => {
-      const inputDiv = document.querySelector(".comment__form__text")
-      inputDiv.addEventListener("input", inputEvt => {
-        setText(inputDiv.innerHTML);
-        setActive(inputDiv.innerHTML !== '')
-      }, false);
-    }, [])
 
     const createComment = async (e) => {
       // e.preventDefault();
@@ -43,15 +33,14 @@ const CommentForm = () => {
   return <div className='comment__form'>
             <img src={user.avatar} alt="" />
             <input
-                contentEditable="true"
-                className={active ? "comment__form__text active" : "comment__form__text"}
+                className={text !== '' ? "comment__form__text active" : "comment__form__text"}
                 onChange={(e) => setText(e.target.value)}
                 placeholder='Viết bình luận của bạn...'
                 onKeyPress={createComment}
             />
             <div className="comment__form__action">
               <button className="cancel">Hủy</button>
-              <button onClick={createComment} className={active ? 'send-up active' : 'send-up'}>Bình luận</button>
+              <button onClick={createComment} className={text !== '' ? 'send-up active' : 'send-up'}>Bình luận</button>
             </div>
         </div>;
 };

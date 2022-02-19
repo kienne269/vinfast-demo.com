@@ -96,7 +96,6 @@
     &__reaction {
       @include flex(center, space-between);
       margin-top: 2rem;
-      max-width: 20rem;
 
       .reaction {
         @include flex(start, space-between);

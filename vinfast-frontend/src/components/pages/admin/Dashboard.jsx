@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Chart from 'react-apexcharts';
-// import { useSelector } from 'react-redux'
 import accountApi from '../../../api/account';
 import customerApi from '../../../api/depost/customerApi';
 import dashboardApi from '../../../api/admin/dashboardApi';
@@ -64,30 +63,40 @@ const renderOrderBody = (item, index) => (
 const Dashboard = () => {
 
     const [customerData, setCustomerData] = useState([])
-    const [accountData, setAccountData] = useState([])
+    const [customerData5, setCustomerData5] = useState([])
+    const [accountData5, setAccountData5] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
-    const [select, setSelect] = useState('month')
 
     useEffect(() => { 
-        const getCustomerApi = async () => {
+        const getTopCustomerApi = async () => {
             try {
                 const res = await customerApi.getTopCustomer()
+                setCustomerData5(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        const getCustomerApi = async () => {
+            try {
+                const res = await customerApi.getAll()
                 setCustomerData(res.data)
             } catch(err) {
                 console.log(err)
             }
         }
         getCustomerApi()
+        getTopCustomerApi()
 
-        const getAccountApi = async () => {
+        const getTopAccountApi = async () => {
             try {
                 const res = await accountApi.getTopAccount()
-                setAccountData(res.data)
+                setAccountData5(res.data)
             } catch(err) {
                 console.log(err)
             }
         }
-        getAccountApi()
+
+        getTopAccountApi()
     }, [])
 
     useEffect(() => {
@@ -101,36 +110,42 @@ const Dashboard = () => {
         }
         getTotalPrice()
     }, [])
+    console.log(customerData)
 
-    const accept = (month) => {
-        return customerData.filter(item => item.status === 'accept' && item.published_at.slice(0, 7) === `2022-${month}`)
+    const chart = (month, name) => {
+        return customerData.filter(item => item.name_car === name && item.status === 'accept' && item.published_at.slice(0, 7) === `2022-${month}`)
     }
 
-    const reject = (month) => {
-        return customerData.filter(item => item.status === 'reject' && item.published_at.slice(0, 7) === `2022-${month}`)
-    }
-
-    const pending = (month) => {
-        return customerData.filter(item => item.status === 'pending' && item.published_at.slice(0, 7) === `2022-${month}`)
-    }
-    const accept1 = accept('01')
-    const reject1 = reject('01')
-    const pending1 = pending('01')
-    const accept2 = accept('02')
-    const reject2 = reject('02')
-    const pending2 = pending('02')
+    const luxsa20_1 = chart('01', 'LUX SA2.0')
+    const luxa20_1 = chart('01', 'LUX A2.0')
+    const fadil_1 = chart('01', 'FADIL')
+    const vfe34_1 = chart('01', 'VF e34')
+    const president_1 = chart('01', 'PRESIDENT')
+    const luxsa20_2 = chart('02', 'LUX SA2.0')
+    const luxa20_2 = chart('02', 'LUX A2.0')
+    const fadil_2 = chart('02', 'FADIL')
+    const vfe34_2 = chart('02', 'VF e34')
+    const president_2 = chart('02', 'PRESIDENT')
     const chartOptions = {
         series: [{
-            name: 'Accept Customers',
-            data: [accept1.length, accept2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            name: 'LUX SA2.0',
+            data: [luxsa20_1.length, luxsa20_2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }, 
         {
-            name: 'Reject Customers',
-            data: [reject1.length, reject2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            name: 'LUX A2.0',
+            data: [luxa20_1.length, luxa20_2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }, 
         {
-            name: 'Pending Customers',
-            data: [pending1.length, pending2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            name: 'FADIL',
+            data: [fadil_1.length, fadil_2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+            name: 'VF e34',
+            data: [vfe34_1.length, vfe34_2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+            name: 'PRESIDENT',
+            data: [president_1.length, president_2.length, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }],
         options: {
             chart: {
@@ -167,32 +182,24 @@ const Dashboard = () => {
             "icon": <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path>
                     </svg>,
-            "count": pending1.length + pending2.length,
+            "count": customerData.length,
             "title": "New Orders",
             "path": "/admin/customers"
         },
         {
-            "icon": <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+            "icon": <svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
                     </svg>,
-            "count": pending1.length + pending2.length,
+            "count": accountData5.length,
             "title": "New Accounts",
             "path": "/admin/accounts"
         }
     ]
 
-    console.log(select)
     return (
         <div>
-            <h2 className="page-header page-header--product">
+            <h2 className="page-header">
                 <p>Dashboard</p>
-                <span>
-                    <select name="select" id="select" onChange={(e) => setSelect(e.target.value)}>
-                        <option value="day">Day</option>
-                        <option selected value="month">Month</option>
-                        <option value="year">Year</option>
-                    </select>
-                </span>
             </h2>
             <div className="row">
                 <div className="l-12">
@@ -245,10 +252,10 @@ const Dashboard = () => {
                                         ) : null
                                     }
                                     {
-                                        accountData ? (
+                                        accountData5 ? (
                                             <tbody>
                                                 {
-                                                    accountData.map((item, index) => renderAccountBody(item, index))
+                                                    accountData5.map((item, index) => renderAccountBody(item, index))
                                                 }
                                             </tbody>
                                         ) : null
@@ -281,10 +288,10 @@ const Dashboard = () => {
                                         ) : null
                                     }
                                     {
-                                        customerData ? (
+                                        customerData5 ? (
                                             <tbody>
                                                 {
-                                                    customerData.map((item, index) => renderOrderBody(item, index))
+                                                    customerData5.map((item, index) => renderOrderBody(item, index))
                                                 }
                                             </tbody>
                                         ) : null

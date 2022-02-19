@@ -44,7 +44,6 @@ const Login = () => {
         }
         getAccount()
 
-        console.log(123)
         if (userData) {
             const getUserData = (email) => userData.find(e => e.email === email)
             const user = getUserData(email)
@@ -56,7 +55,7 @@ const Login = () => {
                         id: user.id,
                         name: user.name,
                         email: user.email,
-                        password: user.pass,
+                        password: pass,
                         avatar: user.avatar,
                         role: user.role,
                         loggedIn: true,

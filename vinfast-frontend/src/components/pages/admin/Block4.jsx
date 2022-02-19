@@ -44,12 +44,14 @@ const renderBody = (item, index) => (
 const Products = () => {
 
     const [productsData, setProductsData] = useState([])
-console.log(productsData)
+    const [render, setRender] = useState(false)
+
     useEffect(() => {
         const getProductApi = async () => {
             try {
                 const res = await productApi.getAllBlock4()
                 setProductsData(res.data)
+                setRender(true)
             } catch(err) {
                 console.log(err)
             }
@@ -68,13 +70,15 @@ console.log(productsData)
                 <div className="l-12">
                     <div className="card"> 
                         <div className="card__body">
-                            <Table 
-                                limit='3'
-                                headData={productTableHead}
-                                renderHead={(item, index) => renderHead(item, index)}
-                                bodyData={productsData}
-                                renderBody={(item, index) => renderBody(item, index)}
-                            />
+                            {
+                                render && <Table 
+                                            limit='3'
+                                            headData={productTableHead}
+                                            renderHead={(item, index) => renderHead(item, index)}
+                                            bodyData={productsData}
+                                            renderBody={(item, index) => renderBody(item, index)}
+                                        />
+                            }
                         </div>
                     </div>
                 </div>
