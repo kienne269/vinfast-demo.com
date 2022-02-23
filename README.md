@@ -1,4 +1,4 @@
-# Deploy: http://18.141.188.173/vinfast-frontend/build/
+# Deploy: http://vinfastauto.tk/vinfast-frontend/build/
 
 # Run app
 
