@@ -32,7 +32,7 @@ const Sidebar = props => {
         {
             "display_name": "Customers",
             "route": "customers",
-            "icon": "bx bx-user-pin"
+            "icon": "bx bx-cart"
         },
         {
             "display_name": "Products",
@@ -42,7 +42,7 @@ const Sidebar = props => {
         {
             "display_name": "Account",
             "route": "accounts",
-            "icon": "bx bx-cart"
+            "icon": "bx bx-user-pin"
         },
         {
             "display_name": "Home Slide",

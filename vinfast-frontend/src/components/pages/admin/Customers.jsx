@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-// import axios from 'axios'
+import ExportReactCSV from '../../admin/ExportReactCSV'
 import Table from '../../admin/table/Table'
 import customerApi from '../../../api/depost/customerApi'
 import '../../admin/customer-detail/customer-detail.scss'
@@ -97,7 +97,6 @@ const Customers = () => {
                 alert("Cập nhật thành công")
                 setClickRender(true)
                 setReRender(false)
-                // navigate(`/admin/accounts`)
                 console.log(res)
             } catch(err) {
                 console.log(err)
@@ -243,8 +242,8 @@ const Customers = () => {
         <>
             <h2 className="page-header page-header--product">
                 <p>Customers</p>
-                <span className='page-header--export'>
-                    <button className="productAddButton">Export</button>
+                <span className='page-header--export productAddButton'>
+                    <ExportReactCSV csvData={customerData} fileName="Customers" />
                 </span>
             </h2>
             <div className="page-body">
