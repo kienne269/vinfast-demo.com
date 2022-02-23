@@ -36,11 +36,11 @@
       background: $white;
       font-size: 1.3rem;
       border-radius: $border-radius;
-      // height: calc(100% - 8.4rem - 1rem);
+      height: calc(100% - 9.4rem);
 
       .sidebar__item {
         transition: color 0.3s ease 0s;
-        // @include flex(center, flex-start);
+        @include flex(center, flex-start);
         color: #707070;
 
         &__user--inner {
