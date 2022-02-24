@@ -47,7 +47,7 @@ const MyAccount = () => {
   const [showForm, setShowForm] = useState(false)
   const [showFormInfo, setShowFormInfo] = useState(false)
 
-  const [name, setName] = useState('')
+  const [name, setName] = useState(user.name)
   const [phone, setPhone] = useState('')
 
   const [passCurrent, setPassCurrent] = useState('')

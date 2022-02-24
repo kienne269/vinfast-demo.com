@@ -41,7 +41,6 @@ class Post
         $stmt->bindParam(1, $this->user_id);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stmt;
     }
 
@@ -124,7 +123,6 @@ class Post
         $stmt->bindParam(1, $this->post_id);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stmt;
     }
 

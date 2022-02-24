@@ -18,6 +18,7 @@ if (isset($_POST['dataAvt'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $password = mysqli_real_escape_string($connect, $_POST['password']);
     $date_create = carbon::now('Asia/Ho_Chi_Minh');
+    $role = mysqli_real_escape_string($connect, $_POST['role']);
 
     // Tìm kiếm và thay thế đường dẫn ảnh
     $avatar = str_replace('data:image/png;base64,', '', $avatar);
@@ -35,7 +36,7 @@ if (isset($_POST['dataAvt'])) {
     // Đặt dữ liệu canvas vào file ảnh
     file_put_contents($fileName, $fileData);
 
-    $connection = "INSERT INTO vinfast_account (avatar, name, email, password, date_create) VALUES ('http://localhost:3000/images/avatar/$randName.png', '$name' ,'$email', '$password', '$date_create')";
+    $connection = "INSERT INTO vinfast_account (avatar, name, email, password, date_create, role) VALUES ('http://localhost:3000/images/avatar/$randName.png', '$name' ,'$email', '$password', '$date_create', '$role')";
     if (mysqli_query($connect, $connection)) {
         echo 'success';
     } else {

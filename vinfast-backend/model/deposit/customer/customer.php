@@ -98,7 +98,6 @@ class Customer
         $stmt->bindParam(1, $this->email);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $stmt;
     }
 

@@ -14,22 +14,22 @@ const TransactionHistory = () => {
     
     const [customerData, setCustomerData] = useState([])
     const [currentId, setCurrentId] = useState(0)
+    const [render, setRender] = useState(false)
     console.log(currentId)
     useEffect(() => {
       const getCustomerByEmail = async () => {
         try {
             const res = await customerApi.getByEmail(user.email)
             setCustomerData(res.data)
+            setRender(false)
         } catch(err) {
             console.log(err)
         }
       }
       getCustomerByEmail()
-    }, [user.email,currentId])
+    }, [user.email,currentId, render])
     
     const handleSubmitReject = async (id) => {
-      // e.preventDefault();
-      console.log(id)
       const formData = {
           id : id,
           status: "reject"
@@ -38,13 +38,13 @@ const TransactionHistory = () => {
           try {
               const res = await customerApi.update(formData)
               alert("Hủy đơn hàng thành công")
+              setRender(true)
               console.log(res)
           } catch(err) {
               console.log(err)
           }
       }
       updateCustomer()
-      // window.location.reload(false);
   }
 
     return <div className='l-9 m-9 c-12 my__account'>
