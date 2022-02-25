@@ -49,19 +49,6 @@ const CommentView = (props) => {
     getCommentsApi()
   }, [props.post_id, hasComment]);
 
-  const handleDelete = async (e, id) => {
-    e.preventDefault();
-
-    try {
-        const res = await postApi.delete(id)
-        alert("Xóa thành công")
-        setHasComment(true)
-        console.log(res)
-    } catch(err) {
-        alert(err)
-        console.log(err)
-    }
-}
     return (
         <>
           <div className="count">
@@ -97,35 +84,6 @@ const CommentView = (props) => {
                       <span className='comments__likeComment'></span>
                     </p>
                   </div>
-                  {/* <div onClick={(e) => (setShow(!show) , setActive(index))} className="dots">
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" className="svg-inline--fa fa-ellipsis-h fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="currentColor" d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"></path>
-                    </svg>
-                    {
-                        show ? <ul className= { index === active ? 'active' : ''}>
-                                    <li>
-                                        <p onClick={() => set}>Chỉnh sửa</p>
-                                    </li>
-                                    <li>
-                                        <p onClick={(e) =>handleDelete(e, item.id)}>Xóa</p>
-                                    </li>
-                                </ul> : null
-                    }
-                  </div>
-                  <div className='comment__form'>
-                    <img src={user.avatar} alt="" />
-                    <input
-                        className={text !== '' ? "comment__form__text active" : "comment__form__text"}
-                        onChange={(e) => setText(e.target.value)}
-                        placeholder='Viết bình luận của bạn...'
-                        onKeyPress={handleCreateComment}
-                        value={text}
-                    />
-                    <div className="comment__form__action">
-                      <button className="cancel">Hủy</button>
-                      <button onClick={handleCreateComment} className={text !== '' ? 'send-up active' : 'send-up'}>Bình luận</button>
-                    </div>
-                  </div> */}
                 </div>
                 
               )) : null

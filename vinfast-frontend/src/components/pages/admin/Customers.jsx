@@ -232,12 +232,14 @@ const Customers = () => {
             try {
                 const res = await customerApi.getOne(id)
                 setCustomerOneData(res.data)
+                console.log(res)
             } catch(err) {
                 console.log(err)
             }
         }
         getOneCustomerApi() 
     }, [id, clickRender])
+    console.log(customerOneData)
     return (
         <>
             <h2 className="page-header page-header--product">

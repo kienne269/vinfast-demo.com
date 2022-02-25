@@ -14,6 +14,7 @@ const AccountDetail = () => {
             try {
                 const res = await accountApi.getOne(id)
                 setAccountData(res.data)
+                console.log(res)
             } catch(err) {
                 console.log(err)
             }
