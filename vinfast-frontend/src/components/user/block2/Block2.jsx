@@ -19,7 +19,7 @@ const Block2 = props => {
                 console.log(err)
             }
         }
-        getBlock2()   
+        getBlock2()
     }, [])
 
     return (
@@ -33,7 +33,7 @@ const Block2 = props => {
                     spaceBetween={0}
                     pagination={{ clickable: true }}
                     slidesPerView={1}
-                    // autoplay={{delay: 3000}}
+                    autoplay={{delay: 5000}}
                 >
                     {
                         block2Data ? block2Data.map((item, index) => (

@@ -5,6 +5,7 @@ import Block1 from '../../user/block1/Block1'
 import Block2 from '../../user/block2/Block2'
 import Block3 from '../../user/block3/Block3'
 import Block4 from '../../user/block4/Block4'
+import Block5 from '../../user/block5/Block5'
 // import RegisterSuccess from '../../user/register-success/RegisterSuccess'
 import { TabTitle } from '../../../assets/setTitle'
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
             </div>
             <Block3 />
             <Block4 />
+            <Block5 />
             {/* <RegisterSuccess /> */}
         </>
     )

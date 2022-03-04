@@ -2,6 +2,7 @@ import axiosClient from './axiosClient'
 
 const postApi = {
     getAll: () => axiosClient.get('post/readPost.php'),
+    getTopPost: () => axiosClient.get('post/ReadTopPost.php'),
     getAllByUser: (user_id) => axiosClient.get(`post/readPostByUser.php?user_id=${user_id}`),
     create: (params) => axiosClient.post('post/CreatePost.php', params),
     getOne: (id) => axiosClient.get(`post/showPost.php?id=${id}`),

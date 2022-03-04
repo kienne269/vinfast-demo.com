@@ -31,6 +31,17 @@ class Post
         return $stmt;
     }
 
+    //read top 5 data
+    public function readTopPost()
+    {
+        $query = "SELECT * FROM list_post ORDER BY list_post.id DESC LIMIT 6;";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
     //show data by user
     public function showByUser()
     {
