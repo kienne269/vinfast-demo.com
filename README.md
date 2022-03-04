@@ -1,4 +1,4 @@
-# Deploy: http://54.255.137.216/vinfast-frontend/build/
+# Deploy: https://vinfastauto.ml
 
 # Run app
 
