@@ -13,6 +13,10 @@
       padding: 3rem;
     }
   }
+
+  .apexcharts-toolbar {
+    // display: none;
+  }
 }
 
 .status-card {
@@ -76,4 +80,15 @@
 
 .badge-warning {
   background-color: $orange;
+}
+
+.page-header--thongke {
+  min-width: 50%;
+  @include flex(center, space-between);
+
+  input[type="date"] {
+    border: 1px solid #010101;
+    border-radius: $border-radius;
+    padding: 5px;
+  }
 }

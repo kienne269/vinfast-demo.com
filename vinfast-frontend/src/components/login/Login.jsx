@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux'
 import cookies from 'react-cookies'
 import { Link, useNavigate } from 'react-router-dom';
@@ -30,10 +30,8 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate ();
-    
-    const onSubmit = (e) => {
-        e.preventDefault();
 
+    useEffect(() => {
         const getAccount = async () => {
             try {
                 const res = await accountApi.getAll()
@@ -43,6 +41,10 @@ const Login = () => {
             }
         }
         getAccount()
+    }, [])
+    
+    const onSubmit = (e) => {
+        e.preventDefault();
 
         if (userData) {
             const getUserData = (email) => userData.find(e => e.email === email)

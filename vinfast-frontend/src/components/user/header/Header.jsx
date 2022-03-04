@@ -54,7 +54,6 @@ const Header = () => {
         dispatch(logout())
     }
 
-    console.log(user)
     let path = <Link to="/login" className="header__right--account">Tài khoản</Link>
     if(user !== null && user !== undefined) {
         path = <>

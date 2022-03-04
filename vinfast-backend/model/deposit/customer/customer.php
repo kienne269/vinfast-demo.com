@@ -60,6 +60,19 @@ class Customer
         return $stmt;
     }
 
+    //show from day to day
+    public function FromDayToDay()
+    {
+        $query = "SELECT * FROM vinfast_customer WHERE DATE_FORMAT(published_at, '%Y-%m-%d') >= ? and DATE_FORMAT(published_at, '%Y-%m-%d') <= ?";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->from);
+        $stmt->bindParam(2, $this->to);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     //show data by id
     public function show()
     {

@@ -34,7 +34,8 @@ const DepostConfirm = (props) => {
             try {
                 const resVNPay = await customerApi.postVNPay(formData)
                 
-                window.open(resVNPay.data)
+                // window.open(resVNPay.data)
+                window.location.href = resVNPay.data
             } catch(err) {
                 console.log(err)
             }

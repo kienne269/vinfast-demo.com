@@ -8,7 +8,6 @@ import './signin.scss';
 const Signin = () => {
     const navigate = useNavigate();
     const [accountData, setAccountData] = useState([])
-    console.log(accountData)
 
     useEffect(() => {
         const getAccountApi = async () => {
@@ -30,14 +29,13 @@ const Signin = () => {
     const [isShowPassConfirm, setIsShowPassConfirm] = useState(false)
     const [checkMail, setCheckMail] = useState(true)
     const [checkPass, setCheckPass] = useState(true)
-    const [checkPassConfirm, setCheckPassConfirm] = useState(true)
+    const [checkPassConfirm, setCheckPassConfirm] = useState(false)
     const [checkUpperCase, setCheckUpperCase] = useState(false)
     const [checkLowerCase, setCheckLowerCase] = useState(false)
     const [checkLengthCase, setCheckLengthCase] = useState(false)
     const [checkNumberCase, setCheckNumberCase] = useState(false)
 
     const [checkIsMail, setCheckIsMail] = useState(true)
-    const [submit, setSubmit] = useState(false)
 
     // On change text
     const onChangeName = (e) => {
@@ -47,7 +45,6 @@ const Signin = () => {
     const arrayName = name.split(" ");
     const first_name = arrayName[0].slice(0, 1).toUpperCase()
     const last_name = arrayName[arrayName.length - 1].slice(0, 1).toUpperCase()
-    console.log(first_name, last_name)
 
     const onChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -79,13 +76,7 @@ const Signin = () => {
     }
 
     const passwordValidation = () => {
-        if (pass === passConfirm) {
-            setCheckPassConfirm(true);
-        } else {
-            // make API call
-            setCheckPassConfirm(false);
-        }
-        
+        setCheckPassConfirm(pass === passConfirm);
     }
 
     const handleShowPassConfirm = () => {
@@ -102,11 +93,13 @@ const Signin = () => {
 
         const found = accountData.find(item => item.email === email);
         setCheckIsMail(found === undefined)
-
-        setSubmit(checkMail && checkPass && checkPassConfirm && checkIsMail)
         
-        if (submit === true) {
-
+        console.log(checkMail)
+        console.log(checkPass)
+        console.log(checkPassConfirm)
+        console.log(checkIsMail)
+        console.log(checkMail && checkPass && checkPassConfirm && checkIsMail)
+        if (checkMail && checkPass && checkPassConfirm && checkIsMail) {
             // Khai báo các biến canvas
             var canvas = document.getElementById('canvas');
             var context = canvas.getContext('2d');
@@ -153,9 +146,9 @@ const Signin = () => {
                 </div>
                 <canvas style={{display: 'none'}} id="canvas" width="40" height="40"></canvas>
                 <div className="form-group">
-                    <input className={checkMail ? '' : "check" , checkIsMail ? '' : "check"} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
-                    <div className="form-message">{checkMail ? "" : "Sai định dạng email."}</div>
-                    <div className="form-message">{checkIsMail ? "" : "Địa chỉ email đã tồn tại"}</div>
+                    <input className={checkMail ? (checkIsMail ? '' : "check") : 'check'} onChange={onChangeEmail} type="text" name="email" id="email" placeholder="Email" />
+                    <div className="form-message">{checkMail ? '' : "Sai định dạng email."}</div>
+                    <div className="form-message">{checkIsMail ? '' : "Địa chỉ email đã tồn tại"}</div>
                 </div>
                 <div className="form-group">
                     <div className="password">
@@ -173,7 +166,7 @@ const Signin = () => {
                             <i className={isShowPassConfirm ? "icon__hide" : "icon__show"}></i>
                         </div>
                     </div>
-                    <div className="form-message">{checkPassConfirm ? "" : "Mật khẩu không trùng khớp."}</div>
+                    <div className="form-message">{checkPassConfirm === true ? "" : "Mật khẩu không trùng khớp."}</div>
                 </div>
             </div>
             <div className="password-require">
@@ -197,7 +190,7 @@ const Signin = () => {
                 Bằng việc bấm nút Đăng ký bên dưới, tôi xác nhận đã đọc, hiểu và đồng ý với các <Link to="/">Điều kiện và Điều khoản</Link> của VinFast.
             </div>
             <div className="submit">
-                <button onClick={onSubmit}>Đăng ký</button>
+                <button onClick={onSubmit} disabled={email !== '' && pass !== '' && name !== '' && passConfirm !== '' ? false : true}>Đăng ký</button>
             </div>
             <p className="no__account">Đã có tài khoản?</p>
             <div className="btn__sign__up">

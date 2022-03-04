@@ -39,6 +39,19 @@ class Account
         return $stmt;
     }
 
+    //show from day to day
+    public function FromDayToDay()
+    {
+        $query = "SELECT * FROM vinfast_account WHERE DATE_FORMAT(date_create, '%Y-%m-%d') >= ? and DATE_FORMAT(date_create, '%Y-%m-%d') <= ?";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->from);
+        $stmt->bindParam(2, $this->to);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     //show data
     public function show()
     {
