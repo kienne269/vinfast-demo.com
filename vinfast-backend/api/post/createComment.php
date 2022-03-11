@@ -20,6 +20,20 @@ $comment_post->user_id = $data->user_id;
 $comment_post->post_id = $data->post_id;
 $comment_post->published_at = $data->published_at;
 
+require __DIR__ . '../../../vendor/autoload.php';
+
+$options = array(
+    'cluster' => 'ap1',
+    'useTLS' => true
+);
+$pusher = new Pusher\Pusher(
+    'c9858b741ded216e8ece',
+    '6d4b273d997644dee7a2',
+    '1349031',
+    $options
+);
+$response = $pusher->trigger('my-channel', 'create-comment', $data);
+
 if ($comment_post->createComment()) {
     echo json_encode(array('message', 'Question Created'));
 } else {

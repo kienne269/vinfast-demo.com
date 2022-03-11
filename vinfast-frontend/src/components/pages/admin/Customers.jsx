@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+// import Pusher from 'pusher-js'
 import ExportReactCSV from '../../admin/ExportReactCSV'
 import Table from '../../admin/table/Table'
 import customerApi from '../../../api/depost/customerApi'
@@ -22,6 +23,7 @@ const customerTableHead = [
 ]
 
 const Customers = () => {
+
     const [active, setActive] = useState(false)
     const [id, setId] = useState(134)
     const [customerData, setCustomerData] = useState([])

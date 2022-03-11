@@ -16,23 +16,31 @@ const NewProduct = () => {
     const createBanner = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData()
-        formData.append("id_xe", id_xe)
-        formData.append("image", selectFile.current.files[0]) 
-        formData.append("name", name)
-        formData.append("slogan", slogan) 
-        formData.append("description1", description1) 
-        formData.append("description2", description2) 
-        formData.append("description3", description3) 
-        formData.append("description4", description4) 
-        try {
-            const res = await productApi.createBlock4(formData)
-            alert("Thêm thành công")
-            navigate(`/admin/homeblock4`)
-            console.log(res)
-        } catch(err) {
-            alert(err)
-            console.log(err)
+        if(selectFile.current.files.length === 0) {
+            alert("Vui lòng chọn ảnh biên lai")
+        }else {
+            try {
+                const formData = new FormData()
+                formData.append("id_xe", id_xe)
+                formData.append("image", selectFile.current.files[0]) 
+                formData.append("name", name)
+                formData.append("slogan", slogan) 
+                formData.append("description1", description1) 
+                formData.append("description2", description2) 
+                formData.append("description3", description3) 
+                formData.append("description4", description4) 
+                try {
+                    const res = await productApi.createBlock4(formData)
+                    alert("Thêm thành công")
+                    navigate(`/admin/homeblock4`)
+                    console.log(res)
+                } catch(err) {
+                    alert(err)
+                    console.log(err)
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 

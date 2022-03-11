@@ -14,6 +14,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "file-saver": "^2.0.5",
+    "pusher-js": "^7.0.6",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-360-view": "^0.1.3",

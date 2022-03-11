@@ -45,6 +45,12 @@ if (isset($_POST['id'])) {
             echo 'there was an error in upload';
         }
     } else {
-        echo 'file with this extension is not allowed';
+        $connection = "UPDATE block1 SET id= '$id', title = '$title', description = '$description' WHERE id = '$id'";
+        if (mysqli_query($connect, $connection)) {
+            echo 'success';
+        } else {
+            echo 'could not update data into the database';
+            echo $id;
+        }
     }
 }

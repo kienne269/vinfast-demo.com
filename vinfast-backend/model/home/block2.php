@@ -2,7 +2,7 @@
 class Block2
 {
     private $conn;
- 
+
     // thông tin block1
     public $id;
     public $quote;
@@ -43,17 +43,15 @@ class Block2
     //create data
     public function create()
     {
-        $query = "INSERT INTO block2 SET id=:id, quote=:quote, author=:author";
+        $query = "INSERT INTO block2 SET quote=:quote, author=:author";
 
         $stmt = $this->conn->prepare($query);
 
         //clean data
-        $this->id = htmlspecialchars(strip_tags($this->id));
         $this->quote = htmlspecialchars(strip_tags($this->quote));
         $this->author = htmlspecialchars(strip_tags($this->author));
 
         //bind data
-        $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':quote', $this->quote);
         $stmt->bindParam(':author', $this->author);
 
@@ -66,7 +64,7 @@ class Block2
     //update data 
     public function update()
     {
-        $query = "UPDATE block2 SET id=:id, quote=:quote, author=:author WHERE id =:id";
+        $query = "UPDATE block2 SET quote=:quote, author=:author WHERE id =:id";
 
         $stmt = $this->conn->prepare($query);
 
@@ -74,7 +72,7 @@ class Block2
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->quote = htmlspecialchars(strip_tags($this->quote));
         $this->author = htmlspecialchars(strip_tags($this->author));
-       
+
 
         //bind data
         $stmt->bindParam(':id', $this->id);
@@ -87,23 +85,23 @@ class Block2
         printf("Error %s, \n" . $stmt->error);
         return false;
     }
-     //delete data
-     public function delete()
-     {
-         $query = "DELETE FROM block2 WHERE id =:id";
- 
-         $stmt = $this->conn->prepare($query);
- 
-         //clean data
-         $this->id = htmlspecialchars(strip_tags($this->id));
- 
-         //bind data
-         $stmt->bindParam(':id', $this->id);
- 
-         if ($stmt->execute()) {
-             return true;
-         }
-         printf("Error %s, \n" . $stmt->error);
-         return false;
-     }
+    //delete data
+    public function delete()
+    {
+        $query = "DELETE FROM block2 WHERE id =:id";
+
+        $stmt = $this->conn->prepare($query);
+
+        //clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        //bind data
+        $stmt->bindParam(':id', $this->id);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+        printf("Error %s, \n" . $stmt->error);
+        return false;
+    }
 }

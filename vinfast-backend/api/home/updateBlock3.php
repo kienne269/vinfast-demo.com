@@ -51,6 +51,12 @@ if (isset($_POST['id_xe'])) {
             echo 'there was an error in upload';
         }
     } else {
-        echo 'file with this extension is not allowed';
+        $connection = "UPDATE list_car SET id_xe= '$id', slug = '$slug', dongxe = '$dongxe', slogan= '$slogan', name = '$name', description1 = '$description1', description2 = '$description2', description3 ='$description3',  description4 = '$description4' WHERE id_xe = '$id'";
+        if (mysqli_query($connect, $connection)) {
+            echo 'success';
+        } else {
+            echo 'could not update data into the database';
+            echo $id;
+        }
     }
 }

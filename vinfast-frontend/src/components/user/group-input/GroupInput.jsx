@@ -7,7 +7,7 @@ const GroupInput = props => {
                 {props.label}
                 <span>*</span>
             </label>
-            <input style={props.checkInput ?{ border: '1px solid #dc3545'} : null} value={props.value} onChange={props.handleChange} type="text"/>
+            <input style={props.checkInput ? null : { border: '1px solid #dc3545'}} value={props.value} onChange={props.handleChange} type="text"/>
             <div className="message">{props.message}</div>
         </div>
     )

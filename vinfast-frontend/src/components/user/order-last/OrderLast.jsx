@@ -26,10 +26,11 @@ const OrderLast = (props) => {
     const [province, setProvince] = useState('')
     const [show, setShow] = useState(false);
 
-    const [isCheckName, setIsCheckName] = useState(false)
-    const [isCheckPhone, setIsCheckPhone] = useState(false)
-    const [isCheckCccd, setIsCheckCccd] = useState(false)
-    const [isCheckMail, setIsCheckMail] = useState(false)
+    const [isCheckName, setIsCheckName] = useState(true)
+    const [isCheckPhone, setIsCheckPhone] = useState(true)
+    const [isCheckCccd, setIsCheckCccd] = useState(true)
+    const [isCheckMail, setIsCheckMail] = useState(true)
+    const [test, setTest] = useState(false)
 
     const handleChangeName = (e) => {
         setNameText(e.target.value);
@@ -120,7 +121,6 @@ const OrderLast = (props) => {
         
     }
     
-    const [submit, setSubmit] = useState(false)
     const customer = {
         order_id: order_id,
         nameText: nameText,
@@ -135,38 +135,40 @@ const OrderLast = (props) => {
         money_deposit: money_deposit,
         payment: payment,
         note: payment,
-        published_at: String(today)
     }
-      const onSubmit = async (e) => {
-        e.preventDefault()
-        setIsCheckName(nameText === '')
-        setIsCheckCccd(cccd.length !== 12)
-        setIsCheckPhone(phone.length !== 10)
+
+    const check = () => {
+        setIsCheckName(nameText !== '')
+        setIsCheckCccd(cccd.length === 12)
+        setIsCheckPhone(phone.length === 10)
         
-        setIsCheckMail(email === '')
         const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        setIsCheckMail(!regex.test(email));
+        setIsCheckMail(regex.test(email));
+
+        setTest(isCheckName && isCheckCccd && isCheckMail && isCheckPhone)
+    }
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+        
         dispatch(customerCar(customer))
         cookies.save("customer", customer)
 
-        setSubmit(!isCheckName && !isCheckCccd && !isCheckMail && !isCheckPhone)
-        if (submit) {
-            if(checkRadio === 2) {
-                if(selectFile.current.files.length === 0) {
-                    alert("Vui lòng chọn ảnh biên lai")
-                    setShow(false)
-                }else {
-                    try {
-                        setShow(true)
-                    } catch (error) {
-                        console.log(error)
-                    }
-                }
-            } else if(checkRadio === 1) {
-                setShow(true)
-            } else {
+        if(checkRadio === 2) {
+            if(selectFile.current.files.length === 0) {
+                alert("Vui lòng chọn ảnh biên lai")
                 setShow(false)
+            }else {
+                try {
+                    setShow(true)
+                } catch (error) {
+                    console.log(error)
+                }
             }
+        } else if(checkRadio === 1) {
+            setShow(true)
+        } else {
+            setShow(false)
         }
     }
     return (
@@ -179,20 +181,20 @@ const OrderLast = (props) => {
                             <div className="l-12">
                                 <div className="row">
                                     <div className="l-6 group group__personal">
-                                        <GroupInput checkInput={isCheckName} message={isCheckName ? 'Vui lòng nhập họ và tên' : null} value={user ? user.name : nameText} disabled={user ? true : false} handleChange={user ? null : handleChangeName} label="Họ tên cá nhân"/>
+                                        <GroupInput checkInput={isCheckName} message={isCheckName ? null : 'Vui lòng nhập họ và tên'} value={user ? user.name : nameText} disabled={user ? true : false} handleChange={user ? null : handleChangeName} label="Họ tên cá nhân"/>
                                     </div>
                                     <div className="l-6 group group__personal">
-                                        <GroupInput checkInput={isCheckCccd} message={isCheckCccd ? 'Vui lòng nhập số thẻ / hộ chiếu nhận dạng.' : null} handleChange={handleChangeCccd} label="CMND/CCCD"/>
+                                        <GroupInput checkInput={isCheckCccd} message={isCheckCccd ? null : 'Vui lòng nhập số thẻ / hộ chiếu nhận dạng.'} handleChange={handleChangeCccd} label="CMND/CCCD"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="l-12">
                                 <div className="row">
                                     <div className="l-6 group group__personal">
-                                        <GroupInput checkInput={isCheckPhone} message={isCheckPhone ? 'Vui lòng kiểm tra lại, số điện thoại của quý khách chưa đúng.' : null} handleChange={handleChangePhone} label="Số điện thoại"/>
+                                        <GroupInput checkInput={isCheckPhone} message={isCheckPhone ? null : 'Vui lòng kiểm tra lại, số điện thoại của quý khách chưa đúng.'} handleChange={handleChangePhone} label="Số điện thoại"/>
                                     </div>
                                     <div className="l-6 group group__personal">
-                                        <GroupInput checkInput={isCheckMail} message={isCheckMail ? 'Vui lòng nhập email hợp lệ.' : null} value={user ? user.email : email} handleChange={handleChangeEmail} label="Email"/>
+                                        <GroupInput checkInput={isCheckMail} message={isCheckMail ? null : 'Vui lòng nhập email hợp lệ.'} value={user ? user.email : email} handleChange={handleChangeEmail} label="Email"/>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +204,7 @@ const OrderLast = (props) => {
                             <div className="l-12">
                                 <div className="row">
                                     <div className="l-6 group group__showroom">
-                                    <GroupInput handleChange={handleChangeProvince} label="Tỉnh thành"/>
+                                    <GroupInput checkInput={isCheckName} handleChange={handleChangeProvince} label="Tỉnh thành"/>
                                     </div>
                                     <div className="l-6 group group__showroom">
                                         <div className="group__input">
@@ -279,7 +281,7 @@ const OrderLast = (props) => {
                     </div>
                 </div>
                 <div className="btn">
-                    <button onClick={onSubmit} disabled={isDisabled}>Đặt cọc</button>
+                    <button onClick={test && isCheckName && isCheckCccd && isCheckMail && isCheckPhone ? onSubmit : check} disabled={isDisabled}>Đặt cọc</button>
                 </div>
             </div>
             <DepostConfirm customer={customer} file={selectFile.current ? selectFile.current.files[0] : null} checkRadio={checkRadio} show={show} handleNone={handleNone}/>

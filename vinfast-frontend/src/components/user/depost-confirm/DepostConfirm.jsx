@@ -8,6 +8,7 @@ const DepostConfirm = (props) => {
     const navigate = useNavigate();
 
     const customer = props.customer;
+    console.log(customer)
     const createCustomer = async (e) => {
         e.preventDefault();
         const formData = new FormData()
@@ -23,7 +24,6 @@ const DepostConfirm = (props) => {
         formData.append("money_deposit", customer.money_deposit)
         formData.append("price", customer.price)
         formData.append("note", customer.note)
-        formData.append("published_at", customer.published_at)
         formData.append("order_id", customer.order_id)
         formData.append("order_desc", customer.payment)
         formData.append("status", "pending")
@@ -34,7 +34,6 @@ const DepostConfirm = (props) => {
             try {
                 const resVNPay = await customerApi.postVNPay(formData)
                 
-                // window.open(resVNPay.data)
                 window.location.href = resVNPay.data
             } catch(err) {
                 console.log(err)
@@ -42,9 +41,8 @@ const DepostConfirm = (props) => {
         } else if (customer.payment === 'Thanh toán qua chuyển khoản ngân hàng') {
             formData.append("file", props.file)
             try {
-                const res = await customerApi.create(formData)
+                await customerApi.create(formData)
                 navigate('/dat-coc')
-                console.log(res.data)
             } catch(err) {
                 console.log(err)
             }

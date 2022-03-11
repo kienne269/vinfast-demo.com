@@ -37,13 +37,18 @@ if (isset($_POST['id'])) {
                     echo 'success';
                 } else {
                     echo 'could not update data into the database';
-                    echo $id;
                 }
             }
         } else {
             echo 'there was an error in upload';
         }
     } else {
-        echo 'file with this extension is not allowed';
+        echo 'Change data without changing images';
+        $connection = "UPDATE banner SET id= '$id', placement = '$placement' WHERE id = '$id'";
+        if (mysqli_query($connect, $connection)) {
+            echo 'success';
+        } else {
+            echo 'could not insert data into the database';
+        }
     }
 }

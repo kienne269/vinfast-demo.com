@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import ProtoTypes from 'prop-types'
-import axios from 'axios'
 import ProductView from '../../user/product-view/ProductView'
 import productClientApi from '../../../api/user/productApi'
 

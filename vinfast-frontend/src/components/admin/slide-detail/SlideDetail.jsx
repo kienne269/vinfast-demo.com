@@ -7,6 +7,7 @@ import './slide-detail.scss'
 const ProductDetail = () => {
 
     const { id } = useParams();
+    console.log(id)
 
     const [productData, setProductData] = useState("")
     useEffect(() => {
@@ -48,7 +49,6 @@ const ProductInfo = ({product}) => {
     const [idProduct, setIdProduct] = useState(product.id)
     const [placement, setPlacement] = useState(product.placement)
 
-    console.log(placement)
     const updateProduct = async (e) => {
         e.preventDefault();
 
@@ -98,7 +98,6 @@ const ProductInfo = ({product}) => {
           return <img key={index} src={photo} alt="" width="350px" height="250px" />
         })
       }
-      console.log(stateFile)
     return (
         <>
             <div className='btn'>

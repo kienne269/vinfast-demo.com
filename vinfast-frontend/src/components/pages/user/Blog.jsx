@@ -4,6 +4,22 @@ import { Link } from 'react-router-dom'
 import postApi from '../../../api/postApi'
 import { TabTitle } from '../../../assets/setTitle'
 import '../../user/blog-view/blog-view.scss'
+import Pagination from '../../user/pagination/Pagination'
+
+const renderBody = (item, index) => (
+    <Link className='l-4 post' to={`/blog/${item.id}`} key={index}>
+        <div className='post__test'>
+            <div className="post__image">
+                <img className="img" src={item.picture} alt="" />
+            </div>
+            <div className="post__footer">
+                <p className="post__name">{item.username}</p>
+                <h5 className="post__title">{item.title}</h5>
+                <p className="post__published">{item.published_at}</p>
+            </div>
+        </div>
+    </Link>
+)
 
 const Blog = () => {
     TabTitle("Blog - xe VinFast")
@@ -11,6 +27,7 @@ const Blog = () => {
 
     const [filteredResults, setFilteredResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
+    const [render, setRender] = useState(false)
 
     useEffect(() => {
 
@@ -19,6 +36,7 @@ const Blog = () => {
                 const res = await postApi.getAll()
                 setPosts(res.data)
                 setFilteredResults(res.data)
+                setRender(true)
             } catch(err) {
                 console.log(err)
             }
@@ -59,24 +77,13 @@ const Blog = () => {
                     </div>
                 </div>
                 <div className="blog__content">
-                    <div className='row'>
-                        {
-                            filteredResults ? filteredResults.map((item, index) => (
-                                <Link className='l-4 post' to={`/blog/${item.id}`} key={index}>
-                                    <div className='post__test'>
-                                        <div className="post__image">
-                                            <img className="img" src={item.picture} alt="" />
-                                        </div>
-                                        <div className="post__footer">
-                                            <p className="post__name">{item.username}</p>
-                                            <h5 className="post__title">{item.title}</h5>
-                                            <p className="post__published">{item.published_at}</p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            )) : null
-                        }
-                    </div>
+                    {
+                        render && <Pagination 
+                            limit='9'
+                            bodyData={filteredResults}
+                            renderBody={(item, index) => renderBody(item, index)}
+                        />
+                    }
                 </div>
             </div>
         </div>

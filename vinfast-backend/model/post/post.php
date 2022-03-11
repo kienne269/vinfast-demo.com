@@ -127,7 +127,7 @@ class Post
     public function readComments()
     {
         $query = "SELECT comment_id, content, user_id, post_id, vinfast_account.avatar, vinfast_account.name
-        FROM list_comment INNER JOIN vinfast_account ON list_comment.user_id = vinfast_account.id WHERE post_id = ? ORDER BY list_comment.comment_id DESC";
+        FROM list_comment INNER JOIN vinfast_account ON list_comment.user_id = vinfast_account.id WHERE post_id = ?";
 
         $stmt = $this->conn->prepare($query);
 

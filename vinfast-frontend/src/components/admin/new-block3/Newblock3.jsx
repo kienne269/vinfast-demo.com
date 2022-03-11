@@ -18,25 +18,33 @@ const NewProduct = () => {
     const createBanner = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData()
-        formData.append("id_xe", id_xe)
-        formData.append("slug", slug)
-        formData.append("dongxe", dongxe)
-        formData.append("slogan", slogan) 
-        formData.append("name", name)
-        formData.append("description1", description1) 
-        formData.append("description2", description2) 
-        formData.append("description3", description3) 
-        formData.append("description4", description4) 
-        formData.append("image", selectFile.current.files[0]) 
-        try {
-            const res = await productApi.createBlock3(formData)
-            alert("Thêm thành công")
-            navigate(`/admin/homeblock3`)
-            console.log(res)
-        } catch(err) {
-            alert(err)
-            console.log(err)
+        if(selectFile.current.files.length === 0) {
+            alert("Vui lòng chọn ảnh biên lai")
+        }else {
+            try {
+                const formData = new FormData()
+                formData.append("id_xe", id_xe)
+                formData.append("slug", slug)
+                formData.append("dongxe", dongxe)
+                formData.append("slogan", slogan) 
+                formData.append("name", name)
+                formData.append("description1", description1) 
+                formData.append("description2", description2) 
+                formData.append("description3", description3) 
+                formData.append("description4", description4) 
+                formData.append("image", selectFile.current.files[0]) 
+                try {
+                    const res = await productApi.createBlock3(formData)
+                    alert("Thêm thành công")
+                    navigate(`/admin/homeblock3`)
+                    console.log(res)
+                } catch(err) {
+                    alert(err)
+                    console.log(err)
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 

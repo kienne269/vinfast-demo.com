@@ -1,96 +1,148 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
+import Pusher from 'pusher-js';
 import {useSelector} from 'react-redux'
 import { selectUser } from '../../../redux/user/userSlice';
 import postApi from '../../../api/postApi';
+import acccountApi from '../../../api/account.js';
 import './comment-view.scss'
 
 const CommentView = (props) => {
 
   const user = useSelector(selectUser)
+  const [accounts, setAccounts] = useState([]);
   const [backendComments, setBackendComments] = useState([]);
-  const [hasComment, setHasComment] = useState(false);
-  const [show, setShow] = useState(false)
-    const [active, setActive] = useState(0)
+  const [numberComment, setNumberComment] = useState(0)
 
-    const [text, setText] = useState('');
-    const location = useLocation()
-
-    const handleCreateComment = async (e) => {
-
-      const formData = {
-        content : text,
-        user_id : user.id,
-        post_id : location.pathname.slice(6,8),
-        published_at : new Date()
-      }
-      if (e.key === 'Enter') {
-        try {
-          await postApi.createComment(formData)
-          alert("Viết bình luận thành công")
-          setText('')
-          setHasComment(true)
-        } catch(err) {
-            console.log(err)
-        }
-      }
-    };
+  const [text, setText] = useState('');
+  const location = useLocation()
 
   useEffect(() => {
     const getCommentsApi = async () => {
       try {
           const res = await postApi.getAllComments(props.post_id)
           setBackendComments(res.data)
-          setHasComment(false)
+          setNumberComment(res.data.length)
       } catch(err) {
           console.log(err)
       }
     }
     getCommentsApi()
-  }, [props.post_id, hasComment]);
+  }, [props.post_id]);
 
-    return (
-        <>
-          <div className="count">
-              {backendComments.length}
-              <p>bình luận</p>    
-            </div>
-          <div className='comment__form'>
-            <img src={user.avatar} alt="" />
-            <input
-                className={text !== '' ? "comment__form__text active" : "comment__form__text"}
-                onChange={(e) => setText(e.target.value)}
-                placeholder='Viết bình luận của bạn...'
-                onKeyPress={handleCreateComment}
-                value={text}
-            />
-            <div className="comment__form__action">
-              <button className="cancel">Hủy</button>
-              <button onClick={handleCreateComment} className={text !== '' ? 'send-up active' : 'send-up'}>Bình luận</button>
-            </div>
+  useEffect(() => {
+    const getAllUser = async () => {
+      try {
+          const res = await acccountApi.getAll()
+          setAccounts(res.data)
+      } catch(err) {
+          console.log(err)
+      }
+    }
+    getAllUser()
+  }, []);
+
+  useEffect(() => {
+    
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('c9858b741ded216e8ece', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+
+    var commentsList = document.querySelector('.comments__container')
+    var commentsContainerDetail = `<div style="margin-right: 1rem; margin-top: 3px" className="comments__avatar">
+                                      <img style="max-width: 4rem; border-radius: 50%" src={item.avatar} alt="" />
+                                    </div>
+                                    <div style="padding: 1.3rem; background: #ccc; border-radius: 2rem" className="comments__container__content">
+                                      <h5 style="font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700" className="comments__arthor">{item.name}</h5>
+                                      <div style="font-size: 1.3rem;" className="comments__text">{item.content}</div>
+                                    </div>`
+    channel.bind('create-comment', function(data) {
+      if(data != null) {
+        if(accounts !== []) {
+          const user = accounts.filter(item => item.id === data.user_id)
+          if (user[0]) {
+            var newCommentHtml = commentsContainerDetail.replace('{item.avatar}',user[0].avatar)
+            newCommentHtml = newCommentHtml.replace('{item.name}',user[0].name)
+            newCommentHtml = newCommentHtml.replace('{item.content}',data.content)
+            newCommentHtml = newCommentHtml.replace('{item.created_at}',data.published_at)
+
+            var newCommentNode = document.createElement('div');
+            newCommentNode.classList.add('comments__container__detail');
+            newCommentNode.innerHTML = newCommentHtml;
+            commentsList.appendChild(newCommentNode);
+          }
+        }
+      }
+    })
+    var test = document.querySelectorAll('.comments__container__detail')
+    console.log(test.length)
+  }, [accounts]);
+
+  const formData = {
+    content : text,
+    user_id : user.id,
+    post_id : location.pathname.slice(6,8),
+    published_at : new Date()
+  }
+
+  const handleCreateComment = async (e) => {
+    if(text !== '') {
+      if (e.key === 'Enter') {
+        try {
+          await postApi.createComment(formData)
+          setText('')
+        } catch(err) {
+            console.log(err)
+        }
+      }
+    }
+  };
+  return (
+      <>
+        <div className="count">
+            {numberComment}
+            <p>bình luận</p>    
           </div>
-          <div className="comments__container">
-            {
-              backendComments ? backendComments.map((item, index) => (
-                <div className="comments__container__detail" key={index}>
-                  <div className="comments__avatar">
-                    <img src={item.avatar} alt="" />
-                  </div>
-                  <div className="comments__container__content">
-                    <h5 className="comments__arthor">{item.name}</h5>
-                    <div className="comments__text">{item.content}</div>
-                    <p className='comments__created'>
-                      <span>{item.created_at}</span>
-                      <span className='comments__likeComment'></span>
-                    </p>
-                  </div>
+        <div className='comment__form'>
+          <img src={user.avatar} alt="" />
+          <input
+              className={text !== '' ? "comment__form__text active" : "comment__form__text"}
+              onChange={(e) => setText(e.target.value)}
+              placeholder='Viết bình luận của bạn...'
+              onKeyPress={handleCreateComment}
+              value={text}
+          />
+          <div className="comment__form__action">
+            <button className="cancel">Hủy</button>
+            <button className={text !== '' ? 'send-up active' : 'send-up'}>Bình luận</button>
+          </div>
+        </div>
+        <div className="comments__container">
+          {
+            backendComments ? backendComments.map((item, index) => (
+              <div className="comments__container__detail" key={index}>
+                <div className="comments__avatar">
+                  <img src={item.avatar} alt="" />
                 </div>
-                
-              )) : null
-            }
-          </div>
-        </>
-    )
+                <div className="comments__container__content">
+                  <h5 className="comments__arthor">{item.name}</h5>
+                  <div className="comments__text">{item.content}</div>
+                  <p className='comments__created'>
+                    <span>{item.created_at}</span>
+                  </p>
+                </div>
+              </div>
+              
+            )) : null
+          }
+        </div>
+      </>
+  )
 }
 
 export default CommentView

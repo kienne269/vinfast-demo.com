@@ -49,6 +49,7 @@ if (isset($_POST['name'])) {
                 $connection = "INSERT INTO vinfast_customer (order_id, name_car, color_car, name, phone, cccd, email, province, image_car, money_deposit, price, note, file,  published_at, status) VALUES ('$order_id', '$name_car', '$color_car', '$name', '$phone' ,'$cccd', '$email', '$province', '$image_car', '$money_deposit', '$price', '$note', 'http://localhost:3000/images/customer/$new_file_name', '$published_at', '$status')";
                 if (mysqli_query($connect, $connection)) {
                     echo 'success';
+                    echo $cccd;
                 } else {
                     echo 'could not insert data into the database';
                 }

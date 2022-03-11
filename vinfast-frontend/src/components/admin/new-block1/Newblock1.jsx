@@ -12,19 +12,27 @@ const NewProduct = () => {
     const createBanner = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData()
-        formData.append("id", idProduct)
-        formData.append("title", title)
-        formData.append("description", description) 
-        formData.append("image", selectFile.current.files[0]) 
-        try {
-            const res = await productApi.createBlock1(formData)
-            alert("Thêm thành công")
-            navigate(`/admin/homeblock1`)
-            console.log(res)
-        } catch(err) {
-            alert(err)
-            console.log(err)
+        if(selectFile.current.files.length === 0) {
+            alert("Vui lòng chọn ảnh biên lai")
+        }else {
+            try {
+                const formData = new FormData()
+                formData.append("id", idProduct)
+                formData.append("title", title)
+                formData.append("description", description) 
+                formData.append("image", selectFile.current.files[0]) 
+                try {
+                    const res = await productApi.createBlock1(formData)
+                    alert("Thêm thành công")
+                    navigate(`/admin/homeblock1`)
+                    console.log(res)
+                } catch(err) {
+                    alert(err)
+                    console.log(err)
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
