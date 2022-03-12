@@ -159,7 +159,7 @@ const handleShowPassConfirm = () => {
     }
   }
   console.log(passConfirm)
-  return <div className='l-9 my__account'>
+  return <div className='l-9 m-9 c-12 my__account'>
       <div className='my__account__info'>
         <h1>Thông tin cá nhân</h1>
         <div className="my__account__info--edit">
@@ -176,16 +176,16 @@ const handleShowPassConfirm = () => {
             {
               my_account && my_account.map((item, index) => (
                 <div className="row" key={index}>
-                  <div className="l-4">{item.card}</div>
-                  <div className="l-8">{item.value}</div>
+                  <div className="l-4 m-4 c-4">{item.card}</div>
+                  <div className="l-8 m-8 c-8">{item.value}</div>
                 </div>
               ))
             }
           </div>
           <div className="password">
             <div className="row">
-              <div className="l-4">Mật khẩu</div>
-              <div className="l-8">
+              <div className="l-4 m-4 c-4">Mật khẩu</div>
+              <div className="l-8 m-8 c-8">
                 <div onClick={() => setShowForm(true)} className='btn-edit'>Đổi mật khẩu</div>
               </div>
             </div>

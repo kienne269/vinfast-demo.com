@@ -9,16 +9,25 @@
       height: 100%;
     }
     &__info {
-      position: absolute;
-      width: 100%;
-      bottom: 12%;
-      z-index: 1;
+      @include mobile-xs {
+        position: unset;
+        background: $black;
+      }
+
+      @include tablet-lg {
+        position: absolute;
+        width: 100%;
+        bottom: 12%;
+        z-index: 1;
+        background: unset;
+      }
 
       .group__button {
         left: 80%;
         border: 2px solid $white;
         bottom: 75px;
         color: #fff;
+        margin-bottom: 2rem;
 
         a {
           color: $white;

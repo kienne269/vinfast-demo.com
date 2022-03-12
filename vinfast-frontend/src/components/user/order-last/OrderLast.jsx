@@ -177,36 +177,36 @@ const OrderLast = (props) => {
                 <div className="vf__form">
                     <form action="" id=''>
                         <div className="row group-customer">
-                            <div className="l-12 group__title">Thông tin khách hàng</div>
-                            <div className="l-12">
+                            <div className="l-12 m-12 c-12 group__title">Thông tin khách hàng</div>
+                            <div className="l-12 m-12 c-12">
                                 <div className="row">
-                                    <div className="l-6 group group__personal">
+                                    <div className="l-6 m-6 c-12 group group__personal">
                                         <GroupInput checkInput={isCheckName} message={isCheckName ? null : 'Vui lòng nhập họ và tên'} value={user ? user.name : nameText} disabled={user ? true : false} handleChange={user ? null : handleChangeName} label="Họ tên cá nhân"/>
                                     </div>
-                                    <div className="l-6 group group__personal">
+                                    <div className="l-6 m-6 c-12 group group__personal">
                                         <GroupInput checkInput={isCheckCccd} message={isCheckCccd ? null : 'Vui lòng nhập số thẻ / hộ chiếu nhận dạng.'} handleChange={handleChangeCccd} label="CMND/CCCD"/>
                                     </div>
                                 </div>
                             </div>
-                            <div className="l-12">
+                            <div className="l-12 m-12 c-12">
                                 <div className="row">
-                                    <div className="l-6 group group__personal">
+                                    <div className="l-6 m-6 c-12 group group__personal">
                                         <GroupInput checkInput={isCheckPhone} message={isCheckPhone ? null : 'Vui lòng kiểm tra lại, số điện thoại của quý khách chưa đúng.'} handleChange={handleChangePhone} label="Số điện thoại"/>
                                     </div>
-                                    <div className="l-6 group group__personal">
+                                    <div className="l-6 m-6 c-12 group group__personal">
                                         <GroupInput checkInput={isCheckMail} message={isCheckMail ? null : 'Vui lòng nhập email hợp lệ.'} value={user ? user.email : email} handleChange={handleChangeEmail} label="Email"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row group-showroom">
-                            <div className="l-12 group__title">Lựa chọn showroom mua xe</div>
-                            <div className="l-12">
+                            <div className="l-12 m-12 c-12 group__title">Lựa chọn showroom mua xe</div>
+                            <div className="l-12 m-12 c-12">
                                 <div className="row">
-                                    <div className="l-6 group group__showroom">
+                                    <div className="l-6 m-6 c-12 group group__showroom">
                                     <GroupInput checkInput={isCheckName} handleChange={handleChangeProvince} label="Tỉnh thành"/>
                                     </div>
-                                    <div className="l-6 group group__showroom">
+                                    <div className="l-6 m-6 c-12 group group__showroom">
                                         <div className="group__input">
                                             <label> 
                                                 Showroom /Đại lý 

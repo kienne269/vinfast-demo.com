@@ -15,6 +15,22 @@
         color: #1a1a1a;
       }
 
+      ul {
+        @include mobile-xs {
+          max-height: 20rem;
+          overflow-y: scroll;
+          margin-top: 2rem;
+          width: 100%;
+        }
+
+        @include tablet-lg {
+          max-height: 100%;
+          overflow-y: unset;
+          margin-top: 0;
+          width: 100%;
+        }
+      }
+
       li {
         font-size: 1.2rem;
         font-weight: 600;

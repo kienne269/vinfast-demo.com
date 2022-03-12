@@ -30,7 +30,7 @@ const Block5 = () => {
             <div className="row">
                 {
                     posts ? posts.map((item, index) => (
-                        <Link className='l-4 post' to={`/blog/${item.id}`} key={index}>
+                        <Link className='l-4 m-6 c-12 post' to={`/blog/${item.id}`} key={index}>
                             <div className='post__test'>
                                 <div className="post__image">
                                     <img className="img" src={item.picture} alt="" />

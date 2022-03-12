@@ -7,7 +7,7 @@ import '../../user/blog-view/blog-view.scss'
 import Pagination from '../../user/pagination/Pagination'
 
 const renderBody = (item, index) => (
-    <Link className='l-4 post' to={`/blog/${item.id}`} key={index}>
+    <Link className='l-4 m-6 c-12 post' to={`/blog/${item.id}`} key={index}>
         <div className='post__test'>
             <div className="post__image">
                 <img className="img" src={item.picture} alt="" />
@@ -63,14 +63,14 @@ const Blog = () => {
             <div className="container">
                 <div className="blog__header">
                     <div className="row">
-                        <div className="l-6">
+                        <div className="l-6 m-6 c-12">
                             <ul>
                                 <li className='active'>Tất cả</li>
                                 <li>Xe máy điện</li>
                                 <li>Ô tô VinFast</li>
                             </ul>
                         </div>
-                        <div className="l-6 blog__header__right">
+                        <div className="l-6 m-6 c-12 blog__header__right">
                             <input type="text" onChange={(e) => searchItems(e.target.value)} placeholder="Nhập từ khóa tìm kiếm" />
                             <input type="submit" value="Tìm kiếm" />
                         </div>

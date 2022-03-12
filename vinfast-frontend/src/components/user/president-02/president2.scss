@@ -2,7 +2,6 @@
 
 #president-02 {
   background-color: #f8f8f8;
-  margin-top: -6%;
   .president__wrap {
     img {
       position: relative;
@@ -34,19 +33,47 @@
         background: linear-gradient(90deg, $white 0.01%, $blue 100.01%);
         transform: matrix(-1, 0, 0, 1, 0, 0);
         z-index: 0;
+
+        @include mobile-xs {
+          bottom: 59%;
+        }
+
+        @include pc {
+          bottom: 41%;
+        }
       }
 
       &--color {
-        position: absolute;
-        top: 25%;
-        right: 5rem;
         font-size: 1.6rem;
         font-weight: 600;
         line-height: 127%;
         color: $black;
         text-transform: uppercase;
         padding-right: 3rem;
-        width: 12rem;
+
+        @include mobile-xs {
+          padding: 0;
+          position: unset;
+          max-width: 240px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        @include tablet-md {
+          position: absolute;
+          top: 18%;
+          right: 28rem;
+          max-width: 300px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        @include pc {
+          top: 25%;
+          right: 5rem;
+          width: 12rem;
+          text-align: unset;
+        }
 
         ul {
           display: flex;

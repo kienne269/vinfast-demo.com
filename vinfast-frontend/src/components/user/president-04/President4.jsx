@@ -36,14 +36,14 @@ const President4 = props => {
                     <div className="l-4">
                         <div className="container">
                             <div className="row">
-                                <div className="l-12">
+                                <div className="l-12 m-12 c-12">
                                     <div className="group__title">
                                         <h3>ĐỘNG CƠ & CÔNG NGHỆ</h3>
                                         <h2>{product.dongCoCN}</h2>
                                         <p>{product.dongCoCN1}</p>
                                     </div>
                                 </div>
-                                <div className="l-12">
+                                <div className="l-12 m-12 c-12">
                                     <ul>
                                         {
                                             president4 ? president4.map((item, index) => (

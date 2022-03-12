@@ -23,8 +23,10 @@ const Product = props => {
                 console.log(err)
             }
         }
-        getCarBlock3() 
+        getCarBlock3()
+    }, [params.slug])
 
+    useEffect(() => {
         const getAllProduct = async () => {
             try {
                 const res = await productClientApi.getAll()

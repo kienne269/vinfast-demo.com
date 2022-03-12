@@ -14,7 +14,7 @@ const President1 = props => {
                 <div className="president__wrap__info">
                     <div className="container">
                         <div className="row">
-                            <div className="l-12">
+                            <div className="l-12 m-12 c-12">
                                 <div className="president__wrap__info--group">
                                     <div className="parameter">
                                         <span>Động cơ BMW</span>
@@ -29,10 +29,10 @@ const President1 = props => {
                                         {product.camGiacLai}
                                     </div>
                                 </div>
-                                <div className="group__button">
+                            </div>
+                                <div className="l-2 m-12 c-12 group__button">
                                     <Link to="/vinfast-cars-deposit">Mua ngay</Link>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

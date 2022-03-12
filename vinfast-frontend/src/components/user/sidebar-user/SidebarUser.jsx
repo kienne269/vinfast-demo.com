@@ -59,7 +59,7 @@ const SidebarUser = () => {
     const user = useSelector(selectUser);
     const location = useLocation();
     const activeItem = sidebar_user_item.findIndex(item => `${item.route}` === location.pathname)
-    return <div className='l-3 sidebar__user'>
+    return <div className='l-3 m-3 c-12 sidebar__user'>
         <div className="sidebar__user__top">
             <div className="img">
                 <img src={user.avatar} alt="avatar" />

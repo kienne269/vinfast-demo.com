@@ -9,6 +9,14 @@
     }
 
     &__info {
+      @include mobile-xs {
+        padding: 0 1.5rem;
+      }
+
+      @include tablet-lg {
+        padding: 0;
+      }
+
       position: absolute;
       width: 100%;
       top: 0;
