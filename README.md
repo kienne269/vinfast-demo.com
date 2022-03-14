@@ -24,8 +24,6 @@ add vinfast folder to htdocs folder in xampp
 
 ![2](https://user-images.githubusercontent.com/88047306/153750215-430bb0ff-a8be-4627-9f83-ace96d0b181c.png)
 
-![3](https://user-images.githubusercontent.com/88047306/153750216-356eec41-ee1f-4794-a2d5-5d23f016fe31.png)
-
 ![4](https://user-images.githubusercontent.com/88047306/153750218-7c0988b5-bda3-4476-8363-4df931dd609d.png)
 
 ![5](https://user-images.githubusercontent.com/88047306/153750219-f9001237-b043-4280-a158-70340a05b4e5.png)
