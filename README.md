@@ -1,6 +1,3 @@
-# Web
-https://vinfastauto.ml
-
 # Demo
 https://www.youtube.com/watch?v=vZg8vGd7-W0
 
